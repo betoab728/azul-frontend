@@ -57,3 +57,32 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## ARQUITETURA DEL PROYECTO. CLEAN ARCHITECTURE :
+
+src/
+├── app/
+│   ├── domain/                    # Entidades y contratos (interfaces)
+│   │   ├── entities/
+│   │   └── repositories/
+│
+│   ├── application/               # Casos de uso y DTOs
+│   │   ├── use-cases/
+│   │   └── dto/
+│
+│   ├── infrastructure/            # Adaptadores e implementación concreta
+│   │   ├── repositories/          # Implementación de repositorios (ej: API)
+│   │   └── services/              # Servicios concretos (HTTP, localStorage, etc.)
+│
+│   ├── presentation/              # Capa de UI
+│   │   ├── pages/
+│   │   ├── components/
+│   │   └── state/
+│
+│   └── shared/                    # Utilidades comunes
+│       ├── utils/
+│       ├── pipes/
+│       └── directives/
+│
+└── assets/
+
