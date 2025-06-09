@@ -73,9 +73,10 @@ src/
 │   ├── infrastructure/            # Adaptadores e implementación concreta
 │   │   ├── repositories/          # Implementación de repositorios (ej: API)
 │   │   └── services/              # Servicios concretos (HTTP, localStorage, etc.)
+│   │   └── config/                # endpoints
 │
 │   ├── presentation/              # Capa de UI
-│   │   ├── pages/
+│   │   ├── pages/  
 │   │   ├── components/
 │   │   └── state/
 │
