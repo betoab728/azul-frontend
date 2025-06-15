@@ -1,10 +1,20 @@
 import { Routes } from '@angular/router';
 import { Login } from './presentation/pages/login/login';
-import { Dashboard } from './presentation/pages/dashboard/dashboard';
+import { DashboardLayout } from './presentation/layouts/dashboard-layout/dashboard-layout/dashboard-layout';
+import { DashboardHome } from './presentation/pages/dashboard-home/dashboard-home';
 
 export const routes: Routes = [
 
     {path: '', redirectTo: 'login', pathMatch: 'full'},
     {path: 'login', component: Login},
-    { path: 'dashboard', component: Dashboard },
+    {
+        path: 'dashboard',
+        component: DashboardLayout,
+        children: [
+             { path: '', redirectTo: 'home', pathMatch: 'full' },
+             { path: 'home', component: DashboardHome }
+        ]
+        
+    }
+ 
 ];

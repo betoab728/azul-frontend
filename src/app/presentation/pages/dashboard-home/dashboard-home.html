@@ -1,0 +1,61 @@
+<div class="space-y-6">
+  <!-- 👁️ Cards resumen -->
+  <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="bg-white rounded-xl shadow p-4">
+      <h3 class="text-sm font-medium text-gray-500">Total de Residuos</h3>
+      <p class="mt-1 text-2xl font-semibold text-gray-900">2,560 kg</p>
+    </div>
+    <div class="bg-white rounded-xl shadow p-4">
+      <h3 class="text-sm font-medium text-gray-500">Rutas Activas</h3>
+      <p class="mt-1 text-2xl font-semibold text-gray-900">12</p>
+    </div>
+    <div class="bg-white rounded-xl shadow p-4">
+      <h3 class="text-sm font-medium text-gray-500">Vehículos Operativos</h3>
+      <p class="mt-1 text-2xl font-semibold text-gray-900">5</p>
+    </div>
+    <div class="bg-white rounded-xl shadow p-4">
+      <h3 class="text-sm font-medium text-gray-500">Usuarios Registrados</h3>
+      <p class="mt-1 text-2xl font-semibold text-gray-900">30</p>
+    </div>
+  </section>
+
+  <!-- 📊 Gráfico (espacio reservado para futura integración con Chart.js, ApexCharts, etc.) -->
+  <section class="bg-white rounded-xl shadow p-6">
+    <h2 class="text-lg font-semibold text-gray-800 mb-4">Distribución de Residuos</h2>
+    <div class="h-64 flex items-center justify-center text-gray-400">
+      [Aquí irá el gráfico]
+    </div>
+  </section>
+
+  <!-- 📋 Tabla de últimos residuos registrados -->
+  <section class="bg-white rounded-xl shadow p-6">
+    <h2 class="text-lg font-semibold text-gray-800 mb-4">Últimos residuos registrados</h2>
+    <div class="overflow-x-auto">
+      <table class="min-w-full divide-y divide-gray-200 text-sm">
+        <thead>
+          <tr class="text-left text-gray-600">
+            <th class="px-4 py-2">Fecha</th>
+            <th class="px-4 py-2">Tipo</th>
+            <th class="px-4 py-2">Cantidad (kg)</th>
+            <th class="px-4 py-2">Recolector</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          <tr>
+            <td class="px-4 py-2">2025-06-14</td>
+            <td class="px-4 py-2">Orgánico</td>
+            <td class="px-4 py-2">145</td>
+            <td class="px-4 py-2">Carlos P.</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2">2025-06-13</td>
+            <td class="px-4 py-2">Inorgánico</td>
+            <td class="px-4 py-2">320</td>
+            <td class="px-4 py-2">Ana M.</td>
+          </tr>
+          <!-- ...más filas -->
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>
