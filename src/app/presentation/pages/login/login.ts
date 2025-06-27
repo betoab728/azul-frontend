@@ -34,8 +34,8 @@ export class Login {
     try {
       const response = await this.loginUseCase.execute(dto);
       console.log('Login exitoso:', response);
-
       // Aquí puedes guardar el token, redirigir, etc.
+      localStorage.setItem('token', response.access_token);
       this.router.navigate(['/dashboard']); // o la ruta que desees
     } catch (error) {
       console.error('Error en login:', error);

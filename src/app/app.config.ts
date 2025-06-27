@@ -3,7 +3,8 @@ import { provideRouter } from '@angular/router';
 import { AuthRepository } from './domain/repositories/auth.repository';
 //import { AuthApiRepository } from '../../infraestructure/repositories/auth-api.repository';
 import { AuthApiRepository } from './infrastructure/repositories/auth-api.repository';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { AuthInterceptor } from './infrastructure/services/auth.interceptor';
 
 import { routes } from './app.routes';
 
@@ -12,7 +13,9 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideHttpClient(),
+    provideHttpClient(
+      withInterceptors([AuthInterceptor])
+    ),
     { provide: AuthRepository, useClass: AuthApiRepository }
   ]
 };

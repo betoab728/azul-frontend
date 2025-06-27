@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+//interceptor
+import { AuthInterceptor } from './infrastructure/services/auth.interceptor';
 
 @Component({
   selector: 'app-root',

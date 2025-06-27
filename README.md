@@ -72,7 +72,7 @@ src/
 │   │   └── dto/
 │   │ 
 │   ├── infrastructure             # Adaptadores e implementación concreta
-│   │   ├── repositori s/          # Implementación de repositorios (ej: API)
+│   │   ├── repositories/          # Implementación de repositorios (ej: API)
 │   │   ├── services/              # Servicios concretos (HTTP, localStorage, etc.)
 │   │   └── config/          
 │   │── presentation/
