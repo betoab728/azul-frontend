@@ -12,9 +12,9 @@ export const routes: Routes = [
         component: DashboardLayout,
         children: [
              { path: '', redirectTo: 'home', pathMatch: 'full' },
-             { path: 'home', component: DashboardHome }
+             { path: 'home', component: DashboardHome },
+             { path: 'clasificacion', loadComponent : () => import('./presentation/pages/classifications/classifications').then(m => m.Classifications) },
         ]
         
     }
- 
 ];
