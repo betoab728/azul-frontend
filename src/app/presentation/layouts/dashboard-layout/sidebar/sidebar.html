@@ -1,10 +1,130 @@
-<nav class="w-64 bg-white border-r border-gray-200 p-4 shadow-md">
+<nav class="w-64 bg-white border-r border-gray-200 p-4 shadow-md h-screen overflow-y-auto">
   <h2 class="text-xl font-bold mb-6">Gestión de Residuos</h2>
   <ul class="space-y-2">
-    <li><a routerLink="/dashboard" class="block p-2 rounded hover:bg-gray-100">Inicio</a></li>
-    <li><a routerLink="/users" class="block p-2 rounded hover:bg-gray-100">Usuarios</a></li>
-    <li><a routerLink="/residues" class="block p-2 rounded hover:bg-gray-100">Residuos</a></li>
-    <li><a routerLink="/routes" class="block p-2 rounded hover:bg-gray-100">Rutas</a></li>
-    <li><a routerLink="/vessels" class="block p-2 rounded hover:bg-gray-100">Vehículos</a></li>
+
+    <!-- Dashboard -->
+    <li>
+      <a routerLink="/dashboard" class="block p-2 rounded hover:bg-gray-100">
+        Dashboard
+      </a>
+    </li>
+
+    <!-- Gestión de Usuarios -->
+    <li>
+      <details class="group">
+        <summary class="flex items-center justify-between p-2 cursor-pointer rounded hover:bg-gray-100">
+          <span>Gestión de Usuarios</span>
+          <svg class="w-4 h-4 transform transition-transform duration-200 group-open:rotate-180"
+            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <ul class="ml-4 mt-2 space-y-1">
+          <li><a routerLink="/users" class="block p-2 text-sm rounded hover:bg-gray-100">Usuarios</a></li>
+          <li><a routerLink="/roles" class="block p-2 text-sm rounded hover:bg-gray-100">Roles</a></li>
+        </ul>
+      </details>
+    </li>
+
+    <!-- Gestión de Residuos -->
+    <li>
+      <details class="group">
+        <summary class="flex items-center justify-between p-2 cursor-pointer rounded hover:bg-gray-100">
+          <span>Gestión de Residuos</span>
+          <svg class="w-4 h-4 transform transition-transform duration-200 group-open:rotate-180"
+            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <ul class="ml-4 mt-2 space-y-1">
+          <li><a routerLink="/residues-classification" class="block p-2 text-sm rounded hover:bg-gray-100">Clasificación</a></li>
+          <li><a routerLink="/residues-type" class="block p-2 text-sm rounded hover:bg-gray-100">Tipo</a></li>
+          <li><a routerLink="/units" class="block p-2 text-sm rounded hover:bg-gray-100">Unidades de Medida</a></li>
+          <li><a routerLink="/generators" class="block p-2 text-sm rounded hover:bg-gray-100">Generadores</a></li>
+          <li><a routerLink="/residues" class="block p-2 text-sm rounded hover:bg-gray-100">Registro</a></li>
+        </ul>
+      </details>
+    </li>
+
+    <!-- Gestión de Transporte -->
+    <li>
+      <details class="group">
+        <summary class="flex items-center justify-between p-2 cursor-pointer rounded hover:bg-gray-100">
+          <span>Gestión de Transporte</span>
+          <svg class="w-4 h-4 transform transition-transform duration-200 group-open:rotate-180"
+            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <ul class="ml-4 mt-2 space-y-1">
+          <li><a routerLink="/routes" class="block p-2 text-sm rounded hover:bg-gray-100">Rutas</a></li>
+          <li><a routerLink="/vessels" class="block p-2 text-sm rounded hover:bg-gray-100">Embarcaciones</a></li>
+          <li><a routerLink="/vessel-types" class="block p-2 text-sm rounded hover:bg-gray-100">Tipo de Embarcación</a></li>
+          <li><a routerLink="/transport-status" class="block p-2 text-sm rounded hover:bg-gray-100">Estado de Transporte</a></li>
+          <li><a routerLink="/transporters" class="block p-2 text-sm rounded hover:bg-gray-100">Transportistas</a></li>
+          <li><a routerLink="/ports" class="block p-2 text-sm rounded hover:bg-gray-100">Puertos</a></li>
+        </ul>
+      </details>
+    </li>
+
+    <!-- Solicitudes y Cotizaciones -->
+    <li>
+      <details class="group">
+        <summary class="flex items-center justify-between p-2 cursor-pointer rounded hover:bg-gray-100">
+          <span>Solicitudes y Cotizaciones</span>
+          <svg class="w-4 h-4 transform transition-transform duration-200 group-open:rotate-180"
+            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <ul class="ml-4 mt-2 space-y-1">
+          <li><a routerLink="/quote-requests" class="block p-2 text-sm rounded hover:bg-gray-100">Solicitud de Cotización</a></li>
+          <li><a routerLink="/request-status" class="block p-2 text-sm rounded hover:bg-gray-100">Estado de Solicitud</a></li>
+          <li><a routerLink="/quotes" class="block p-2 text-sm rounded hover:bg-gray-100">Cotizaciones</a></li>
+          <li><a routerLink="/quote-status" class="block p-2 text-sm rounded hover:bg-gray-100">Estado de Cotización</a></li>
+        </ul>
+      </details>
+    </li>
+
+    <!-- Tratamiento -->
+    <li>
+      <details class="group">
+        <summary class="flex items-center justify-between p-2 cursor-pointer rounded hover:bg-gray-100">
+          <span>Tratamiento</span>
+          <svg class="w-4 h-4 transform transition-transform duration-200 group-open:rotate-180"
+            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <ul class="ml-4 mt-2 space-y-1">
+          <li><a routerLink="/treatments" class="block p-2 text-sm rounded hover:bg-gray-100">Tratamientos</a></li>
+          <li><a routerLink="/treatment-types" class="block p-2 text-sm rounded hover:bg-gray-100">Tipos de Tratamiento</a></li>
+        </ul>
+      </details>
+    </li>
+
+    <!-- Trazabilidad -->
+    <li>
+      <details class="group">
+        <summary class="flex items-center justify-between p-2 cursor-pointer rounded hover:bg-gray-100">
+          <span>Trazabilidad</span>
+          <svg class="w-4 h-4 transform transition-transform duration-200 group-open:rotate-180"
+            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <ul class="ml-4 mt-2 space-y-1">
+          <li><a routerLink="/transfer-orders" class="block p-2 text-sm rounded hover:bg-gray-100">Órdenes de Traslado</a></li>
+          <li><a routerLink="/traceability" class="block p-2 text-sm rounded hover:bg-gray-100">Trazabilidad</a></li>
+        </ul>
+      </details>
+    </li>
+
   </ul>
 </nav>
