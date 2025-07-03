@@ -1,61 +1,92 @@
-<div class="space-y-6">
-  <!-- 👁️ Cards resumen -->
-  <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-    <div class="bg-white rounded-xl shadow p-4">
-      <h3 class="text-sm font-medium text-gray-500">Total de Residuos</h3>
-      <p class="mt-1 text-2xl font-semibold text-gray-900">2,560 kg</p>
+<div class="space-y-8">
+
+  <!-- ✅ Cards de resumen -->
+  <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="bg-gray-50 border border-gray-200 rounded-xl shadow-sm p-5">
+      <h3 class="text-sm text-gray-600">Total de Residuos</h3>
+      <p class="text-3xl font-bold text-gray-800 mt-2">2,560 kg</p>
     </div>
-    <div class="bg-white rounded-xl shadow p-4">
-      <h3 class="text-sm font-medium text-gray-500">Rutas Activas</h3>
-      <p class="mt-1 text-2xl font-semibold text-gray-900">12</p>
+    <div class="bg-gray-50 border border-gray-200 rounded-xl shadow-sm p-5">
+      <h3 class="text-sm text-gray-600">Rutas Activas</h3>
+      <p class="text-3xl font-bold text-gray-800 mt-2">12</p>
     </div>
-    <div class="bg-white rounded-xl shadow p-4">
-      <h3 class="text-sm font-medium text-gray-500">Vehículos Operativos</h3>
-      <p class="mt-1 text-2xl font-semibold text-gray-900">5</p>
+    <div class="bg-gray-50 border border-gray-200 rounded-xl shadow-sm p-5">
+      <h3 class="text-sm text-gray-600">Vehículos Operativos</h3>
+      <p class="text-3xl font-bold text-gray-800 mt-2">5</p>
     </div>
-    <div class="bg-white rounded-xl shadow p-4">
-      <h3 class="text-sm font-medium text-gray-500">Usuarios Registrados</h3>
-      <p class="mt-1 text-2xl font-semibold text-gray-900">30</p>
+    <div class="bg-gray-50 border border-gray-200 rounded-xl shadow-sm p-5">
+      <h3 class="text-sm text-gray-600">Usuarios Registrados</h3>
+      <p class="text-3xl font-bold text-gray-800 mt-2">30</p>
     </div>
   </section>
 
-  <!-- 📊 Gráfico (espacio reservado para futura integración con Chart.js, ApexCharts, etc.) -->
-  <section class="bg-white rounded-xl shadow p-6">
-    <h2 class="text-lg font-semibold text-gray-800 mb-4">Distribución de Residuos</h2>
-    <div class="h-64 flex items-center justify-center text-gray-400">
-      [Aquí irá el gráfico]
+  <!-- ✅ Gráfico de barras (simulado) -->
+  <section class="bg-white border border-gray-200 rounded-xl shadow-sm p-6">
+    <h2 class="text-lg font-semibold text-gray-800 mb-4">Cantidad de residuos por tipo</h2>
+    <div class="h-64 flex items-end gap-4 px-6 pb-6">
+      <div class="w-16">
+        <div class="bg-blue-300 rounded-t-md h-40"></div>
+        <p class="text-center text-xs mt-2 text-gray-500">Orgánicos</p>
+      </div>
+      <div class="w-16">
+        <div class="bg-green-300 rounded-t-md h-28"></div>
+        <p class="text-center text-xs mt-2 text-gray-500">Inorgánicos</p>
+      </div>
+      <div class="w-16">
+        <div class="bg-yellow-300 rounded-t-md h-20"></div>
+        <p class="text-center text-xs mt-2 text-gray-500">Peligrosos</p>
+      </div>
+      <div class="w-16">
+        <div class="bg-purple-300 rounded-t-md h-32"></div>
+        <p class="text-center text-xs mt-2 text-gray-500">Reciclables</p>
+      </div>
     </div>
   </section>
 
-  <!-- 📋 Tabla de últimos residuos registrados -->
-  <section class="bg-white rounded-xl shadow p-6">
+  <!-- ✅ Gráfico circular (simulado) -->
+  <section class="bg-white border border-gray-200 rounded-xl shadow-sm p-6">
+    <h2 class="text-lg font-semibold text-gray-800 mb-4">Distribución por Clasificación</h2>
+    <div class="flex items-center justify-center h-64 relative">
+      <div class="w-48 h-48 rounded-full border-[10px] border-blue-300 border-t-green-300 border-r-yellow-300 border-b-purple-300"></div>
+      <div class="absolute text-xs text-gray-400 bottom-3">[Gráfico circular simulado]</div>
+    </div>
+  </section>
+
+  <!-- ✅ Tabla de residuos -->
+  <section class="bg-white border border-gray-200 rounded-xl shadow-sm p-6">
     <h2 class="text-lg font-semibold text-gray-800 mb-4">Últimos residuos registrados</h2>
     <div class="overflow-x-auto">
       <table class="min-w-full divide-y divide-gray-200 text-sm">
-        <thead>
-          <tr class="text-left text-gray-600">
-            <th class="px-4 py-2">Fecha</th>
-            <th class="px-4 py-2">Tipo</th>
-            <th class="px-4 py-2">Cantidad (kg)</th>
-            <th class="px-4 py-2">Recolector</th>
+        <thead class="bg-gray-50">
+          <tr class="text-left text-gray-700">
+            <th class="px-4 py-3 font-medium">Fecha</th>
+            <th class="px-4 py-3 font-medium">Tipo</th>
+            <th class="px-4 py-3 font-medium">Cantidad (kg)</th>
+            <th class="px-4 py-3 font-medium">Recolector</th>
           </tr>
         </thead>
-        <tbody class="divide-y divide-gray-100">
-          <tr>
-            <td class="px-4 py-2">2025-06-14</td>
-            <td class="px-4 py-2">Orgánico</td>
-            <td class="px-4 py-2">145</td>
-            <td class="px-4 py-2">Carlos P.</td>
+        <tbody class="divide-y divide-gray-100 text-gray-700">
+          <tr class="hover:bg-gray-50">
+            <td class="px-4 py-3">2025-06-14</td>
+            <td class="px-4 py-3">Orgánico</td>
+            <td class="px-4 py-3">145</td>
+            <td class="px-4 py-3">Carlos P.</td>
           </tr>
-          <tr>
-            <td class="px-4 py-2">2025-06-13</td>
-            <td class="px-4 py-2">Inorgánico</td>
-            <td class="px-4 py-2">320</td>
-            <td class="px-4 py-2">Ana M.</td>
+          <tr class="hover:bg-gray-50">
+            <td class="px-4 py-3">2025-06-13</td>
+            <td class="px-4 py-3">Inorgánico</td>
+            <td class="px-4 py-3">320</td>
+            <td class="px-4 py-3">Ana M.</td>
           </tr>
-          <!-- ...más filas -->
+          <tr class="hover:bg-gray-50">
+            <td class="px-4 py-3">2025-06-12</td>
+            <td class="px-4 py-3">Peligroso</td>
+            <td class="px-4 py-3">80</td>
+            <td class="px-4 py-3">Luis R.</td>
+          </tr>
         </tbody>
       </table>
     </div>
   </section>
+
 </div>

@@ -24,11 +24,11 @@ export class ClassificationApiRepository implements ClassificationRepository {
     return await firstValueFrom(this.http.post<Classification>(this.url, dto));
   }
 
-    async update(id: number,nombre: string ): Promise<Classification> {
-        return await firstValueFrom(this.http.put<Classification>(`${this.url}/${id}`, dto));
+    async update(id: number,nombre: string ):Promise<void> {
+        return await firstValueFrom(this.http.put<void>(`${this.url}/${id}`, { nombre }));
     }
 
-    async delete(id: string): Promise<void> {
+    async delete(id: number): Promise<void> {
         return await firstValueFrom(this.http.delete<void>(`${this.url}/${id}`));
     }
 }

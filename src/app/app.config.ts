@@ -5,6 +5,9 @@ import { AuthRepository } from './domain/repositories/auth.repository';
 import { AuthApiRepository } from './infrastructure/repositories/auth-api.repository';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { AuthInterceptor } from './infrastructure/services/auth.interceptor';
+//declarar classification.repository y classification-api.repository
+import { ClassificationRepository } from './domain/repositories/classification.repository';
+import { ClassificationApiRepository } from './infrastructure/repositories/classification-api.repository';
 
 import { routes } from './app.routes';
 
@@ -17,5 +20,6 @@ export const appConfig: ApplicationConfig = {
       withInterceptors([AuthInterceptor])
     ),
     { provide: AuthRepository, useClass: AuthApiRepository }
+    , { provide: ClassificationRepository, useClass: ClassificationApiRepository }
   ]
 };
