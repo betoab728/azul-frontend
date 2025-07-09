@@ -20,6 +20,10 @@ export const routes: Routes = [
              { path: 'unidades-medida', loadComponent : () => import('./presentation/pages/units/units').then(m => m.Units) },
              //registro residuos:waste
              { path: 'registro-residuos', loadComponent : () => import('./presentation/pages/waste/waste').then(m => m.Waste) },
+             //roles
+             {path: 'roles', loadComponent : () => import('./presentation/pages/roles/roles').then(m => m.Roles) },
+             //usuarios: users
+             {path: 'usuarios', loadComponent : () => import('./presentation/pages/users/users').then(m => m.Users) },
         ]
         
     }

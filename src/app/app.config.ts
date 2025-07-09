@@ -10,6 +10,8 @@ import { ClassificationRepository } from './domain/repositories/classification.r
 import { ClassificationApiRepository } from './infrastructure/repositories/classification-api.repository';
 
 import { routes } from './app.routes';
+import { RoleRepository } from './domain/repositories/role.repository';
+import { RoleApiRepository } from './infrastructure/repositories/role-api.repository';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,6 +22,7 @@ export const appConfig: ApplicationConfig = {
       withInterceptors([AuthInterceptor])
     ),
     { provide: AuthRepository, useClass: AuthApiRepository }
-    , { provide: ClassificationRepository, useClass: ClassificationApiRepository }
+    , { provide: ClassificationRepository, useClass: ClassificationApiRepository },
+      {provide: RoleRepository, useClass: RoleApiRepository}
   ]
 };
