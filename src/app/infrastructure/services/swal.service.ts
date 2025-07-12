@@ -1,6 +1,28 @@
 import Swal from 'sweetalert2';
-
 export class SwalService {
+  // ✅ Éxito
+  static success(message: string) {
+    Swal.fire('Éxito', message, 'success');
+  }
+
+  // ✅ Error
+  static error(message: string) {
+    Swal.fire('Error', message, 'error');
+  }
+
+  // ✅ Confirmación
+  static confirm(message: string): Promise<boolean> {
+    return Swal.fire({
+      title: '¿Estás seguro?',
+      text: message,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí',
+      cancelButtonText: 'No'
+    }).then(result => result.isConfirmed);
+  }
+
+
   // ✅ Input simple (1 campo)
   static async inputPrompt(title: string, placeholder: string = ''): Promise<string | null> {
     const { value } = await Swal.fire({
@@ -39,25 +61,5 @@ export class SwalService {
     return formValues || null;
   }
 
-  // ✅ Éxito
-  static success(message: string) {
-    Swal.fire('Éxito', message, 'success');
-  }
-
-  // ✅ Error
-  static error(message: string) {
-    Swal.fire('Error', message, 'error');
-  }
-
-  // ✅ Confirmación
-  static confirm(message: string): Promise<boolean> {
-    return Swal.fire({
-      title: '¿Estás seguro?',
-      text: message,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Sí',
-      cancelButtonText: 'No'
-    }).then(result => result.isConfirmed);
-  }
+  
 }
