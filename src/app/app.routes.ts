@@ -24,6 +24,8 @@ export const routes: Routes = [
              {path: 'roles', loadComponent : () => import('./presentation/pages/roles/roles').then(m => m.Roles) },
              //usuarios: users
              {path: 'usuarios', loadComponent : () => import('./presentation/pages/users/users').then(m => m.Users) },
+             //agregar usuario
+             {path: 'usuarios/agregar', loadComponent : () => import('./presentation/pages/users/add-user/add-user').then(m => m.AddUser) },
         ]
         
     }

@@ -5,5 +5,7 @@ export const endpoints = {
   //endpont para obtener las clasificaciones
     classifications: `${environment.apiUrl}/clasificaciones`,
     roles: `${environment.apiUrl}/roles`,
+    users: `${environment.apiUrl}/usuarios/con-rol`,
+    userswithRoles: `${environment.apiUrl}/usuarios/con-rol`,
     
   };

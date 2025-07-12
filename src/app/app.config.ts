@@ -12,6 +12,8 @@ import { ClassificationApiRepository } from './infrastructure/repositories/class
 import { routes } from './app.routes';
 import { RoleRepository } from './domain/repositories/role.repository';
 import { RoleApiRepository } from './infrastructure/repositories/role-api.repository';
+import { UserRepository } from './domain/repositories/user.repository';
+import { UserApiRepository } from './infrastructure/repositories/user-api.repository';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -23,6 +25,7 @@ export const appConfig: ApplicationConfig = {
     ),
     { provide: AuthRepository, useClass: AuthApiRepository }
     , { provide: ClassificationRepository, useClass: ClassificationApiRepository },
-      {provide: RoleRepository, useClass: RoleApiRepository}
+      {provide: RoleRepository, useClass: RoleApiRepository},
+      {provide:UserRepository, useClass: UserApiRepository}
   ]
 };
