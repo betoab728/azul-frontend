@@ -1,10 +1,10 @@
 import { Component,OnInit } from '@angular/core';
-import { GetAllRolesUseCase } from '../../../application/use-cases/roles/get-all-roles.use-case';
-import { Role } from '../../../domain/entities/role.entity';
+import { Role } from 'src/app/domain/entities/role.entity';
+import { RoleStoreService } from 'src/app/infrastructure/services/role-store.service';
 import { CommonModule } from '@angular/common';
-import { CreateRoleUseCase } from '../../../application/use-cases/roles/create-role.use-case';
+import { CreateRoleUseCase } from 'src/app/application/use-cases/roles/create-role.use-case';
 // Importa SwalService si lo necesitas para mostrar mensajes
-import { SwalService } from '../../../infrastructure/services/swal.service.js'; 
+import { SwalService } from 'src/app/infrastructure/services/swal.service'; 
 
 @Component({
   selector: 'app-roles',
@@ -13,27 +13,21 @@ import { SwalService } from '../../../infrastructure/services/swal.service.js';
   styleUrl: './roles.css'
 })
 export class Roles implements OnInit {
-
-  roles: Role[] = [];  
-  loading = true; 
+  roles: Role[] = [];
+  loading = true;
 
   constructor(
-    private getAllRolesUseCase: GetAllRolesUseCase,
+    private roleStoreService: RoleStoreService,
     private createRoleUseCase: CreateRoleUseCase
   ) {}
 
   async ngOnInit() {
-    // Aquí puedes cargar los roles al iniciar el componente
-    await this.loadRoles();
-  }
-
-  private async loadRoles() {
     this.loading = true;
     try {
-      this.roles = await this.getAllRolesUseCase.execute();
+      await this.roleStoreService.load();
+      this.roles = this.roleStoreService.roles();
     } catch (error) {
       console.error('Error al obtener los roles:', error);
-      // Aquí podrías usar un Swal o algún snackbar:
       // SwalService.error('No se pudieron cargar los roles');
     } finally {
       this.loading = false;
@@ -41,19 +35,17 @@ export class Roles implements OnInit {
   }
 
   async onCreateRole() {
-    const result = await SwalService.roleInputPrompt(); // Muestra un modal con 2 inputs
-  
-    if (!result) return; // Usuario canceló o no completó los campos
-  
+    const result = await SwalService.roleInputPrompt();
+    if (!result) return;
+
     try {
       const newRole: Role = { nombre: result.nombre, descripcion: result.descripcion };
       await this.createRoleUseCase.execute(newRole);
-      await this.loadRoles();
+      await this.roleStoreService.refresh(); // 🔁 Refresca la lista desde la API
       SwalService.success('Rol creado correctamente');
     } catch (error) {
       console.error('Error al crear el rol:', error);
       SwalService.error('Hubo un error al registrar el rol');
     }
   }
-
 }

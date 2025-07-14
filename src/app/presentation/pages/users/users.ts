@@ -1,8 +1,7 @@
 import { Component,OnInit } from '@angular/core';
-import { GetAllUsersWithRoleUseCase } from '../../../application/use-cases/users/get-all-users.use-case';
+import { UserStoreService } from '../../../infrastructure/services/user-store.service';
 import { UserWithRole } from '../../../domain/entities/user.entity';
 import { CommonModule } from '@angular/common';
-import { CreateUserUseCase } from '../../../application/use-cases/users/create-user.use-case';
 import { SwalService } from '../../../infrastructure/services/swal.service.js';
 import { Router } from '@angular/router';
 
@@ -18,29 +17,23 @@ export class Users implements OnInit {
   loading = true; 
 
   constructor(
-    private  getAllUsersUseCase: GetAllUsersWithRoleUseCase,
-    private createUserUseCase: CreateUserUseCase,
-    private router: Router 
+    private userStoreService: UserStoreService,
+    private router: Router
   ) {}
 
   async ngOnInit() {
-    // Aquí puedes cargar los usuarios al iniciar el componente
-    await this.loadUsers();
-  }
-
-  private async loadUsers() {
     this.loading = true;
     try {
-      this.users = await this.getAllUsersUseCase.execute();
-      console.log('Usuarios cargados:', this.users);
+      await this.userStoreService.load();
+      this.users = this.userStoreService.users();
     } catch (error) {
-      console.error('Error al obtener los usuarios:', error);
-      // Aquí podrías usar un Swal o algún snackbar:
-      // SwalService.error('No se pudieron cargar los usuarios');
+      console.error('Error al cargar usuarios:', error);
+      SwalService.error('No se pudieron cargar los usuarios');
     } finally {
       this.loading = false;
     }
   }
+
   async onCreateUser() {
   await this.router.navigate(['/dashboard/usuarios/agregar']);
   }
