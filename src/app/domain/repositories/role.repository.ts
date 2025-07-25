@@ -1,5 +1,5 @@
 //interfaz para el repositorio de roles
-import { CreateRoleDto,UpdateRoleDto, RoleReadDto } from '../../application/dto/role.dto';
+import { CreateRoleDto,UpdateRoleDto, RoleReadDto } from 'src/app/application/dto/role.dto';
 
 export abstract class RoleRepository {
     abstract create(dto: CreateRoleDto): Promise<RoleReadDto>;

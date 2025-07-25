@@ -1,5 +1,5 @@
-import { RoleReadDto,CreateRoleDto,UpdateRoleDto } from '../dto/role.dto';
-import { Role } from '../../domain/entities/role.entity';
+import { RoleReadDto,CreateRoleDto,UpdateRoleDto } from 'src/app/application/dto/role.dto';
+import { Role } from 'src/app/domain/entities/role.entity';
 
 export class RoleMapper {
 

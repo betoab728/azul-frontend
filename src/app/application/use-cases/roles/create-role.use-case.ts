@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { RoleRepository } from '../../../domain/repositories/role.repository';
-import { Role } from '../../../domain/entities/role.entity';
-import { RoleMapper } from '../../mappers/role.mapper';
+import { RoleRepository } from 'src/app/domain/repositories/role.repository'; // Asegúrate de que la ruta sea correcta
+import { Role } from 'src/app/domain/entities/role.entity'; // Asegúrate de que la ruta sea correcta
+import { RoleMapper } from 'src/app/application/mappers/role.mapper'; // Asegúrate de que la ruta sea correcta
 
 @Injectable({ providedIn: 'root' })
 

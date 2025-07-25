@@ -7,7 +7,7 @@ import { ClassificationRepository } from '../../domain/repositories/classificati
 import { Classification } from '../../domain/entities/classification.entity';
 import { ClassificationRequestDto } from '../../application/dto/classification-request.dto';
 //importar config/endpoint para clasification
-import { endpoints } from '../config/endpoints';
+import { endpoints } from 'src/app/infrastructure/config/endpoints';
 
 
 @Injectable()

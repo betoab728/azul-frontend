@@ -18,6 +18,7 @@ export const routes: Routes = [
              { path: 'tipo-residuo', loadComponent : () => import('./presentation/pages/types/types').then(m => m.Types) },
              //unidades de medida
              { path: 'unidades-medida', loadComponent : () => import('./presentation/pages/units/units').then(m => m.Units) },
+             {path: 'unidades-medida/agregar', loadComponent : () => import('./presentation/pages/units/add-unit/add-unit').then(m => m.AddUnit) },
              //registro residuos:waste
              { path: 'registro-residuos', loadComponent : () => import('./presentation/pages/waste/waste').then(m => m.Waste) },
              //roles

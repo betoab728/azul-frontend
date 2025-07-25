@@ -1,5 +1,5 @@
 //interfaz para el repositorio de usuarios
-import { CreateUserDto, UpdateUserDto, UserReadDto, UserWithRoleDto } from '../../application/dto/user.dto';
+import { CreateUserDto, UpdateUserDto, UserReadDto, UserWithRoleDto } from 'src/app/application/dto/user.dto';
 
 export abstract class UserRepository {
     abstract create(dto: CreateUserDto): Promise<UserReadDto>;
