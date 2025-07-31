@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ClassificationStoreService } from 'src/app/infrastructure/services/clasification-store.service';
 import { Classification } from '../../../domain/entities/classification.entity';
-import { GetAllClassificationsUseCase } from '../../../application/use-cases/classifications/get-all-classifications.use-case';
 import { CreateClassificationUseCase } from '../../../application/use-cases/classifications/create-classification.use-case';
 import { CommonModule } from '@angular/common';
 //swalert2
@@ -17,11 +17,21 @@ export class Classifications implements OnInit  {
   loading = true;
 
   constructor(
-    private getAllClassifications: GetAllClassificationsUseCase,
+    private classificationStoreService: ClassificationStoreService,
     private createClassificationUseCase: CreateClassificationUseCase
   ) {}
   async ngOnInit() {
-    await this.loadClassifications();
+  
+    this.loading = true;
+    try {
+      await this.classificationStoreService.load();
+      this.classifications = this.classificationStoreService.classifications();
+    } catch (error) {
+      console.error('Error al obtener las clasificaciones:', error);
+      SwalService.error('No se pudieron cargar las clasificaciones');
+    } finally {
+      this.loading = false;
+    }
   }
 
   async onCreateClassification() {
@@ -30,7 +40,7 @@ export class Classifications implements OnInit  {
 
     try {
       await this.createClassificationUseCase.execute({ nombre });
-      await this.loadClassifications();
+      await this.classificationStoreService.refresh();
       SwalService.success('Clasificación creada correctamente');
     } catch (error) {
       console.error(error);
@@ -38,9 +48,5 @@ export class Classifications implements OnInit  {
     }
   }
 
-  private async loadClassifications() {
-    this.loading = true;
-    this.classifications = await this.getAllClassifications.execute();
-    this.loading = false;
-  }
+
 }
