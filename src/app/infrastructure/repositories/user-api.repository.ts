@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { UserRepository } from '../../domain/repositories/user.repository';
 import { CreateUserDto, UpdateUserDto, UserReadDto, UserWithRoleDto } from '../../application/dto/user.dto';
-import { endpoints } from '../config/endpoints';
+import { endpoints } from 'src/app/infrastructure/config/endpoints';
 
 @Injectable()
 export class UserApiRepository implements UserRepository {

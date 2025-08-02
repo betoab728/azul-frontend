@@ -2,7 +2,6 @@ import { Component ,OnInit} from '@angular/core';
 import { UnitStoreService } from 'src/app/infrastructure/services/unit-store.service';
 import { Unit } from 'src/app/domain/entities/unit.entity';
 import { CommonModule } from '@angular/common';
-import { CreateUnitUseCase } from 'src/app/application/use-cases/units/create-unit.use-case';
 import { SwalService } from 'src/app/infrastructure/services/swal.service';
 import { Router } from '@angular/router';
 

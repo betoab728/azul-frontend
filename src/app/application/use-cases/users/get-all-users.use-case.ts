@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { UserRepository } from '../../../domain/repositories/user.repository';
-import { UserWithRole } from '../../../domain/entities/user.entity';
-import { UserMapper } from '../../mappers/user.mapper';
+import { UserRepository } from 'src/app/domain/repositories/user.repository';
+import { UserWithRole } from 'src/app/domain/entities/user.entity';
+import { UserMapper } from 'src/app/application/mappers/user.mapper';
 
 @Injectable({ providedIn: 'root' })
 export class GetAllUsersWithRoleUseCase {

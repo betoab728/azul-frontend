@@ -1,56 +1,49 @@
-<section class="bg-white border border-gray-200 rounded-xl shadow-sm p-6">
-    <h2 class="text-lg font-semibold text-gray-800 mb-4">Tipos de Residuos</h2>
-  
-    <div class="overflow-x-auto">
-      <table class="min-w-full divide-y divide-gray-200 text-sm">
-        <thead class="bg-gray-50 text-left text-gray-700">
-          <tr>
-            <th class="px-4 py-2 font-medium">#</th>
-            <th class="px-4 py-2 font-medium">Nombre</th>
-            <th class="px-4 py-2 font-medium">Descripción</th>
-            <th class="px-4 py-2 font-medium">Clasificación</th>
-            <th class="px-4 py-2 font-medium">Estado</th>
-          </tr>
-        </thead>
-        <tbody class="divide-y divide-gray-100 text-gray-700">
-          <tr class="hover:bg-gray-50">
-            <td class="px-4 py-2">1</td>
-            <td class="px-4 py-2">Orgánico</td>
-            <td class="px-4 py-2">Residuos biodegradables como restos de comida</td>
-            <td class="px-4 py-2">Biodegradable</td>
-            <td class="px-4 py-2">
-              <span class="inline-block px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700">Activo</span>
-            </td>
-          </tr>
-          <tr class="hover:bg-gray-50">
-            <td class="px-4 py-2">2</td>
-            <td class="px-4 py-2">Inorgánico</td>
-            <td class="px-4 py-2">Plásticos, metales y otros residuos no biodegradables</td>
-            <td class="px-4 py-2">No Biodegradable</td>
-            <td class="px-4 py-2">
-              <span class="inline-block px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700">Activo</span>
-            </td>
-          </tr>
-          <tr class="hover:bg-gray-50">
-            <td class="px-4 py-2">3</td>
-            <td class="px-4 py-2">Peligroso</td>
-            <td class="px-4 py-2">Residuos químicos, baterías, medicamentos caducos</td>
-            <td class="px-4 py-2">Tóxicos</td>
-            <td class="px-4 py-2">
-              <span class="inline-block px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-700">Inactivo</span>
-            </td>
-          </tr>
-          <tr class="hover:bg-gray-50">
-            <td class="px-4 py-2">4</td>
-            <td class="px-4 py-2">Reciclables</td>
-            <td class="px-4 py-2">Papeles, cartones, botellas reutilizables</td>
-            <td class="px-4 py-2">Reutilizable</td>
-            <td class="px-4 py-2">
-              <span class="inline-block px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700">Activo</span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-  
+<section class="p-4">
+  <h1 class="text-xl font-bold mb-4">Gestión de Tipos de Residuos</h1>
+
+  <div *ngIf="loading" class="text-gray-500">Cargando...</div>
+
+  <div class="flex justify-between items-center mb-4">
+    <button
+      (click)="onCreateTipoResiduo()"
+      class="bg-sky-600 hover:bg-sky-700 text-white text-sm font-semibold px-4 py-2 rounded transition"
+    >
+      + Nuevo Tipo de Residuo
+    </button>
+  </div>
+
+  <table
+    *ngIf="!loading"
+    class="min-w-full divide-y divide-gray-200 bg-white rounded-xl shadow-md overflow-hidden"
+  >
+    <thead class="bg-gray-50">
+      <tr>
+        <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider hidden">ID</th>
+        <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Nombre</th>
+        <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Descripción</th>
+        <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Clasificación</th>
+        <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Acciones</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-200">
+      <tr
+        *ngFor="let tipo of tipos"
+        class="hover:bg-gray-50 transition-colors duration-150"
+      >
+        <td class="px-6 py-4 text-sm text-gray-700 hidden">{{ tipo.id }}</td>
+        <td class="px-6 py-4 text-sm text-gray-700">{{ tipo.nombre }}</td>
+        <td class="px-6 py-4 text-sm text-gray-700">{{ tipo.descripcion || '-' }}</td>
+        <td class="px-6 py-4 text-sm text-gray-700">{{ tipo.clasificacion }}</td>
+      
+        <td class="px-6 py-4 text-sm">
+          <button class="text-blue-600 hover:text-blue-800 hover:underline transition">
+            Editar
+          </button>
+          <button class="ml-4 text-red-600 hover:text-red-800 hover:underline transition">
+            Eliminar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>

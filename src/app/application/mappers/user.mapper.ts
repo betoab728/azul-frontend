@@ -1,6 +1,6 @@
 //mapper para transformar datos de usuario
-import { User,UserWithRole  } from '../../domain/entities/user.entity';
-import { CreateUserDto, UpdateUserDto, UserReadDto, UserWithRoleDto } from '../dto/user.dto';
+import { User,UserWithRole  } from 'src/app/domain/entities/user.entity';
+import { CreateUserDto, UpdateUserDto, UserReadDto, UserWithRoleDto } from 'src/app/application/dto/user.dto';
 
 export class UserMapper {
 

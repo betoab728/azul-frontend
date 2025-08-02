@@ -17,6 +17,8 @@ import { UserApiRepository } from './infrastructure/repositories/user-api.reposi
 //unidad repository y unidad-api.repository
 import { UnitRepository } from './domain/repositories/unit.repository';
 import { UnitApiRepository } from './infrastructure/repositories/unit-api.repository';
+import { TipoResiduoApiRepository } from './infrastructure/repositories/type-api.repository';
+import { TipoResiduoRepository } from './domain/repositories/type.repository';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -31,6 +33,7 @@ export const appConfig: ApplicationConfig = {
       {provide: RoleRepository, useClass: RoleApiRepository},
       {provide:UserRepository, useClass: UserApiRepository},
       {provide: UnitRepository, useClass: UnitApiRepository},
+      {provide: TipoResiduoRepository, useClass: TipoResiduoApiRepository}
       
   ]
 };

@@ -27,6 +27,9 @@ export const routes: Routes = [
              {path: 'usuarios', loadComponent : () => import('./presentation/pages/users/users').then(m => m.Users) },
              //agregar usuario
              {path: 'usuarios/agregar', loadComponent : () => import('./presentation/pages/users/add-user/add-user').then(m => m.AddUser) },
+             //tipos de residuo: types
+             {path: 'tipos-residuo', loadComponent : () => import('./presentation/pages/types/types').then(m => m.Types) },
+             {path: 'tipos-residuo/agregar', loadComponent : () => import('./presentation/pages/types/add-type/add-type').then(m => m.AddType) },
         ]
         
     }
