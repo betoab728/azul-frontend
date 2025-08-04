@@ -17,6 +17,7 @@ export interface CreateTipoResiduoDto {
     id_clasificacion: string;
     created_at: string;
     updated_at: string;
+    estado : string; 
   }
 
   export interface TipoResiduoWithClasificacionDto {
@@ -25,4 +26,5 @@ export interface CreateTipoResiduoDto {
     descripcion?: string;
     clasificacion: string; // nombre de la clasificación
     created_at: string;
+    estado: string;
   }

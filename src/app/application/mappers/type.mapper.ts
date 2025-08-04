@@ -36,13 +36,14 @@ import {
           id_clasificacion: dto.id_clasificacion,
           created_at: dto.created_at,
           updated_at: dto.updated_at,
+          estado: dto.estado, 
         };
       }
 
       static fromReadDtoList(dtos: TipoResiduoReadDto[]): TipoResiduo[] {
         return dtos.map(this.fromReadDto);
       }
-      // DTO con clasificación → Entidad enriquecida (opcional)
+      // DTO con clasificación , no muestra id_clasificacion si no el nombre de la clasificación
   static fromWithClasificacionDto(dto: TipoResiduoWithClasificacionDto): TipoResiduoWithClasificacion {
     return {
       id: dto.id,
@@ -50,6 +51,7 @@ import {
       descripcion: dto.descripcion,
       clasificacion : dto.clasificacion, 
       created_at: dto.created_at,
+      estado: dto.estado, 
     };
   }
 

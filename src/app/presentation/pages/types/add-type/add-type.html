@@ -1,1 +1,51 @@
-<p>add-type works!</p>
+<section class="p-6 max-w-md mx-auto bg-white rounded shadow">
+    <h2 class="text-xl font-bold mb-4">Registrar Tipo de Residuo</h2>
+  
+    <form (ngSubmit)="onSubmit()" class="space-y-4">
+      <!-- Nombre -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Nombre</label>
+        <input
+          type="text"
+          [(ngModel)]="nombre"
+          name="nombre"
+          required
+          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-sky-400 outline-none"
+        />
+      </div>
+  
+      <!-- Descripción -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Descripción</label>
+        <textarea
+          [(ngModel)]="descripcion"
+          name="descripcion"
+          required
+          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-sky-400 outline-none resize-none"
+        ></textarea>
+      </div>
+  
+      <!-- Clasificación -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Clasificación</label>
+        <ng-select
+          [items]="clasificaciones"
+          bindLabel="nombre"
+          bindValue="id"
+          [(ngModel)]="idClasificacion"
+          name="idClasificacion"
+          placeholder="Seleccione una clasificación"
+          class="w-full"
+        >
+        </ng-select>
+      </div>
+
+      <button
+        type="submit"
+        class="bg-sky-600 hover:bg-sky-700 text-white font-semibold px-4 py-2 rounded-md"
+      >
+        Guardar Tipo de Residuo
+      </button>
+    </form>
+  </section>
+  

@@ -5,6 +5,7 @@ export interface TipoResiduo {
     id_clasificacion: string;
     created_at?: string;
     updated_at?: string;
+    estado?: string; // Estado del tipo de residuo (activo, inactivo, etc.)
   }
 
   export interface TipoResiduoWithClasificacion {
@@ -13,4 +14,5 @@ export interface TipoResiduo {
     descripcion?: string;
     clasificacion: string; // Nombre de la clasificación
     created_at?: string;
+    estado?: string; // Estado del tipo de residuo (activo, inactivo, etc.)
   }
