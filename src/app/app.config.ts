@@ -19,6 +19,8 @@ import { UnitRepository } from './domain/repositories/unit.repository';
 import { UnitApiRepository } from './infrastructure/repositories/unit-api.repository';
 import { TipoResiduoApiRepository } from './infrastructure/repositories/type-api.repository';
 import { TipoResiduoRepository } from './domain/repositories/type.repository';
+import { RegistroResiduoRepository } from './domain/repositories/waste.repository';
+import { RegistroResiduoApiRepository } from './infrastructure/repositories/waste-api.repository';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -33,7 +35,8 @@ export const appConfig: ApplicationConfig = {
       {provide: RoleRepository, useClass: RoleApiRepository},
       {provide:UserRepository, useClass: UserApiRepository},
       {provide: UnitRepository, useClass: UnitApiRepository},
-      {provide: TipoResiduoRepository, useClass: TipoResiduoApiRepository}
+      {provide: TipoResiduoRepository, useClass: TipoResiduoApiRepository},
+      { provide: RegistroResiduoRepository, useClass: RegistroResiduoApiRepository }
       
   ]
 };

@@ -6,8 +6,6 @@ import { CreateTipoResiduoDto, UpdateTipoResiduoDto, TipoResiduoReadDto, TipoRes
 import { firstValueFrom } from 'rxjs';
 import { endpoints } from 'src/app/infrastructure/config/endpoints';
 
-
-
 @Injectable()
 export class TipoResiduoApiRepository implements TipoResiduoRepository {
     private url = endpoints.types; // URL del endpoint de tipos de residuos

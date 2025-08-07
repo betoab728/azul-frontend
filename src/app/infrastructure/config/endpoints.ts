@@ -8,5 +8,6 @@ export const endpoints = {
     userswithRoles: `${environment.apiUrl}/usuarios/con-rol/`,
     units: `${environment.apiUrl}/unidad_medida/`,
     types: `${environment.apiUrl}/tipos-residuos/`,
-    
+    waste: `${environment.apiUrl}/registro-residuos/`,
+
   };

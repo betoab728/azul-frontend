@@ -3,7 +3,6 @@ import { TipoResiduoRepository } from 'src/app/domain/repositories/type.reposito
 import { TipoResiduo } from 'src/app/domain/entities/types.entity'
 import { TipoResiduoMapper } from 'src/app/application/mappers/type.mapper';
 
-
 @Injectable({ providedIn: 'root' })
 export class CreateTipoResiduoUseCase {
     constructor(private readonly tipoResiduoRepository: TipoResiduoRepository) {}

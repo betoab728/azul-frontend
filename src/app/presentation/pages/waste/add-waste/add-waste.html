@@ -1,0 +1,69 @@
+<section class="p-6 max-w-md mx-auto bg-white rounded shadow">
+    <h2 class="text-xl font-bold mb-4">Registrar Residuo</h2>
+    <form (ngSubmit)="onSubmit()" class="space-y-4">
+      <!-- Nombre del residuo -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Nombre del Residuo <span class="text-red-500">*</span></label>
+        <input
+          type="text"
+          [(ngModel)]="nombreResiduo"
+          name="nombreResiduo"
+          required
+          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-sky-400 outline-none"
+        />
+      </div>
+      <!-- Tipo de residuo -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Tipo de Residuo <span class="text-red-500">*</span></label>
+        <ng-select
+          [items]="tiposResiduo"
+          bindLabel="nombre"
+          bindValue="id"
+          [(ngModel)]="idTipoResiduo"
+          name="idTipoResiduo"
+          placeholder="Seleccione un tipo de residuo"
+          class="w-full"
+        >
+          <ng-template ng-label-tmp let-item="item">
+            {{ item.nombre }} ({{ item.clasificacion }})
+          </ng-template>
+          <ng-template ng-option-tmp let-item="item">
+            {{ item.nombre }} ({{ item.clasificacion }})
+          </ng-template>
+        </ng-select>
+      </div>
+  
+      <!-- Unidad de medida -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Unidad de Medida <span class="text-red-500">*</span></label>
+        <ng-select
+          [items]="unidades"
+          bindLabel="nombre"
+          bindValue="id"
+          [(ngModel)]="idUnidad"
+          name="idUnidad"
+          placeholder="Seleccione una unidad"
+          class="w-full"
+        ></ng-select>
+      </div>
+  
+      <!-- Observaciones -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Observaciones</label>
+        <textarea
+          [(ngModel)]="observaciones"
+          name="observaciones"
+          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-sky-400 outline-none resize-none"
+        ></textarea>
+      </div>
+  
+      <!-- Botón -->
+      <button
+        type="submit"
+        class="bg-sky-600 hover:focus:ring-sky-400 text-white font-semibold px-4 py-2 rounded-md"
+      >
+        Guardar Registro de Residuo
+      </button>
+    </form>
+  </section>
+  

@@ -21,6 +21,7 @@ export const routes: Routes = [
              {path: 'unidades-medida/agregar', loadComponent : () => import('./presentation/pages/units/add-unit/add-unit').then(m => m.AddUnit) },
              //registro residuos:waste
              { path: 'registro-residuos', loadComponent : () => import('./presentation/pages/waste/waste').then(m => m.Waste) },
+             {path: 'registro-residuos/agregar', loadComponent : () => import('./presentation/pages/waste/add-waste/add-waste').then(m => m.AddWaste) },
              //roles
              {path: 'roles', loadComponent : () => import('./presentation/pages/roles/roles').then(m => m.Roles) },
              //usuarios: users

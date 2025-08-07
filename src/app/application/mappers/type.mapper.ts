@@ -9,7 +9,6 @@ import {
 
   export class TipoResiduoMapper {
 
-
     static toCreateDto(entity: TipoResiduo): CreateTipoResiduoDto {
         return {
           nombre: entity.nombre,
