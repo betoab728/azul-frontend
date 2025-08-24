@@ -31,6 +31,9 @@ export const routes: Routes = [
              //tipos de residuo: types
              {path: 'tipos-residuo', loadComponent : () => import('./presentation/pages/types/types').then(m => m.Types) },
              {path: 'tipos-residuo/agregar', loadComponent : () => import('./presentation/pages/types/add-type/add-type').then(m => m.AddType) },
+             //generadores
+             {path: 'generadores',loadComponent : () => import('./presentation/pages/generators/generators').then(m => m.Generators) },
+             {path: 'generadores/agregar', loadComponent : () => import('./presentation/pages/generators/add-generator/add-generator').then(m => m.AddGenerator) },
         ]
         
     }

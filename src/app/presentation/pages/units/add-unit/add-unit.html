@@ -1,1 +1,53 @@
-<p>add-unit works!</p>
+<section class="p-6 max-w-md mx-auto bg-white rounded shadow">
+    <h2 class="text-xl font-bold mb-4">Registrar Unidad de Medida</h2>
+  
+    <form (ngSubmit)="onSubmit()" class="space-y-4">
+      <!-- Código -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Código</label>
+        <input
+          type="text"
+          [(ngModel)]="codigo"
+          name="codigo"
+          required
+          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-sky-400 outline-none"
+          placeholder="Ej: Kg, L, m"
+        />
+      </div>
+  
+      <!-- Nombre -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Nombre</label>
+        <input
+          type="text"
+          [(ngModel)]="nombre"
+          name="nombre"
+          required
+          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-sky-400 outline-none"
+          placeholder="Ej: Kilogramo, Litro, Metro"
+        />
+      </div>
+  
+      <!-- Descripción -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Descripción</label>
+        <textarea
+          [(ngModel)]="descripcion"
+          name="descripcion"
+          required
+          rows="3"
+          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-sky-400 outline-none resize-none"
+          placeholder="Breve descripción de la unidad"
+        ></textarea>
+      </div>
+  
+      <!-- Botón -->
+      <button
+        type="submit"
+        class="bg-sky-600 hover:bg-sky-700 text-white font-semibold px-4 py-2 rounded-md w-full"
+      >
+        Guardar Unidad
+      </button>
+    </form>
+  </section>
+  
