@@ -21,6 +21,8 @@ import { TipoResiduoApiRepository } from './infrastructure/repositories/type-api
 import { TipoResiduoRepository } from './domain/repositories/type.repository';
 import { RegistroResiduoRepository } from './domain/repositories/waste.repository';
 import { RegistroResiduoApiRepository } from './infrastructure/repositories/waste-api.repository';
+import { GeneradorResiduoRepository } from './domain/repositories/generator.repository';
+import { GeneradorResiduoApiRepository } from './infrastructure/repositories/generator-api.repository';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -36,7 +38,8 @@ export const appConfig: ApplicationConfig = {
       {provide:UserRepository, useClass: UserApiRepository},
       {provide: UnitRepository, useClass: UnitApiRepository},
       {provide: TipoResiduoRepository, useClass: TipoResiduoApiRepository},
-      { provide: RegistroResiduoRepository, useClass: RegistroResiduoApiRepository }
+      { provide: RegistroResiduoRepository, useClass: RegistroResiduoApiRepository },
+      { provide: GeneradorResiduoRepository, useClass: GeneradorResiduoApiRepository }
       
   ]
 };

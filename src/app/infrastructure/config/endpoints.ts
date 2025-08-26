@@ -9,5 +9,9 @@ export const endpoints = {
     units: `${environment.apiUrl}/unidad_medida/`,
     types: `${environment.apiUrl}/tipos-residuos/`,
     waste: `${environment.apiUrl}/registro-residuos/`,
+    generator: `${environment.apiUrl}/generador-residuos/`,
+    departments: `${environment.apiUrl}/ubigeo/departamentos/`,
+    provinces: `${environment.apiUrl}/ubigeo/provincias/`,
+    districts: `${environment.apiUrl}/ubigeo/distritos/`,
 
   };
