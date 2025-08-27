@@ -8,7 +8,7 @@ import { endpoints } from "src/app/infrastructure/config/endpoints";
 @Injectable({
   providedIn: "root"
 })
-export class UbigeoRepositoryImpl extends UbigeoRepository {
+export class UbigeoApiRepository extends UbigeoRepository {
   constructor(private http: HttpClient) {
     super();
   }

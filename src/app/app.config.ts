@@ -23,6 +23,8 @@ import { RegistroResiduoRepository } from './domain/repositories/waste.repositor
 import { RegistroResiduoApiRepository } from './infrastructure/repositories/waste-api.repository';
 import { GeneradorResiduoRepository } from './domain/repositories/generator.repository';
 import { GeneradorResiduoApiRepository } from './infrastructure/repositories/generator-api.repository';
+import { UbigeoRepository } from './domain/repositories/ubigeo.repository';
+import { UbigeoApiRepository } from './infrastructure/repositories/ubigeo-api.repository';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -39,7 +41,8 @@ export const appConfig: ApplicationConfig = {
       {provide: UnitRepository, useClass: UnitApiRepository},
       {provide: TipoResiduoRepository, useClass: TipoResiduoApiRepository},
       { provide: RegistroResiduoRepository, useClass: RegistroResiduoApiRepository },
-      { provide: GeneradorResiduoRepository, useClass: GeneradorResiduoApiRepository }
+      { provide: GeneradorResiduoRepository, useClass: GeneradorResiduoApiRepository },
+      { provide: UbigeoRepository, useClass: UbigeoApiRepository }
       
   ]
 };

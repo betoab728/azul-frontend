@@ -1,1 +1,142 @@
-<p>add-generator works!</p>
+<section class="p-6 max-w-md mx-auto bg-white rounded shadow">
+    <h2 class="text-xl font-bold mb-4">Registrar Generador</h2>
+  
+    <form (ngSubmit)="onSubmit()" class="space-y-4">
+      <!-- RUC -->
+      <div>
+        <label class="block text-sm font-medium mb-1">RUC</label>
+        <input
+          type="text"
+          [(ngModel)]="ruc"
+          name="ruc"
+          required
+          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-sky-400 outline-none"
+        />
+      </div>
+  
+      <!-- Razón Social -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Razón Social</label>
+        <input
+          type="text"
+          [(ngModel)]="razonsocial"
+          name="razonsocial"
+          required
+          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-sky-400 outline-none"
+        />
+      </div>
+  
+      <!-- Dirección -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Dirección</label>
+        <input
+          type="text"
+          [(ngModel)]="direccion"
+          name="direccion"
+          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-sky-400 outline-none"
+        />
+      </div>
+  
+      <!-- Teléfono -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Teléfono</label>
+        <input
+          type="text"
+          [(ngModel)]="telefono"
+          name="telefono"
+          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-sky-400 outline-none"
+        />
+      </div>
+  
+      <!-- Correo -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Correo</label>
+        <input
+          type="email"
+          [(ngModel)]="correo"
+          name="correo"
+          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-sky-400 outline-none"
+        />
+      </div>
+  
+      <!-- DNI Responsable -->
+      <div>
+        <label class="block text-sm font-medium mb-1">DNI Responsable</label>
+        <input
+          type="text"
+          [(ngModel)]="dniResponsable"
+          name="dniResponsable"
+          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-sky-400 outline-none"
+        />
+      </div>
+  
+      <!-- Nombre Responsable -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Nombre Responsable</label>
+        <input
+          type="text"
+          [(ngModel)]="nombreResponsable"
+          name="nombreResponsable"
+          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-sky-400 outline-none"
+        />
+      </div>
+  
+      <!-- Departamento -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Departamento</label>
+        <ng-select
+          [items]="ubigeoStore.departamentos()"
+          bindLabel="nombre"
+          bindValue="id"
+          [(ngModel)]="idDepartamento"
+          name="departamento"
+          (change)="onDepartamentoChange($event)"
+          placeholder="Seleccione un departamento"
+          class="w-full"
+        >
+        </ng-select>
+      </div>
+  
+      <!-- Provincia -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Provincia</label>
+        <ng-select
+          [items]="ubigeoStore.provincias()"
+          bindLabel="nombre"
+          bindValue="id"
+          [(ngModel)]="idProvincia"
+          name="provincia"
+          (change)="onProvinciaChange($event)"
+          [disabled]="!idDepartamento"
+          placeholder="Seleccione una provincia"
+          class="w-full"
+        >
+        </ng-select>
+      </div>
+  
+      <!-- Distrito -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Distrito</label>
+        <ng-select
+          [items]="ubigeoStore.distritos()"
+          bindLabel="nombre"
+          bindValue="id"
+          [(ngModel)]="idDistrito"
+          name="distrito"
+          [disabled]="!idProvincia"
+          placeholder="Seleccione un distrito"
+          class="w-full"
+        >
+        </ng-select>
+      </div>
+  
+      <!-- Botón -->
+      <button
+        type="submit"
+        class="bg-sky-600 hover:bg-sky-700 text-white font-semibold px-4 py-2 rounded-md w-full"
+      >
+        Registrar Generador
+      </button>
+    </form>
+  </section>
+  

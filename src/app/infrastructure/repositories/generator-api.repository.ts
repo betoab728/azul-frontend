@@ -17,6 +17,7 @@ export class GeneradorResiduoApiRepository implements GeneradorResiduoRepository
   constructor(private http: HttpClient) {}
 
   async create(dto: GeneradorResiduoCreateDto): Promise<GeneradorResiduoReadDto> {
+    console.log('Creating GeneradorResiduo with DTO:', dto);
     return await firstValueFrom(
       this.http.post<GeneradorResiduoReadDto>(this.url, dto)
     );

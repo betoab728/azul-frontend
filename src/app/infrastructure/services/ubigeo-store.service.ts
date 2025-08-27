@@ -5,7 +5,7 @@ import { GetProvinciasByDepartamentoUseCase } from 'src/app/application/use-case
 import { GetDistritosByProvinciaUseCase } from 'src/app/application/use-cases/ubigeo/get-districts.use-case.js';
 
 @Injectable({ providedIn: 'root' })
-export class CatalogosStoreService {
+export class UbigeoStoreService {
   private _departamentos = signal<Departamento[]>([]);
   private _provincias = signal<Provincia[]>([]);
   private _distritos = signal<Distrito[]>([]);
