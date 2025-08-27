@@ -32,9 +32,9 @@ export class AddGenerator {
     idProvincia: number | null = null;
     idDistrito: number | null = null;
 
-    // 📌 Campos para Google Maps
-    center: google.maps.LatLngLiteral = { lat: -12.0464, lng: -77.0428 }; // Centro inicial (Lima)
-    zoom = 14;
+    // Campos para Google Maps
+    center: google.maps.LatLngLiteral = {  lat: -5.1945, lng: -80.6328  }; // Centro inicial (Piura, Perú)
+    zoom = 10;
     marker: google.maps.LatLngLiteral | null = null; // Para guardar el punto seleccionado
 
     constructor(
