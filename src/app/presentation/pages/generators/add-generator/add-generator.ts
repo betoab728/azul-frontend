@@ -5,6 +5,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { GoogleMapsModule } from '@angular/google-maps';  
 import { UbigeoStoreService } from 'src/app/infrastructure/services/ubigeo-store.service';
 import { CreateGeneradorResiduoUseCase } from 'src/app/application/use-cases/generator/create-generator.use-case';
+import { DniService } from 'src/app/infrastructure/services/dni.service';
+import { RucService } from 'src/app/infrastructure/services/ruc.service';
 import { GeneradorResiduoStoreService } from 'src/app/infrastructure/services/generator-store.service';
 import { SwalService } from 'src/app/infrastructure/services/swal.service';
 import { Router } from '@angular/router';
@@ -39,6 +41,8 @@ export class AddGenerator {
       public  ubigeoStore: UbigeoStoreService,
       private createGenerador: CreateGeneradorResiduoUseCase,
       private generadorStore: GeneradorResiduoStoreService,
+      private dniService: DniService,
+      private rucService: RucService,
       private router: Router
     ) {}
 
@@ -108,6 +112,44 @@ export class AddGenerator {
       SwalService.error('No se pudo crear el generador');
     }
 
+    }
+    async buscarDni() {
+      if (!this.dniResponsable) {
+        SwalService.error('Ingrese un DNI para buscar');
+        return;
+      }
+    
+      try {
+        const data = await this.dniService.consultarDni(this.dniResponsable);
+        if (data.estado && data.resultado) {
+          this.nombreResponsable = data.resultado.nombre_completo;
+        } else {
+          SwalService.error('No se encontró el DNI');
+        }
+      } catch (err) {
+        console.error(err);
+        SwalService.error('Error consultando el DNI');
+      }
+    }
+
+    async buscarRuc() {
+      if (!this.ruc) {
+        SwalService.error('Ingrese un RUC para buscar');
+        return;
+      }
+    
+      try {
+        const data = await this.rucService.consultarRuc(this.ruc);
+        if (data.estado && data.resultado) {
+          this.razonsocial = data.resultado.razon_social;
+          this.direccion = data.resultado.direccion;
+        } else {
+          SwalService.error('No se encontró el RUC');
+        }
+      } catch (err) {
+        console.error(err);
+        SwalService.error('Error consultando el RUC');
+      }
     }
 
 }
