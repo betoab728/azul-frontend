@@ -8,6 +8,9 @@ export interface GeneradorResiduoCreateDto {
     nombre_responsable?: string;
     telefono?: string;
     correo?: string;
+    //latitud y longitud opcionales
+    latitud?: number;
+    longitud?: number;
   }
 
   //update 

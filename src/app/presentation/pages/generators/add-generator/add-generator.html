@@ -1,9 +1,8 @@
-<section class="p-6 max-w-md mx-auto bg-white rounded shadow">
+<section class="p-6 max-w-2xl mx-auto bg-white rounded shadow">
     <h2 class="text-xl font-bold mb-4">Registrar Generador</h2>
-  
-    <form (ngSubmit)="onSubmit()" class="space-y-4">
+    <form (ngSubmit)="onSubmit()" class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <!-- RUC -->
-      <div>
+      <div class="flex flex-col">
         <label class="block text-sm font-medium mb-1">RUC</label>
         <input
           type="text"
@@ -13,9 +12,9 @@
           class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-sky-400 outline-none"
         />
       </div>
-  
+    
       <!-- Razón Social -->
-      <div>
+      <div class="flex flex-col">
         <label class="block text-sm font-medium mb-1">Razón Social</label>
         <input
           type="text"
@@ -25,9 +24,9 @@
           class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-sky-400 outline-none"
         />
       </div>
-  
+    
       <!-- Dirección -->
-      <div>
+      <div class="flex flex-col">
         <label class="block text-sm font-medium mb-1">Dirección</label>
         <input
           type="text"
@@ -36,9 +35,9 @@
           class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-sky-400 outline-none"
         />
       </div>
-  
+    
       <!-- Teléfono -->
-      <div>
+      <div class="flex flex-col">
         <label class="block text-sm font-medium mb-1">Teléfono</label>
         <input
           type="text"
@@ -47,9 +46,9 @@
           class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-sky-400 outline-none"
         />
       </div>
-  
+    
       <!-- Correo -->
-      <div>
+      <div class="flex flex-col">
         <label class="block text-sm font-medium mb-1">Correo</label>
         <input
           type="email"
@@ -58,9 +57,9 @@
           class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-sky-400 outline-none"
         />
       </div>
-  
+    
       <!-- DNI Responsable -->
-      <div>
+      <div class="flex flex-col">
         <label class="block text-sm font-medium mb-1">DNI Responsable</label>
         <input
           type="text"
@@ -69,9 +68,9 @@
           class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-sky-400 outline-none"
         />
       </div>
-  
+    
       <!-- Nombre Responsable -->
-      <div>
+      <div class="flex flex-col">
         <label class="block text-sm font-medium mb-1">Nombre Responsable</label>
         <input
           type="text"
@@ -80,9 +79,9 @@
           class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-sky-400 outline-none"
         />
       </div>
-  
+    
       <!-- Departamento -->
-      <div>
+      <div class="flex flex-col">
         <label class="block text-sm font-medium mb-1">Departamento</label>
         <ng-select
           [items]="ubigeoStore.departamentos()"
@@ -96,9 +95,9 @@
         >
         </ng-select>
       </div>
-  
+    
       <!-- Provincia -->
-      <div>
+      <div class="flex flex-col">
         <label class="block text-sm font-medium mb-1">Provincia</label>
         <ng-select
           [items]="ubigeoStore.provincias()"
@@ -113,9 +112,9 @@
         >
         </ng-select>
       </div>
-  
+    
       <!-- Distrito -->
-      <div>
+      <div class="flex flex-col md:col-span-2">
         <label class="block text-sm font-medium mb-1">Distrito</label>
         <ng-select
           [items]="ubigeoStore.distritos()"
@@ -129,14 +128,39 @@
         >
         </ng-select>
       </div>
-  
-      <!-- Botón -->
-      <button
-        type="submit"
-        class="bg-sky-600 hover:bg-sky-700 text-white font-semibold px-4 py-2 rounded-md w-full"
-      >
-        Registrar Generador
-      </button>
-    </form>
+    
+      <!-- Botón (ocupa toda la fila en desktop) -->
+      <div class="md:col-span-2">
+        <button
+          type="submit"
+          class="bg-sky-600 hover:bg-sky-700 text-white font-semibold px-4 py-2 rounded-md w-full"
+        >
+          Registrar Generador
+        </button>
+      </div>
+    </form>   
+   
+        <!-- 📌 Mapa -->
+        <div class="mt-4">
+          <label class="block text-sm font-medium mb-1">Ubicación en mapa</label>
+    
+          <google-map
+            height="400px"
+            width="100%"
+            [center]="center"
+            [zoom]="zoom"
+            (mapClick)="onMapClick($event)">
+            
+            @if (marker) {
+              <map-marker [position]="marker"></map-marker>
+            }
+          </google-map>
+        
+          @if (marker) {
+            <p class="text-sm text-gray-500 mt-2">
+              Lat: {{ marker.lat }}, Lng: {{ marker.lng }}
+            </p>
+          }
+        </div>
   </section>
   

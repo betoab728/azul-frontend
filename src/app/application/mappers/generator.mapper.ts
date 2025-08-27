@@ -22,7 +22,9 @@ import {
         dni_responsable: entity.dniResponsable,
         nombre_responsable: entity.nombreResponsable,
         telefono: entity.telefono,
-        correo: entity.correo
+        correo: entity.correo,
+        latitud: entity.latitud,
+        longitud: entity.longitud
       };
     }
   

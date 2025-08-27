@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { GoogleMapsModule } from '@angular/google-maps';  
 import { UbigeoStoreService } from 'src/app/infrastructure/services/ubigeo-store.service';
 import { CreateGeneradorResiduoUseCase } from 'src/app/application/use-cases/generator/create-generator.use-case';
 import { GeneradorResiduoStoreService } from 'src/app/infrastructure/services/generator-store.service';
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-generator',
-  imports: [FormsModule, CommonModule, NgSelectModule],
+  imports: [FormsModule, CommonModule, NgSelectModule,GoogleMapsModule],
   templateUrl: './add-generator.html',
   styleUrl: './add-generator.css',
   standalone: true,
@@ -28,6 +29,11 @@ export class AddGenerator {
     idDepartamento: number | null = null;
     idProvincia: number | null = null;
     idDistrito: number | null = null;
+
+    // 📌 Campos para Google Maps
+    center: google.maps.LatLngLiteral = { lat: -12.0464, lng: -77.0428 }; // Centro inicial (Lima)
+    zoom = 14;
+    marker: google.maps.LatLngLiteral | null = null; // Para guardar el punto seleccionado
 
     constructor(
       public  ubigeoStore: UbigeoStoreService,
@@ -53,9 +59,25 @@ export class AddGenerator {
       this.ubigeoStore.loadDistritos(id);
     }
 
+    // 📌 Evento cuando se hace clic en el mapa
+  onMapClick(event: google.maps.MapMouseEvent) {
+    if (event.latLng) {
+      this.marker = {
+        lat: event.latLng.lat(),
+        lng: event.latLng.lng(),
+      };
+      console.log('Ubicación seleccionada:', this.marker);
+    }
+  }
+
     async onSubmit(){
       if (!this.ruc || !this.razonsocial || !this.idDistrito) {
         SwalService.error('RUC, Razón social y Distrito son obligatorios');
+        return;
+      }
+
+      if (!this.marker) {
+        SwalService.error('Debe seleccionar la ubicación en el mapa');
         return;
       }
 
@@ -72,6 +94,8 @@ export class AddGenerator {
         idDistrito: this.idDistrito?.toString(),
         dniResponsable: this.dniResponsable,
         nombreResponsable: this.nombreResponsable,
+        latitud: this.marker.lat, //guardamos latitud y longitud
+        longitud: this.marker.lng,
       });
 
       // 🔁 Actualizamos la lista de generadores

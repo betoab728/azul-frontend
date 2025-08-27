@@ -11,6 +11,10 @@ export interface GeneradorResiduo {
     created_at?: string;
     updated_at?: string;
     estado?: string; 
+    //campos de ubicacion: latitud y longitud
+    latitud?: number;
+    longitud?: number;
+
 }
 
 export interface GeneradorResiduoDetalle {
