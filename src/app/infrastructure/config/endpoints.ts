@@ -1,4 +1,4 @@
-import { environment } from './environment'
+import { environment } from 'src/app/environments/environment.prod.js'
 
 export const endpoints = {
     login: `${environment.apiUrl}/auth/login/`,
