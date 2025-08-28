@@ -30,6 +30,8 @@ export class UserApiRepository implements UserRepository {
   }
 
   async getAllWithRoles(): Promise<UserWithRoleDto[]> {
+
+    console.log("Fetching users with roles from:", this.urlWithRoles);
     
     return await firstValueFrom(this.http.get<UserWithRoleDto[]>(`${this.urlWithRoles}`));
   }
