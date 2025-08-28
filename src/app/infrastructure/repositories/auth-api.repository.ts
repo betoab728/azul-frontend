@@ -11,10 +11,13 @@ import { firstValueFrom } from 'rxjs';
 export class AuthApiRepository implements AuthRepository {
 
     private url = endpoints.login;
+
+    
  
     constructor(private http: HttpClient) {}
 
    async login(dto: LoginRequestDto): Promise<LoginResponseDto> {
+    console.log('url login...', this.url);
 
     return await firstValueFrom(
       this.http.post<LoginResponseDto>(this.url, dto)

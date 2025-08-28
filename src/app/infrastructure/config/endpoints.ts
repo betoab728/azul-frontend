@@ -1,7 +1,7 @@
-import { environment } from 'src/app/environments/environment.prod.js'
+import { environment } from 'src/environments/environment.prod'
 
 export const endpoints = {
-    login: `${environment.apiUrl}/auth/login/`,
+    login: `${environment.apiUrl}/auth/login`,
     classifications: `${environment.apiUrl}/clasificaciones/`,
     roles: `${environment.apiUrl}/roles/`,
     users: `${environment.apiUrl}/usuarios`,
