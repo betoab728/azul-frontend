@@ -1,0 +1,53 @@
+<div class="max-w-3xl mx-auto bg-white shadow rounded-lg p-6">
+    <h2 class="text-xl font-bold mb-4">Resumen de Solicitud</h2>
+  
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead>
+        <tr>
+          <th class="px-4 py-2 text-left">Residuo</th>
+          <th class="px-4 py-2 text-left">Unidad</th>
+          <th class="px-4 py-2 text-left">Cantidad</th>
+          <th class="px-4 py-2 text-left">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of carritoStore.items()">
+          <td class="px-4 py-2">{{ item.residuo.nombreResiduo }}</td>
+          <td class="px-4 py-2">{{ item.residuo.unidadMedida }}</td>
+          <td class="px-4 py-2">
+            <input
+              type="number"
+              min="1"
+              [(ngModel)]="item.cantidad"
+              (ngModelChange)="carritoStore.actualizarCantidad(item.residuo.id, $event)"
+              class="w-20 border rounded px-2 py-1"
+            />
+          </td>
+          <td class="px-4 py-2">
+            <button
+              (click)="carritoStore.eliminar(item.residuo.id)"
+              class="text-red-600 hover:underline"
+            >
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div class="mt-4 flex justify-between">
+      <button
+        (click)="carritoStore.limpiar()"
+        class="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400"
+      >
+        Vaciar
+      </button>
+  
+      <button
+        class="bg-sky-700 text-white px-6 py-2 rounded hover:bg-sky-800"
+      >
+        Confirmar Solicitud
+      </button>
+    </div>
+  </div>
+  

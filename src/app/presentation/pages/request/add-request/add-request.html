@@ -1,0 +1,55 @@
+<div *ngIf="!loading" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <div
+      *ngFor="let registro of registros"
+      class="bg-white rounded-xl shadow-md hover:shadow-lg transition p-4 flex flex-col"
+    >
+      <!-- Nombre -->
+      <h3 class="text-lg font-semibold text-gray-800 mb-2">
+        {{ registro.nombreResiduo }}
+      </h3>
+  
+      <!-- Info corta -->
+      <p class="text-sm text-gray-600">
+        <strong>Tipo:</strong> {{ registro.tipoResiduo }}
+      </p>
+      <p class="text-sm text-gray-600">
+        <strong>Clasificación:</strong> {{ registro.clasificacion }}
+      </p>
+      <p class="text-sm text-gray-600">
+        <strong>Unidad:</strong> {{ registro.unidadMedida }}
+      </p>
+  
+      <!-- Observaciones -->
+      <p class="text-xs text-gray-500 mt-2 italic">
+        {{ registro.observaciones || 'Sin observaciones' }}
+      </p>
+  
+      <!-- Estado -->
+      <span
+        class="mt-3 inline-block px-2 py-1 text-xs font-semibold rounded-full self-start"
+        [ngClass]="{
+          'bg-green-100 text-green-700': registro.estado === 'Activo',
+          'bg-red-100 text-red-700': registro.estado === 'Inactivo'
+        }"
+      >
+        {{ registro.estado }}
+      </span>
+  
+      <!-- Botón agregar -->
+      <button
+        (click)="agregarAlCarrito(registro)"
+        class="mt-auto bg-sky-700 text-white rounded-lg px-4 py-2 hover:bg-sky-800 transition cursor-pointer "
+      >
+        Agregar
+      </button>
+    </div>
+  </div>
+  <div class="mt-8 flex justify-end">
+    <button
+      class="bg-green-600 text-white px-6 py-3 rounded-lg shadow hover:bg-green-700 transition"
+      (click)="irAlCheckout()"
+    >
+      Resumen de la orden
+    </button>
+  </div>
+  

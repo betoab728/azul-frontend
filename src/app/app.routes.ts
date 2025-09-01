@@ -34,6 +34,8 @@ export const routes: Routes = [
              //generadores
              {path: 'generadores',loadComponent : () => import('./presentation/pages/generators/generators').then(m => m.Generators) },
              {path: 'generadores/agregar', loadComponent : () => import('./presentation/pages/generators/add-generator/add-generator').then(m => m.AddGenerator) },
+             {path: 'solicitud/agregar', loadComponent : () => import('./presentation/pages/request/add-request/add-request').then(m => m.AddRequest) },
+             {path: 'solicitud/checkout', loadComponent : () => import('./presentation/pages/request/checkout-request/checkout-request').then( m => m.CheckoutRequest ) },
         ]
         
     }
