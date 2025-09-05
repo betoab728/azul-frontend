@@ -18,10 +18,12 @@ export class CarritoStoreService {
   );
 
   agregar(residuo: RegistroResiduoDetalle, cantidad = 1) {
+    console.log('Agregando al carrito:', { residuo, cantidad });
     const existentes = this._items();
     const index = existentes.findIndex(i => i.residuo.id === residuo.id);
 
     if (index > -1) {
+      console.log('Item ya existe en el carrito, actualizando cantidad');
       // ya existe → actualizar cantidad
       existentes[index] = {
         ...existentes[index],
@@ -30,6 +32,7 @@ export class CarritoStoreService {
       this._items.set([...existentes]);
     } else {
       // no existe → agregar nuevo
+      console.log('Nuevo item, agregando al carrito');
       this._items.set([...existentes, { residuo, cantidad }]);
     }
   }
