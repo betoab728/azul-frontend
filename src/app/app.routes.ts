@@ -36,6 +36,8 @@ export const routes: Routes = [
              {path: 'generadores/agregar', loadComponent : () => import('./presentation/pages/generators/add-generator/add-generator').then(m => m.AddGenerator) },
              {path: 'solicitud/agregar', loadComponent : () => import('./presentation/pages/request/add-request/add-request').then(m => m.AddRequest) },
              {path: 'solicitud/checkout', loadComponent : () => import('./presentation/pages/request/checkout-request/checkout-request').then( m => m.CheckoutRequest ) },
+             {path: 'embarcaciones', loadComponent : () => import('./presentation/pages/boats/boats').then(m => m.Embarcaciones) },
+             {path: 'embarcaciones/agregar', loadComponent : () => import('./presentation/pages/boats/add-boat/add-boat').then(m => m.AddBoat) },
         ]
         
     }

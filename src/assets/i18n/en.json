@@ -1,0 +1,50 @@
+{
+    "SIDEBAR": {
+      "DASHBOARD": "Dashboard",
+      "USER_MANAGEMENT": {
+        "TITLE": "User Management",
+        "USERS": "Users",
+        "ROLES": "Roles"
+      },
+      "REQUESTS_QUOTES": {
+        "TITLE": "Requests & Quotes",
+        "NEW_REQUEST": "New Quote Request",
+        "REQUEST_STATUS": "Request Status",
+        "QUOTES": "Quotes",
+        "QUOTE_STATUS": "Quote Status"
+      },
+      "WASTE_MANAGEMENT": {
+        "TITLE": "Waste Management",
+        "CLASSIFICATION": "Classification",
+        "TYPE": "Type",
+        "UNITS": "Units of Measure",
+        "GENERATORS": "Generators",
+        "REGISTER": "Register"
+      },
+      "TRANSPORT_MANAGEMENT": {
+        "TITLE": "Transport Management",
+        "ROUTES": "Routes",
+        "VESSELS": "Vessels",
+        "VESSEL_TYPES": "Vessel Types",
+        "TRANSPORT_STATUS": "Transport Status",
+        "TRANSPORTERS": "Transporters",
+        "PORTS": "Ports"
+      },
+      "TREATMENT": {
+        "TITLE": "Treatment",
+        "TREATMENTS": "Treatments",
+        "TREATMENT_TYPES": "Treatment Types"
+      },
+      "TRACEABILITY": {
+        "TITLE": "Traceability",
+        "TRANSFER_ORDERS": "Transfer Orders",
+        "TRACEABILITY": "Traceability"
+      },
+      "FINAL_DISPOSAL": {
+        "TITLE": "Final Disposal",
+        "TRANSFER_ORDERS": "Transfer Orders",
+        "TRACEABILITY": "Traceability"
+      }
+    }
+  }
+  

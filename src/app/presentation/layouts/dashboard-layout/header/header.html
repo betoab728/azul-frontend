@@ -9,5 +9,35 @@
               d="M5.121 17.804A13.937 13.937 0 0112 15c2.486 0 4.797.671 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0z"/>
       </svg>
     </button>
+        <!-- Selector de idioma con icono -->
+        <div class="relative">
+          <button (click)="toggleLangMenu()" 
+                  class="bg-gray-200 p-2 rounded-full hover:bg-gray-300">
+            <i class="fas fa-globe text-gray-700"></i>
+          </button>
+        
+          @if (showLangMenu) {
+            <div class="absolute right-0 mt-2 w-36 bg-white border rounded shadow-lg z-10">
+              <ul class="text-sm">
+                <li>
+                  <button (click)="switchLanguage('es')" class="w-full text-left px-4 py-2 hover:bg-gray-100">
+                    🇪🇸 Español
+                  </button>
+                </li>
+                <li>
+                  <button (click)="switchLanguage('pt')" class="w-full text-left px-4 py-2 hover:bg-gray-100">
+                    🇧🇷 Português
+                  </button>
+                </li>
+                <li>
+                  <button (click)="switchLanguage('en')" class="w-full text-left px-4 py-2 hover:bg-gray-100">
+                    🇺🇸 English
+                  </button>
+                </li>
+              </ul>
+            </div>
+          }
+        </div>
+        
   </div>
 </header>

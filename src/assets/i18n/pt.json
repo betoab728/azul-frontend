@@ -1,0 +1,50 @@
+{
+    "SIDEBAR": {
+      "DASHBOARD": "Painel",
+      "USER_MANAGEMENT": {
+        "TITLE": "Gestão de Usuários",
+        "USERS": "Usuários",
+        "ROLES": "Papéis"
+      },
+      "REQUESTS_QUOTES": {
+        "TITLE": "Solicitações e Cotações",
+        "NEW_REQUEST": "Nova Solicitação de Cotação",
+        "REQUEST_STATUS": "Status da Solicitação",
+        "QUOTES": "Cotações",
+        "QUOTE_STATUS": "Status da Cotação"
+      },
+      "WASTE_MANAGEMENT": {
+        "TITLE": "Gestão de Resíduos",
+        "CLASSIFICATION": "Classificação",
+        "TYPE": "Tipo",
+        "UNITS": "Unidades de Medida",
+        "GENERATORS": "Geradores",
+        "REGISTER": "Registro"
+      },
+      "TRANSPORT_MANAGEMENT": {
+        "TITLE": "Gestão de Transporte",
+        "ROUTES": "Rotas",
+        "VESSELS": "Embarcações",
+        "VESSEL_TYPES": "Tipos de Embarcação",
+        "TRANSPORT_STATUS": "Status do Transporte",
+        "TRANSPORTERS": "Transportadores",
+        "PORTS": "Portos"
+      },
+      "TREATMENT": {
+        "TITLE": "Tratamento",
+        "TREATMENTS": "Tratamentos",
+        "TREATMENT_TYPES": "Tipos de Tratamento"
+      },
+      "TRACEABILITY": {
+        "TITLE": "Rastreabilidade",
+        "TRANSFER_ORDERS": "Ordens de Transferência",
+        "TRACEABILITY": "Rastreabilidade"
+      },
+      "FINAL_DISPOSAL": {
+        "TITLE": "Disposição Final",
+        "TRANSFER_ORDERS": "Ordens de Transferência",
+        "TRACEABILITY": "Rastreabilidade"
+      }
+    }
+  }
+  

@@ -1,0 +1,50 @@
+{
+    "SIDEBAR": {
+      "DASHBOARD": "Dashboard",
+      "USER_MANAGEMENT": {
+        "TITLE": "Gestión de Usuarios",
+        "USERS": "Usuarios",
+        "ROLES": "Roles"
+      },
+      "REQUESTS_QUOTES": {
+        "TITLE": "Solicitudes y Cotizaciones",
+        "NEW_REQUEST": "Solicitud de Cotización",
+        "REQUEST_STATUS": "Estado de Solicitud",
+        "QUOTES": "Cotizaciones",
+        "QUOTE_STATUS": "Estado de Cotización"
+      },
+      "WASTE_MANAGEMENT": {
+        "TITLE": "Gestión de Residuos",
+        "CLASSIFICATION": "Clasificación",
+        "TYPE": "Tipo",
+        "UNITS": "Unidades de Medida",
+        "GENERATORS": "Generadores",
+        "REGISTER": "Registro"
+      },
+      "TRANSPORT_MANAGEMENT": {
+        "TITLE": "Gestión de Transporte",
+        "ROUTES": "Rutas",
+        "VESSELS": "Embarcaciones",
+        "VESSEL_TYPES": "Tipo de Embarcación",
+        "TRANSPORT_STATUS": "Estado de Transporte",
+        "TRANSPORTERS": "Transportistas",
+        "PORTS": "Puertos"
+      },
+      "TREATMENT": {
+        "TITLE": "Tratamiento",
+        "TREATMENTS": "Tratamientos",
+        "TREATMENT_TYPES": "Tipos de Tratamiento"
+      },
+      "TRACEABILITY": {
+        "TITLE": "Trazabilidad",
+        "TRANSFER_ORDERS": "Órdenes de Traslado",
+        "TRACEABILITY": "Trazabilidad"
+      },
+      "FINAL_DISPOSAL": {
+        "TITLE": "Disposición Final",
+        "TRANSFER_ORDERS": "Órdenes de Traslado",
+        "TRACEABILITY": "Trazabilidad"
+      }
+    }
+  }
+  

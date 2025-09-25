@@ -1,4 +1,5 @@
-import { environment } from 'src/environments/environment.prod'
+//import { environment } from 'src/environments/environment.prod'
+import { environment } from 'src/environments/environment'
 
 export const endpoints = {
     login: `${environment.apiUrl}/auth/login`,
@@ -13,5 +14,6 @@ export const endpoints = {
     departments: `${environment.apiUrl}/ubigeo/departamentos`,
     provinces: `${environment.apiUrl}/ubigeo/provincias`,
     districts: `${environment.apiUrl}/ubigeo/distritos`,
+    boats: `${environment.apiUrl}/embarcaciones`,
 
   };

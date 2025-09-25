@@ -6,7 +6,6 @@ import {
     
   } from 'src/app/application/dto/generator.dto';
 
-  
 export abstract class GeneradorResiduoRepository {
     abstract create(dto: GeneradorResiduoCreateDto ): Promise<GeneradorResiduoReadDto>;
     abstract update(id: string, dto: GeneradorResiduoUpdateDto ): Promise<GeneradorResiduoReadDto>;

@@ -33,3 +33,4 @@ export interface UserWithRoleDto {
   estado: number;
   created_at?: string;
 }
+

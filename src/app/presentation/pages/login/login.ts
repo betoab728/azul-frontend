@@ -4,6 +4,7 @@ import { LoginRequestDto } from '../../../application/dto/login-request.dto';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AuthService } from 'src/app/infrastructure/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,8 @@ export class Login {
   errorMessage = '';
   constructor(
     private loginUseCase: LoginUseCase,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   async onSubmit() {
@@ -33,10 +35,10 @@ export class Login {
 
     try {
       const response = await this.loginUseCase.execute(dto);
+      // Guardar token y usuario en el servicio de autenticación
+      this.authService.setSession(response.access_token, response.user);
       console.log('Login exitoso:', response);
-      // Aquí puedes guardar el token, redirigir, etc.
-      localStorage.setItem('token', response.access_token);
-      this.router.navigate(['/dashboard']); // o la ruta que desees
+      this.router.navigate(['/dashboard']); 
     } catch (error) {
       console.error('Error en login:', error);
       this.errorMessage = 'Credenciales incorrectas o error en el servidor.';
