@@ -64,7 +64,20 @@
       >
       </ng-select>
     </div>
-
+        <!-- Generador -->
+        <div>
+          <label class="block text-sm font-medium mb-1">Empresa Generador</label>
+          <ng-select
+            [items]="generadores"
+            bindLabel="razonsocial"
+            bindValue="id"
+            [(ngModel)]="idGenerador"
+            name="idGenerador"
+            placeholder="Seleccione una empresa generadora"
+            class="w-full"
+          >
+          </ng-select>
+        </div>
     <button
       type="submit"
       class="bg-sky-600 hover:bg-sky-700 text-white font-semibold px-4 py-2 rounded-md"

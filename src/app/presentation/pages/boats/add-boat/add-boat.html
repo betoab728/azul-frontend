@@ -1,1 +1,102 @@
-<p>add-boat works!</p>
+<section class="p-6 max-w-md mx-auto bg-white rounded shadow">
+    <h2 class="text-xl font-bold mb-4">Registrar Embarcación</h2>
+  
+    <form (ngSubmit)="onSubmit()" class="space-y-4">
+      <!-- Nombre -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Nombre</label>
+        <input
+          type="text"
+          [(ngModel)]="nombre"
+          name="nombre"
+          required
+          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-sky-400 outline-none"
+        />
+      </div>
+  
+      <!-- Matrícula -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Matrícula</label>
+        <input
+          type="text"
+          [(ngModel)]="matricula"
+          name="matricula"
+          required
+          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-sky-400 outline-none"
+        />
+      </div>
+  
+      <!-- Tipo de Embarcación -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Tipo de Embarcación</label>
+        <ng-select
+          [items]="tiposEmbarcacion"
+          bindLabel="nombre"
+          bindValue="id"
+          [(ngModel)]="id_tipo_embarcacion"
+          name="id_tipo_embarcacion"
+          placeholder="Seleccione un tipo"
+          class="w-full"
+        >
+        </ng-select>
+      </div>
+  
+      <!-- Capacidad de Carga -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Capacidad de Carga (toneladas)</label>
+        <input
+          type="number"
+          [(ngModel)]="capacidad_carga"
+          name="capacidad_carga"
+          required
+          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-sky-400 outline-none"
+        />
+      </div>
+  
+      <!-- Capitán -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Capitán</label>
+        <input
+          type="text"
+          [(ngModel)]="capitan"
+          name="capitan"
+          required
+          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-sky-400 outline-none"
+        />
+      </div>
+  
+      <!-- Observaciones -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Observaciones</label>
+        <textarea
+          [(ngModel)]="observaciones"
+          name="observaciones"
+          rows="3"
+          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-sky-400 outline-none"
+        ></textarea>
+      </div>
+  
+      <!-- Empresa Generadora -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Empresa Generadora</label>
+        <ng-select
+          [items]="generadores"
+          bindLabel="razonsocial"
+          bindValue="id"
+          [(ngModel)]="id_generador"
+          name="id_generador"
+          placeholder="Seleccione una empresa generadora"
+          class="w-full"
+        >
+        </ng-select>
+      </div>
+  
+      <button
+        type="submit"
+        class="bg-sky-600 hover:bg-sky-700 text-white font-semibold px-4 py-2 rounded-md"
+      >
+        Guardar Embarcación
+      </button>
+    </form>
+  </section>
+  

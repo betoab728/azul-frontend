@@ -5,6 +5,7 @@ export interface CreateUserDto {
     correo: string;
     clave: string;
     id_rol: string;
+    id_generador: string;
 }
 //actualizar: el id se asume que se pasa como parte de la URL,estado si es necesario
 export interface UpdateUserDto {

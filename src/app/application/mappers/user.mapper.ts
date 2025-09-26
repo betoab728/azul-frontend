@@ -10,6 +10,7 @@ export class UserMapper {
       correo: user.correo,
       clave: user.clave,
       id_rol: user.idRol,
+      id_generador: user.idGenerador 
     };
   }
 
@@ -32,6 +33,7 @@ export class UserMapper {
       correo: dto.correo,
       clave: '', // No viene en el dto de lectura
       idRol: dto.id_rol,
+      idGenerador: '', // No viene en el dto de lectura
       estado:  dto.estado ,
       created_at: dto.created_at,
       updated_at: dto.updated_at,

@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { GeneradorResiduoDetalle } from 'src/app/domain/entities/generator.entity.js';
+import { GetAllGeneradoresResiduosUseCase } from 'src/app/application/use-cases/generator/get-all-generator.use-case.js';
 
 @Component({
   selector: 'app-add-user',
@@ -22,20 +24,25 @@ export class AddUser {
   clave = '';
   confirmarClave = ''; // nuevo campo
   idRol: string = '';
+  idGenerador: string = '';
   roles: Role[] = [];
+  generadores:  GeneradorResiduoDetalle[] = [];
 
   constructor(
     private getAllRolesUseCase: GetAllRolesUseCase,
+    private getAllGeneradoresUseCase: GetAllGeneradoresResiduosUseCase,
     private createUserUseCase: CreateUserUseCase,
     private userStoreService: UserStoreService,
     private router: Router
   ) {}
   async ngOnInit() {
     this.roles = await this.getAllRolesUseCase.execute();
+    this.generadores = await this.getAllGeneradoresUseCase.execute();
+    console.log( 'lista generadores ngoninit', this.generadores);
   }
 
   async onSubmit() {
-    if (!this.nombre || !this.correo || !this.clave || !this.confirmarClave || !this.idRol) {
+    if (!this.nombre || !this.correo || !this.clave || !this.confirmarClave || !this.idRol || !this.idGenerador) {
       SwalService.error('Todos los campos son obligatorios');
       return;
     }
@@ -53,6 +60,7 @@ export class AddUser {
       correo: this.correo,
       clave: this.clave,
       idRol: this.idRol,
+      idGenerador: this.idGenerador
     };
 
     try {
@@ -78,5 +86,6 @@ export class AddUser {
     this.clave = '';
     this.confirmarClave = '';
     this.idRol = '';
+    this.idGenerador = '';
   }
 }

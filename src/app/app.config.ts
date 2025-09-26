@@ -25,6 +25,9 @@ import { GeneradorResiduoApiRepository } from './infrastructure/repositories/gen
 import { UbigeoRepository } from './domain/repositories/ubigeo.repository';
 import { UbigeoApiRepository } from './infrastructure/repositories/ubigeo-api.repository';
 import { EmbarcacionApiRepository } from './infrastructure/repositories/boat-api.repository';
+import { TipoEmbarcacionRepository } from './domain/repositories/boat-type.repository';
+import { TipoEmbarcacionApiRepository } from './infrastructure/repositories/boat-type-api.repository';
+
 
 // Traducción
 import { TranslateModule } from '@ngx-translate/core';
@@ -52,6 +55,7 @@ export const appConfig: ApplicationConfig = {
     { provide: GeneradorResiduoRepository, useClass: GeneradorResiduoApiRepository },
     { provide: UbigeoRepository, useClass: UbigeoApiRepository },
     { provide: EmbarcacionRepository, useClass: EmbarcacionApiRepository },
+    { provide: TipoEmbarcacionRepository, useClass: TipoEmbarcacionApiRepository },
 
     // Configuración de ngx-translate
     provideTranslateService({

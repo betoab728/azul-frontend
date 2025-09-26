@@ -9,6 +9,7 @@ export class GetAllGeneradoresResiduosUseCase {
 
   async execute(): Promise<GeneradorResiduoDetalle[]> {
     const dtos = await this.repository.getAllDetalle();
+    console.log(dtos);
     return GeneradorResiduoMapper.fromDetalleDtoList(dtos);
   }
 }
