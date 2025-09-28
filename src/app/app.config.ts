@@ -27,6 +27,8 @@ import { UbigeoApiRepository } from './infrastructure/repositories/ubigeo-api.re
 import { EmbarcacionApiRepository } from './infrastructure/repositories/boat-api.repository';
 import { TipoEmbarcacionRepository } from './domain/repositories/boat-type.repository';
 import { TipoEmbarcacionApiRepository } from './infrastructure/repositories/boat-type-api.repository';
+import { SolicitudCotizacionRepository } from './domain/repositories/request.repository';
+import { SolicitudCotizacionApiRepository } from './infrastructure/repositories/request-api.repository';
 
 
 // Traducción
@@ -56,6 +58,7 @@ export const appConfig: ApplicationConfig = {
     { provide: UbigeoRepository, useClass: UbigeoApiRepository },
     { provide: EmbarcacionRepository, useClass: EmbarcacionApiRepository },
     { provide: TipoEmbarcacionRepository, useClass: TipoEmbarcacionApiRepository },
+    { provide: SolicitudCotizacionRepository, useClass: SolicitudCotizacionApiRepository },
 
     // Configuración de ngx-translate
     provideTranslateService({

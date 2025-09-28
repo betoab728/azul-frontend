@@ -1,1 +1,101 @@
-<p>request works!</p>
+<section class="p-4">
+    <h1 class="text-xl font-bold mb-4">Gestión de Solicitudes</h1>
+  
+    @if (loading) {
+      <div class="text-gray-500">Cargando...</div>
+    }
+  
+    <div class="flex justify-between items-center mb-4">
+      <button
+        (click)="onCreateSolicitud()"
+        class="bg-sky-600 hover:bg-sky-700 text-white text-sm font-semibold px-4 py-2 rounded transition"
+      >
+        + Nueva Solicitud
+      </button>
+    </div>
+  
+    @if (!loading) {
+      <table
+        class="min-w-full divide-y divide-gray-200 bg-white rounded-xl shadow-md overflow-hidden"
+      >
+        <thead class="bg-gray-50">
+          <tr>
+            <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider hidden">
+              ID
+            </th>
+            <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
+              Fecha
+            </th>
+            <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
+              Hora
+            </th>
+            <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
+              Puerto
+            </th>
+            <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
+              Embarcación
+            </th>
+            <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
+              Generador
+            </th>
+            <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
+              Estado
+            </th>
+            <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
+              Acciones
+            </th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          @for (solicitud of solicitudes; track solicitud.id) {
+            <tr class="hover:bg-gray-50 transition-colors duration-150">
+              <td class="px-6 py-4 text-sm text-gray-700 hidden">
+                {{ solicitud.id }}
+              </td>
+              <td class="px-6 py-4 text-sm text-gray-700">
+                {{ solicitud.fecha }}
+              </td>
+              <td class="px-6 py-4 text-sm text-gray-700">
+                {{ solicitud.hora }}
+              </td>
+              <td class="px-6 py-4 text-sm text-gray-700">
+                {{ solicitud.puerto }}
+              </td>
+              <td class="px-6 py-4 text-sm text-gray-700">
+                {{ solicitud.embarcacion }}
+              </td>
+              <td class="px-6 py-4 text-sm text-gray-700">
+                {{ solicitud.generador }}
+              </td>
+              <td class="px-6 py-4 text-sm">
+                <span
+                  class="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold"
+                  [ngClass]="{
+                    'bg-yellow-100 text-yellow-700': solicitud.estadoSolicitud === 'Pendiente',
+                    'bg-green-100 text-green-700': solicitud.estadoSolicitud === 'Completado',
+                    'bg-blue-100 text-blue-700': solicitud.estadoSolicitud === 'Programado',
+                    'bg-red-100 text-red-700': solicitud.estadoSolicitud === 'Cancelado'
+                  }"
+                >
+                  {{ solicitud.estadoSolicitud }}
+                </span>
+              </td>
+              <td class="px-6 py-4 text-sm">
+                <button
+                  class="text-blue-600 hover:text-blue-800 hover:underline transition"
+                >
+                  Editar
+                </button>
+                <button
+                  class="ml-4 text-red-600 hover:text-red-800 hover:underline transition"
+                >
+                  Eliminar
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  </section>
+  

@@ -16,5 +16,6 @@ export const endpoints = {
     districts: `${environment.apiUrl}/ubigeo/distritos`,
     boats: `${environment.apiUrl}/embarcaciones`,
     boatTypes: `${environment.apiUrl}/tipos-embarcacion`,
+    requests: `${environment.apiUrl}/solicitudes`,
 
   };

@@ -38,6 +38,7 @@ export const routes: Routes = [
              {path: 'solicitud/checkout', loadComponent : () => import('./presentation/pages/request/checkout-request/checkout-request').then( m => m.CheckoutRequest ) },
              {path: 'embarcaciones', loadComponent : () => import('./presentation/pages/boats/boats').then(m => m.Embarcaciones) },
              {path: 'embarcaciones/agregar', loadComponent : () => import('./presentation/pages/boats/add-boat/add-boat').then(m => m.AddBoat) },
+             {path : 'cotizaciones', loadComponent : () => import('./presentation/pages/request/request').then(m => m.Request) },
         ]
         
     }
