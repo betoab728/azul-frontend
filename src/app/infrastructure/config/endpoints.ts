@@ -17,5 +17,9 @@ export const endpoints = {
     boats: `${environment.apiUrl}/embarcaciones`,
     boatTypes: `${environment.apiUrl}/tipos-embarcacion`,
     requests: `${environment.apiUrl}/solicitudes`,
+    requestsGenerator: `${environment.apiUrl}/solicitudes/generador`,
+    ports: `${environment.apiUrl}/puertos`,
+    status: `${environment.apiUrl}/estados-solicitud`,
+    requestDetail: `${environment.apiUrl}/detalles-solicitud`,
 
   };

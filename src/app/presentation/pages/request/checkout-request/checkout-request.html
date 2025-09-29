@@ -69,6 +69,35 @@
     </ng-select>
   </div>
 
+  <!-- Selector de puerto -->
+  <div>
+    <label for="puerto" class="block mb-2 font-medium text-gray-700">
+      Seleccionar Puerto
+    </label>
+    <ng-select
+      [items]="puertos()"
+      bindLabel="nombre"
+      bindValue="id"
+      [(ngModel)]="puertoSeleccionado"
+      placeholder="Seleccione un puerto"
+      class="w-full border border-gray-300 rounded focus:ring-2 focus:ring-sky-500"
+    >
+    </ng-select>
+  </div>
+  <!-- Observaciones -->
+<div>
+  <label for="observaciones" class="block mb-2 font-medium text-gray-700">
+    Observaciones
+  </label>
+  <textarea
+    id="observaciones"
+    [(ngModel)]="observaciones"
+    rows="3"
+    class="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-sky-500"
+    placeholder="Escriba aquí observaciones sobre la solicitud"
+  ></textarea>
+</div>
+
   <!-- Botones -->
   <div class="flex justify-between items-center">
     <button

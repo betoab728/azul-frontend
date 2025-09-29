@@ -9,6 +9,9 @@ export class SwalService {
   static error(message: string) {
     Swal.fire('Error', message, 'error');
   }
+  static warning(message: string) {
+    return Swal.fire('Atención', message, 'warning');
+  }
 
   // ✅ Confirmación
   static confirm(message: string): Promise<boolean> {
@@ -59,6 +62,47 @@ export class SwalService {
     });
 
     return formValues || null;
+  }
+
+  static select(title: string, options: Record<string, string>) {
+    return Swal.fire({
+      title,
+      input: 'select',
+      inputOptions: options,
+      inputPlaceholder: 'Seleccione un estado',
+      showCancelButton: true
+    });
+  }
+
+  // ✅ Mostrar detalle de solicitud
+  static detalleSolicitud(detalles: { residuo: string; cantidad: number; unidad: string }[]) {
+    const rows = detalles.map(d => `
+      <tr>
+        <td>${d.residuo}</td>
+        <td>${d.cantidad}</td>
+        <td>${d.unidad}</td>
+      </tr>
+    `).join('');
+
+    return Swal.fire({
+      title: 'Detalle de Solicitud',
+      html: `
+        <table class="swal2-table" style="width:100%;text-align:left;border-collapse:collapse;">
+          <thead>
+            <tr style="font-weight:bold;">
+              <th>Residuo</th>
+              <th>Cantidad</th>
+              <th>Unidad</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${rows}
+          </tbody>
+        </table>
+      `,
+      confirmButtonText: 'Cerrar',
+      width: 600
+    });
   }
 
   

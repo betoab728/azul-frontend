@@ -25,3 +25,28 @@ export interface SolicitudCotizacion {
     embarcacion: string;
     generador: string;
   }
+
+  export interface SolicitudDetalle {
+    id_residuo: string;
+    cantidad: number;
+  }
+  
+  export interface SolicitudCreate {
+    fecha: string;
+    id_puerto: string;
+    id_estado_solicitud: string;
+    observaciones: string;
+    id_embarcacion: string;
+    detalles: SolicitudDetalle[];
+  }
+
+  export interface SolicitudGeneradorList {
+    id: string;
+    fecha: string;
+    hora: string;
+    observaciones: string;
+    puerto: string;
+    estado_solicitud: string; 
+    embarcacion: string;
+    generador: string;
+  }
