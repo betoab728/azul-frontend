@@ -14,6 +14,8 @@ export interface Puerto {
 @Injectable({ providedIn: 'root' })
 export class PuertoService {
   private url = endpoints.ports;
+  
+
 
   // ✅ señal reactiva con la lista
   puertos = signal<Puerto[]>([]);
@@ -21,6 +23,7 @@ export class PuertoService {
   constructor(private http: HttpClient) {}
 
   async load() {
+    console.log('Cargando puertos desde', this.url);
     const data = await this.http.get<Puerto[]>(this.url).toPromise();
     this.puertos.set(data ?? []);
   }
