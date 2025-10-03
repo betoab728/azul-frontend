@@ -40,6 +40,8 @@ export const routes: Routes = [
              {path: 'embarcaciones/agregar', loadComponent : () => import('./presentation/pages/boats/add-boat/add-boat').then(m => m.AddBoat) },
              {path: 'solicitudes', loadComponent : () => import('./presentation/pages/request/request').then(m => m.Request) },
              {path: 'solicitudes/generador', loadComponent : () => import('./presentation/pages/request/request-generator/request-generator').then(m => m.RequestGenerator) },
+             {path:'cotizaciones', loadComponent: () => import('./presentation/pages/quotes/quotes').then(m => m.Quotes) },
+             {path:'cotizaciones/agregar/:idSolicitud', loadComponent: () => import('./presentation/pages/quotes/add-quote/add-quote').then(m => m.AddQuote) },
         ]
         
     }

@@ -20,4 +20,3 @@ export interface RegistroResiduo {
     createdAt?: string;
     estado: string;
   }
-  

@@ -75,22 +75,29 @@
                   {{ solicitud.estadoSolicitud }}
                 </span>
               </td>
-              <td class="px-6 py-4 text-sm">
+              <td class="px-6 py-4 text-sm space-x-3">
                 <button
                   (click)="actualizarEstado(solicitud.id)"
-                  class="text-blue-600 hover:text-blue-800 hover:underline transition"
+                  class="text-blue-600 hover:text-blue-800 hover:underline transition cursor-pointer"
                 >
-                  Cambiar Estado
+                  Actualizar
+                </button>
+                <button
+                  (click)="verDetalle(solicitud.id)"
+                  class="text-green-600 hover:text-green-800 hover:underline transition  cursor-pointer"
+                >
+                  Detalle
+                </button>
+                <button
+                  (click)="cotizar(solicitud.id)"
+                  class="text-purple-600 hover:text-purple-800 hover:underline transition  cursor-pointer"
+                >
+                  Cotizar
                 </button>
               </td>
         
               <td class="px-6 py-4 text-sm">
-                <button
-                  (click)="verDetalle(solicitud.id)"
-                  class="text-green-600 hover:text-green-800 hover:underline transition"
-                >
-                  Ver Detalles
-                </button>
+                
               </td>
             </tr>
           }

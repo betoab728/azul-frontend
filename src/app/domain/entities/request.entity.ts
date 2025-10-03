@@ -50,3 +50,13 @@ export interface SolicitudCotizacion {
     embarcacion: string;
     generador: string;
   }
+  export interface DetalleSolicitudCarrito {
+    residuo: string;
+    cantidad: number;
+    unidad: string;
+
+  }
+  export interface ItemCotizacion extends DetalleSolicitudCarrito {
+    precio: number;   
+    subtotal: number;
+  }

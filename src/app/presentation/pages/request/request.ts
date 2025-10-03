@@ -94,6 +94,9 @@ export class Request implements OnInit {
     SwalService.detalleSolicitud(detalles);
   }
 
-
+  //funcion cotizar
+  async cotizar(idSolicitud: string) {
+    this.router.navigate(['/dashboard/cotizaciones/agregar', idSolicitud]);
+  }
 
 }

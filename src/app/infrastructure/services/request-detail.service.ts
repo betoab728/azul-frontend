@@ -11,7 +11,7 @@ export interface DetalleSolicitud {
 
 @Injectable({ providedIn: 'root' })
 export class DetalleSolicitudService {
-  private url = endpoints.requestDetail; // 👈 asegúrate que apunte a "/detalles-solicitud"
+  private url = endpoints.requestDetail;
 
   detalles = signal<DetalleSolicitud[]>([]);
 

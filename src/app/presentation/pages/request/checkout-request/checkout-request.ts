@@ -20,7 +20,6 @@ import { SwalService } from 'src/app/infrastructure/services/swal.service';
 export class CheckoutRequest implements OnInit {
   empresa: any = null;
   observaciones: string = '';
-
   embarcaciones: any;
   embarcacionSeleccionada: string | null = null;
 
