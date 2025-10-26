@@ -2,18 +2,13 @@ import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { endpoints } from '../config/endpoints';
-
-export interface DetalleSolicitud {
-  residuo: string;
-  cantidad: number;
-  unidad: string;
-}
+import { DetalleSolicitudCarrito } from 'src/app/domain/entities/request.entity';
 
 @Injectable({ providedIn: 'root' })
 export class DetalleSolicitudService {
   private url = endpoints.requestDetail;
 
-  detalles = signal<DetalleSolicitud[]>([]);
+  detalles = signal<DetalleSolicitudCarrito[]>([]);
 
   constructor(private http: HttpClient) {}
 
@@ -21,7 +16,7 @@ export class DetalleSolicitudService {
     try {
       const endpoint = `${this.url}/${idSolicitud}`;
       const data = await firstValueFrom(
-        this.http.get<DetalleSolicitud[]>(endpoint)
+        this.http.get<DetalleSolicitudCarrito[]>(endpoint)
       );
       this.detalles.set(data ?? []);
     } catch (err) {

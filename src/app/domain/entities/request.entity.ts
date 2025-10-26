@@ -5,6 +5,7 @@ export interface SolicitudCotizacion {
     idEstadoSolicitud: string;
     observaciones?: string;
     idEmbarcacion?: string;
+    direccionRecojo?: string;
     createdAt?: string;
     updatedAt?: string;
   }
@@ -37,6 +38,7 @@ export interface SolicitudCotizacion {
     id_estado_solicitud: string;
     observaciones: string;
     id_embarcacion: string;
+    direccion_recojo?: string;
     detalles: SolicitudDetalle[];
   }
 

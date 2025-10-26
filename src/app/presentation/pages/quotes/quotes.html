@@ -1,1 +1,66 @@
-<p>quotes works!</p>
+<section class="p-4">
+    <h1 class="text-xl font-bold mb-4">Listado de Cotizaciones</h1>
+  
+    @if (loading) {
+      <div class="text-gray-500">Cargando cotizaciones...</div>
+    }
+  
+    @if (!loading) {
+      <table class="min-w-full divide-y divide-gray-200 bg-white rounded-xl shadow-md overflow-hidden">
+        <thead class="bg-gray-50">
+          <tr>
+            <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase">Fecha</th>
+            <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase">Hora</th>
+            <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase">Empresa</th>
+            <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase">Estado</th>
+            <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase">Observaciones</th>
+            <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase">Acciones</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          @for (cotizacion of cotizaciones; track cotizacion.id) {
+            <tr class="hover:bg-gray-50 transition-colors duration-150">
+              <td class="px-6 py-4 text-sm text-gray-700">{{ cotizacion.fecha_cotizacion }}</td>
+              <td class="px-6 py-4 text-sm text-gray-700">{{ cotizacion.hora_cotizacion }}</td>
+              <td class="px-6 py-4 text-sm text-gray-700">{{ cotizacion.empresa }}</td>
+              <td class="px-6 py-4 text-sm">
+                <span
+                  class="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold"
+                  [ngClass]="{
+                    'bg-yellow-100 text-yellow-700': cotizacion.estado === 'pendiente',
+                    'bg-green-100 text-green-700': cotizacion.estado === 'aprobada',
+                    'bg-red-100 text-red-700': cotizacion.estado === 'rechazada'
+                  }"
+                >
+                  {{ cotizacion.estado }}
+                </span>
+              </td>
+              <td class="px-6 py-4 text-sm text-gray-700">{{ cotizacion.observaciones }}</td>
+              <td class="px-6 py-4 text-sm">
+                <button
+                  (click)="abrirPDF(cotizacion.pdf_url)"
+                  class="text-blue-600 hover:text-blue-800 hover:underline transition cursor-pointer"
+                >
+                  Ver PDF
+                </button>
+                <button
+                    (click)="generarOrden(cotizacion.id)"
+                    class="text-green-600 hover:text-green-800 hover:underline transition cursor-pointer p-2"
+                  >
+                    Generar Orden
+                </button>
+                <button
+                    (click)="irADocumentos()"
+                    class="text-green-600 hover:text-green-800 hover:underline transition cursor-pointer p-2"
+                  >
+                    Documentos
+                </button>
+              </td>
+              
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  </section>
+  

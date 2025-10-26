@@ -1,0 +1,67 @@
+<section class="p-4">
+    <h1 class="text-xl font-bold mb-4">Listado de Vehículos</h1>
+  
+    @if (loading) {
+      <div class="text-gray-500">Cargando vehículos...</div>
+    }
+    
+    <div class="flex justify-between items-center mb-4">
+    <button
+      (click)="onCreateVehicle()"
+      class="bg-sky-600 hover:bg-sky-700 text-white text-sm font-semibold px-4 py-2 rounded transition cursor-pointer"
+    >
+      + Nuevo vehiculo
+    </button>
+  </div>
+  
+    @if (!loading) {
+      <table
+        class="min-w-full divide-y divide-gray-200 bg-white rounded-xl shadow-md overflow-hidden"
+      >
+        <thead class="bg-gray-50">
+          <tr>
+            <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase">Placa</th>
+            <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase">Marca</th>
+            <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase">Modelo</th>
+            <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase">Año</th>
+            <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase">Capacidad (t)</th>
+            <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase">Estado</th>
+            <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase">Observaciones</th>
+            <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase">Acciones</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          @for (vehiculo of vehiculos(); track vehiculo.id) {
+            <tr class="hover:bg-gray-50 transition-colors duration-150">
+              <td class="px-6 py-4 text-sm text-gray-700">{{ vehiculo.placa }}</td>
+              <td class="px-6 py-4 text-sm text-gray-700">{{ vehiculo.marca }}</td>
+              <td class="px-6 py-4 text-sm text-gray-700">{{ vehiculo.modelo }}</td>
+              <td class="px-6 py-4 text-sm text-gray-700">{{ vehiculo.anio_fabricacion }}</td>
+              <td class="px-6 py-4 text-sm text-gray-700">{{ vehiculo.capacidad_toneladas }}</td>
+              <td class="px-6 py-4 text-sm">
+                <span
+                  class="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold"
+                  [ngClass]="{
+                    'bg-green-100 text-green-700': vehiculo.estado === 'activo',
+                    'bg-red-100 text-red-700': vehiculo.estado === 'inactivo'
+                  }"
+                >
+                  {{ vehiculo.estado }}
+                </span>
+              </td>
+              <td class="px-6 py-4 text-sm text-gray-700">{{ vehiculo.observaciones }}</td>
+              <td class="px-6 py-4 text-sm">
+                <button
+                  (click)="verDetalle(vehiculo.id)"
+                  class="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1 rounded text-xs font-semibold transition cursor-pointer"
+                >
+                  Detalle
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  </section>
+  

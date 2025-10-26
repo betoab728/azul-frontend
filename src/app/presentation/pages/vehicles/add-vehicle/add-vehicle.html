@@ -1,0 +1,202 @@
+<section class="p-6 max-w-4xl mx-auto bg-white rounded shadow">
+  <h2 class="text-xl font-bold mb-4 text-gray-700">Registrar Vehículo</h2>
+
+  <form (ngSubmit)="onSubmit()" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- Placa -->
+    <div>
+      <label class="block text-sm font-medium mb-1">
+        Placa <span class="text-red-500">*</span>
+      </label>
+      <input
+        type="text"
+        [(ngModel)]="placa"
+        name="placa"
+        required
+        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-sky-400 outline-none"
+      />
+    </div>
+
+    <!-- Marca -->
+    <div>
+      <label class="block text-sm font-medium mb-1">
+        Marca <span class="text-red-500">*</span>
+      </label>
+      <input
+        type="text"
+        [(ngModel)]="marca"
+        name="marca"
+        required
+        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-sky-400 outline-none"
+      />
+    </div>
+
+    <!-- Modelo -->
+    <div>
+      <label class="block text-sm font-medium mb-1">Modelo</label>
+      <input
+        type="text"
+        [(ngModel)]="modelo"
+        name="modelo"
+        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-sky-400 outline-none"
+      />
+    </div>
+
+    <!-- Año de fabricación -->
+    <div>
+      <label class="block text-sm font-medium mb-1">Año de Fabricación</label>
+      <input
+        type="number"
+        [(ngModel)]="anio_fabricacion"
+        name="anio_fabricacion"
+        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-sky-400 outline-none"
+      />
+    </div>
+
+    <!-- Capacidad -->
+    <div>
+      <label class="block text-sm font-medium mb-1">Capacidad (Toneladas)</label>
+      <input
+        type="number"
+        [(ngModel)]="capacidad_toneladas"
+        name="capacidad_toneladas"
+        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-sky-400 outline-none"
+      />
+    </div>
+
+    <!-- Tipo de vehículo -->
+    <div>
+      <label class="block text-sm font-medium mb-1">
+        Tipo de Vehículo <span class="text-red-500">*</span>
+      </label>
+      <ng-select
+        [items]="tiposVehiculo()"
+        bindLabel="nombre"
+        bindValue="id"
+        [(ngModel)]="id_tipo_vehiculo"
+        name="id_tipo_vehiculo"
+        placeholder="Seleccione un tipo de vehículo"
+        class="w-full"
+      >
+        <ng-template ng-option-tmp let-item="item">
+          {{ item.nombre }} - {{ item.descripcion }}
+        </ng-template>
+      </ng-select>
+    </div>
+
+    <!-- Observaciones -->
+    <div class="md:col-span-2">
+      <label class="block text-sm font-medium mb-1">Observaciones</label>
+      <textarea
+        [(ngModel)]="observaciones"
+        name="observaciones"
+        rows="2"
+        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-sky-400 outline-none resize-none"
+      ></textarea>
+    </div>
+
+    <!-- Archivos -->
+    <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <!-- Tarjeta de Propiedad -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Tarjeta de Propiedad</label>
+        <div class="flex items-center border border-gray-300 rounded-md overflow-hidden">
+          <input 
+            type="file" 
+            (change)="onFileSelected($event, 'tarjeta_propiedad')" 
+            id="file-tarjeta-propiedad" 
+            class="hidden"
+            accept="application/pdf"
+          />
+          <label 
+            for="file-tarjeta-propiedad" 
+            class="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 text-sm font-medium cursor-pointer transition-colors duration-150 border-r border-gray-300"
+          >
+            Elegir archivo
+          </label>
+          <span class="p-2 text-sm text-gray-500 truncate">
+            {{ tarjeta_propiedad ? tarjeta_propiedad.name : 'Ningún archivo seleccionado' }}
+          </span>
+        </div>
+      </div>
+    
+      <!-- Certificado de Inspección Técnica -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Certificado de Inspección Técnica</label>
+        <div class="flex items-center border border-gray-300 rounded-md overflow-hidden">
+          <input 
+            type="file" 
+            (change)="onFileSelected($event, 'certificado_itv')" 
+            id="file-certificado-itv" 
+            class="hidden"
+            accept="application/pdf"
+          />
+          <label 
+            for="file-certificado-itv" 
+            class="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 text-sm font-medium cursor-pointer transition-colors duration-150 border-r border-gray-300"
+          >
+            Elegir archivo
+          </label>
+          <span class="p-2 text-sm text-gray-500 truncate">
+            {{ certificado_itv ? certificado_itv.name : 'Ningún archivo seleccionado' }}
+          </span>
+        </div>
+      </div>
+    
+      <!-- SOAT -->
+      <div>
+        <label class="block text-sm font-medium mb-1">SOAT</label>
+        <div class="flex items-center border border-gray-300 rounded-md overflow-hidden">
+          <input 
+            type="file" 
+            (change)="onFileSelected($event, 'soat')" 
+            id="file-soat" 
+            class="hidden"
+            accept="application/pdf"
+          />
+          <label 
+            for="file-soat" 
+            class="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 text-sm font-medium cursor-pointer transition-colors duration-150 border-r border-gray-300"
+          >
+            Elegir archivo
+          </label>
+          <span class="p-2 text-sm text-gray-500 truncate">
+            {{ soat ? soat.name : 'Ningún archivo seleccionado' }}
+          </span>
+        </div>
+      </div>
+    
+      <!-- Tarjeta de Circulación -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Tarjeta de Circulación</label>
+        <div class="flex items-center border border-gray-300 rounded-md overflow-hidden ">
+          <input 
+            type="file" 
+            (change)="onFileSelected($event, 'tarjeta_circulacion')" 
+            id="file-tarjeta-circulacion" 
+            class="hidden"
+            accept="application/pdf"
+          />
+          <label 
+            for="file-tarjeta-circulacion" 
+            class="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 text-sm font-medium cursor-pointer transition-colors duration-150 border-r border-gray-300"
+          >
+            Elegir archivo
+          </label>
+          <span class="p-2 text-sm text-gray-500 truncate">
+            {{ tarjeta_circulacion ? tarjeta_circulacion.name : 'Ningún archivo seleccionado' }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botón -->
+    <div class="md:col-span-2">
+      <button
+        type="submit"
+        class="bg-sky-600 hover:bg-sky-700 text-white font-semibold px-4 py-2 rounded-md w-full cursor-pointer transition"
+      >
+        Guardar Vehículo
+      </button>
+    </div>
+  </form>
+</section>

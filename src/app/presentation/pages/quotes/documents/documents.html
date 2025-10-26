@@ -1,0 +1,34 @@
+<section class="p-6 bg-white rounded-xl shadow-md max-w-3xl mx-auto">
+    <h2 class="text-xl font-bold mb-4 text-gray-800">Subir Documentos</h2>
+  
+    <form (ngSubmit)="onSubmit()" class="space-y-4" enctype="multipart/form-data">
+      <div *ngFor="let doc of documentosRequeridos" class="flex flex-col">
+        <label class="font-medium text-sm text-gray-700 mb-1">
+          {{ doc.label }}
+        </label>
+        <input
+          type="file"
+          (change)="onFileSelected($event, doc.key)"
+          class="border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500"
+          accept=".pdf,.jpg,.png"
+        />
+      </div>
+  
+      <div class="flex justify-end mt-4">
+        <button
+          type="submit"
+          class="bg-sky-600 hover:bg-sky-700 text-white text-sm font-semibold px-5 py-2 rounded-lg transition"
+        >
+          Subir Documentos
+        </button>
+      </div>
+    </form>
+  
+    <div *ngIf="uploadedFiles.length > 0" class="mt-6">
+      <h3 class="font-semibold text-gray-800 mb-2">Documentos Subidos</h3>
+      <ul class="list-disc pl-6 text-sm text-gray-700">
+        <li *ngFor="let file of uploadedFiles">{{ file.name }}</li>
+      </ul>
+    </div>
+  </section>
+  

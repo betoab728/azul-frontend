@@ -42,6 +42,15 @@ export const routes: Routes = [
              {path: 'solicitudes/generador', loadComponent : () => import('./presentation/pages/request/request-generator/request-generator').then(m => m.RequestGenerator) },
              {path:'cotizaciones', loadComponent: () => import('./presentation/pages/quotes/quotes').then(m => m.Quotes) },
              {path:'cotizaciones/agregar/:idSolicitud', loadComponent: () => import('./presentation/pages/quotes/add-quote/add-quote').then(m => m.AddQuote) },
+             {path:'ordenes', loadComponent: () => import('./presentation/pages/orders/orders').then(m => m.Orders) },
+             {path:'ordenes/agregar/:cotizacionId', loadComponent: () => import('./presentation/pages/orders/add-order/add-order').then(m => m.AddOrder) },
+             {path:'vehiculos', loadComponent: () => import('./presentation/pages/vehicles/vehicles').then(m => m.Vehicles) },
+             {path:'vehiculos/agregar', loadComponent: () => import('./presentation/pages/vehicles/add-vehicle/add-vehicle').then(m => m.AddVehicle) },
+             {path:'vehiculos/:id/detalle', loadComponent: () => import('./presentation/pages/vehicles/vehicle-detail/vehicle-detail').then(m => m.VehicleDetail) },
+             {path :'tipos-vehiculo', loadComponent: () => import('./presentation/pages/vehicles-types/vehicles-types').then(m => m.VehiclesTypes) },
+             {path :'tipos-vehiculo/agregar', loadComponent: () => import('./presentation/pages/vehicles-types/add-type/add-type').then(m => m.AddType) },
+            {path: 'documentos', loadComponent: () => import('./presentation/pages/quotes/documents/documents').then(m => m.DocumentsComponent) },
+             
         ]
         
     }

@@ -22,6 +22,7 @@ export class CheckoutRequest implements OnInit {
   observaciones: string = '';
   embarcaciones: any;
   embarcacionSeleccionada: string | null = null;
+  direccionRecojo: string = '';
 
   puertos: any;
   puertoSeleccionado: string | null = null;
@@ -36,6 +37,7 @@ export class CheckoutRequest implements OnInit {
 
   async ngOnInit() {
     this.empresa = this.authService.getUser();
+    console.log('Empresa logueada:', this.empresa);
 
     // embarcaciones
     this.embarcaciones = this.embarcacionStore.embarcaciones;
@@ -47,7 +49,7 @@ export class CheckoutRequest implements OnInit {
   }
 
   async confirmarSolicitud() {
-    if (!this.embarcacionSeleccionada || !this.puertoSeleccionado) {
+    if (!this.embarcacionSeleccionada || !this.puertoSeleccionado || this.direccionRecojo.trim() === '') {
       SwalService.warning('Debe seleccionar un puerto y una embarcación');
       return;
     }
@@ -66,6 +68,7 @@ export class CheckoutRequest implements OnInit {
       id_estado_solicitud: '46512df5-a54a-45cc-a7c2-0197c549084b',
       observaciones: this.observaciones,
       id_embarcacion: this.embarcacionSeleccionada,
+      direccion_recojo: this.direccionRecojo,
       detalles: this.carritoStore.items().map(item => ({
         id_residuo: item.residuo.id,
         cantidad: item.cantidad
@@ -81,6 +84,7 @@ export class CheckoutRequest implements OnInit {
       this.observaciones = '';
       this.embarcacionSeleccionada = null;
       this.puertoSeleccionado = null;
+      this.direccionRecojo = '';
     } catch (error) {
       console.error('Error al registrar solicitud:', error);
       SwalService.error('Hubo un error al registrar la solicitud');

@@ -21,5 +21,11 @@ export const endpoints = {
     ports: `${environment.apiUrl}/puertos/`,
     status: `${environment.apiUrl}/estados-solicitud`,
     requestDetail: `${environment.apiUrl}/detalles-solicitud`,
+    quotes: `${environment.apiUrl}/cotizaciones/`,
+    files: `${environment.apiUrl}/archivos`,
+    vehicles: `${environment.apiUrl}/vehiculos/`,
+    vehiclesDetailed: `${environment.apiUrl}/vehiculos/detallado`,
+    vehiclestypes: `${environment.apiUrl}/tipos-vehiculo`,
+    orders: `${environment.apiUrl}/ordenes`,
 
   };

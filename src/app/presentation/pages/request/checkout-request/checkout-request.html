@@ -84,6 +84,20 @@
     >
     </ng-select>
   </div>
+  <!--direccion de recojo-->
+  <div>
+    <label for="direccionRecojo" class="block mb-2 font-medium text-gray-700">
+      Dirección de Recojo
+    </label>
+    <input
+      type="text"
+      id="direccionRecojo"
+      [(ngModel)]="direccionRecojo"
+      class="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-sky-500"
+      placeholder=""
+    />
+  </div>
+
   <!-- Observaciones -->
 <div>
   <label for="observaciones" class="block mb-2 font-medium text-gray-700">
@@ -94,7 +108,6 @@
     [(ngModel)]="observaciones"
     rows="3"
     class="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-sky-500"
-    placeholder="Escriba aquí observaciones sobre la solicitud"
   ></textarea>
 </div>
 

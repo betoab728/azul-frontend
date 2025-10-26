@@ -2,7 +2,6 @@ import { Injectable, signal, computed } from '@angular/core';
 import { TipoResiduoWithClasificacion } from 'src/app/domain/entities/types.entity';
 import { GetAllTiposWithClasificacionUseCase } from 'src/app/application/use-cases/types/get-all-types.use-case';
 
-
 @Injectable({ providedIn: 'root' })
 export class TipoResiduoStoreService {
   private _tipos = signal<TipoResiduoWithClasificacion[]>([]);
