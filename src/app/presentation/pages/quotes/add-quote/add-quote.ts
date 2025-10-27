@@ -9,6 +9,7 @@ import { CotizacionService } from 'src/app/infrastructure/services/quote.service
 import { SwalService } from 'src/app/infrastructure/services/swal.service.js';
 import { VehiculoService } from 'src/app/infrastructure/services/vehicle-store.service';
 import { VehiculoList } from 'src/app/domain/entities/vehicle'; 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-quote',
@@ -30,6 +31,7 @@ export class AddQuote implements OnInit  {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private authService: AuthService,
     private detalleService: DetalleSolicitudService,
     private cotizacionService: CotizacionService,
@@ -100,6 +102,11 @@ export class AddQuote implements OnInit  {
       this.formaPago = '';
       this.observaciones = '';
       this.selectedFile = null;
+
+      //navegar a /dashboard/quotes
+      await this.router.navigate(['/dashboard/cotizaciones']);
+
+
     } catch (error) {
       console.error('Error al enviar la cotización:', error);
       SwalService.error('Ocurrió un error al enviar la cotización.');

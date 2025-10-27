@@ -17,6 +17,9 @@ import { OrdenEncabezado } from 'src/app/domain/entities/order.entity';
 export class AddOrder  implements OnInit  {
   
   cotizacionId: string | null = null;
+  observaciones: string = '';
+  selectedFile: File | null = null;
+
   isLoading = false;
   //datos del encabezado de la orden
  ordenEncabezado: OrdenEncabezado | null = null;
@@ -24,7 +27,8 @@ export class AddOrder  implements OnInit  {
 
   constructor( 
      private route: ActivatedRoute,
-     private ordenService: OrdenTrasladoService 
+     private ordenService: OrdenTrasladoService ,
+     private router: Router
     ) { }
   async ngOnInit(){
     this.cotizacionId = this.route.snapshot.paramMap.get('cotizacionId');
@@ -53,6 +57,37 @@ export class AddOrder  implements OnInit  {
     if (input.files && input.files.length > 0) {
       const selectedFile = input.files[0];
       console.log('Archivo seleccionado:', selectedFile);
+    }
+  }
+
+  async guardarOrden() {
+    if (!this.cotizacionId) {
+      SwalService.error('ID de cotización no proporcionado.');
+      return;
+    }
+    if (!this.selectedFile) {
+      SwalService.error('Por favor, seleccione un archivo PDF.');
+      return;
+    }
+    const confirmed = await SwalService.confirm('¿Desea enviar esta orden ?');
+    if (!confirmed) return;
+    this.isLoading = true;
+    try {
+      const response = await this.ordenService.crearOrden({
+        id_cotizacion: this.cotizacionId,
+        observaciones: this.observaciones,
+        pdf_file: this.selectedFile
+      });
+      console.log('Orden creada con éxito:', response);
+      SwalService.success('Orden de traslado creada exitosamente.');
+      //redirigir a /dashboard/ordenes
+      await this.router.navigate(['/dashboard/ordenes']);
+
+    } catch (error) {
+      console.error('Error al crear la orden de traslado:', error);
+      SwalService.error('No se pudo crear la orden de traslado.');
+    } finally {
+      this.isLoading = false;
     }
   }
 

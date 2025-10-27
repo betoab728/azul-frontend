@@ -1,1 +1,53 @@
-<p>orders works!</p>
+<section class="p-4"> 
+    <h1 class="text-xl font-bold mb-4">Listado de Órdenes de Servicio</h1>
+  
+    @if (loading) {
+      <div class="text-gray-500">Cargando órdenes...</div>
+    }
+  
+    @if (!loading) {
+      <table class="min-w-full divide-y divide-gray-200 bg-white rounded-xl shadow-md overflow-hidden">
+        <thead class="bg-gray-50">
+          <tr>
+            <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase">Fecha</th>
+            <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase">Hora</th>
+            <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase">Serie</th>
+            <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase">Número</th>
+            <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase">Empresa</th>
+            <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase">Observaciones</th>
+            <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase">Acciones</th>
+          </tr>
+        </thead>
+  
+        <tbody class="divide-y divide-gray-200">
+          @for (orden of ordenes(); track orden.id) {
+            <tr class="hover:bg-gray-50 transition-colors duration-150">
+              <td class="px-6 py-4 text-sm text-gray-700">{{ orden.fecha }}</td>
+              <td class="px-6 py-4 text-sm text-gray-700">{{ orden.hora }}</td>
+              <td class="px-6 py-4 text-sm text-gray-700">{{ orden.serie }}</td>
+              <td class="px-6 py-4 text-sm text-gray-700">{{ orden.numero }}</td>
+              <td class="px-6 py-4 text-sm text-gray-700">{{ orden.razon_social }}</td>
+              <td class="px-6 py-4 text-sm text-gray-700">{{ orden.observaciones || '-' }}</td>
+              <td class="px-6 py-4 text-sm flex flex-wrap gap-2">
+               
+                <button
+                  (click)="abrirPDF(orden.pdf_url)"
+                  class="text-green-600 hover:text-green-800 hover:underline transition cursor-pointer"
+                >
+                  Ver PDF
+                </button>
+                <button
+                    (click)="irADocumentos()"
+                    class="text-green-600 hover:text-green-800 hover:underline transition cursor-pointer p-2"
+                  >
+                    Documentos
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  
+  </section>
+  

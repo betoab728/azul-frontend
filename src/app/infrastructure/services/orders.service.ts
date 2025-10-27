@@ -1,17 +1,24 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, signal,computed } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { endpoints } from 'src/app/infrastructure/config/endpoints';
 import { firstValueFrom } from 'rxjs';
-import { OrdenEncabezado } from 'src/app/domain/entities/order.entity';
+import { OrdenCrearResponse, OrdenCreate, OrdenEncabezado, OrdenListado } from 'src/app/domain/entities/order.entity';
 
 
 @Injectable({ providedIn: 'root' })
 export class OrdenTrasladoService {
   private url = endpoints.orders; // ejemplo: `${environment.apiUrl}/ordenes`
+  private archivosUrl = endpoints.files
 
   encabezado = signal<OrdenEncabezado | null>(null);
+  private _orderesList = signal<OrdenListado[]>([]);
+  private _isLoaded = signal(false);
 
   constructor(private http: HttpClient) {}
+
+  // Lectura segura
+  orderesList = computed(() => this._orderesList());
+  isLoaded = computed(() => this._isLoaded());
 
   /**
    * Carga el encabezado de una nueva orden (fecha, serie, número y razón social)
@@ -24,4 +31,59 @@ export class OrdenTrasladoService {
     this.encabezado.set(data ?? null);
     return data;
   }
+  
+  //crear orden de traslado
+  async crearOrden(data:OrdenCreate) {
+    const formData = new FormData();
+    formData.append('id_cotizacion', data.id_cotizacion);
+    if (data.observaciones) {
+      formData.append('observaciones', data.observaciones);
+    }
+    formData.append('pdf_file', data.pdf_file);
+
+    const response  = await firstValueFrom(
+      this.http.post<OrdenCrearResponse>(this.url, formData)
+    );
+
+    if (response?.data) {
+      await this.reload(); // vuelve a consultar la API
+    }
+
+    return response;
+  }
+
+  async listarOrdenes(forceReload = false){
+    if (this._isLoaded() && !forceReload) return;
+    try {
+        const data = await firstValueFrom(
+        this.http.get<OrdenListado[]>(this.url));
+        this._orderesList.set(data ?? []);
+        this._isLoaded.set(true);
+    } catch (error) {
+        console.error('Error cargando ordenes de traslado:', error);
+        this._orderesList.set([]);
+        this._isLoaded.set(false);
+    }
+  }
+
+  async reload() {
+    this._isLoaded.set(false);
+    this._orderesList.set([]);
+    await this.listarOrdenes(true);
+  }
+
+
+  clear() {
+    this._orderesList.set([]);
+    this._isLoaded.set(false);
+  }
+
+  /* @param fileKey Ejemplo: "cotizaciones/20251010160508_modelo cotizacion.pdf"
+  */
+ async obtenerUrlDescarga(fileKey: string): Promise<string> {
+   const url = `${this.archivosUrl}/descargar/${encodeURIComponent(fileKey)}`;
+   const response = await firstValueFrom(this.http.get<{ url: string }>(url));
+   return response.url;
+ }
+
 }
