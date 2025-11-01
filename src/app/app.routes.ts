@@ -49,7 +49,7 @@ export const routes: Routes = [
              {path:'vehiculos/:id/detalle', loadComponent: () => import('./presentation/pages/vehicles/vehicle-detail/vehicle-detail').then(m => m.VehicleDetail) },
              {path :'tipos-vehiculo', loadComponent: () => import('./presentation/pages/vehicles-types/vehicles-types').then(m => m.VehiclesTypes) },
              {path :'tipos-vehiculo/agregar', loadComponent: () => import('./presentation/pages/vehicles-types/add-type/add-type').then(m => m.AddType) },
-            {path: 'documentos', loadComponent: () => import('./presentation/pages/quotes/documents/documents').then(m => m.DocumentsComponent) },
+            {path: 'documentos/:id', loadComponent: () => import('./presentation/pages/quotes/documents/documents').then(m => m.DocumentsComponent) },
             {path:'ordenes', loadComponent: () => import('./presentation/pages/orders/orders').then(m => m.Orders) },
              
         ]

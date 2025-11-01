@@ -53,3 +53,15 @@ export interface OrdenCrearResponse {
       created_at: string;
     };
 }
+
+export interface OrdenDocumentos {
+    id: string;
+    id_orden: string;
+    guia_remision_url: string | null;
+    factura_url: string | null;
+    guia_transportista_url: string | null;
+    informe_url: string | null;
+    manifiesto_url: string | null;
+    certificado_url: string | null;
+    fecha_registro: string;
+}

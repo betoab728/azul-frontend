@@ -2,7 +2,7 @@ import { Injectable, signal,computed } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { endpoints } from 'src/app/infrastructure/config/endpoints';
 import { firstValueFrom } from 'rxjs';
-import { OrdenCrearResponse, OrdenCreate, OrdenEncabezado, OrdenListado } from 'src/app/domain/entities/order.entity';
+import { OrdenCrearResponse, OrdenCreate, OrdenDocumentos, OrdenEncabezado, OrdenListado } from 'src/app/domain/entities/order.entity';
 
 
 @Injectable({ providedIn: 'root' })
@@ -71,6 +71,22 @@ export class OrdenTrasladoService {
     this._orderesList.set([]);
     await this.listarOrdenes(true);
   }
+
+  async getDocumentos(id : string) {
+    const url = `${this.url}/${id}/documentos`;
+    const data = await firstValueFrom(
+      this.http.get<OrdenDocumentos>(url)
+    );
+    return data;
+  }
+
+  async subirDocumento(id: string, tipo: string, formData: FormData) {
+    const url = `${this.url}/${id}/documentos/${tipo}`;
+    await firstValueFrom(
+      this.http.post<{ mensaje: string }>(url, formData)
+    );
+  }
+
 
 
   clear() {

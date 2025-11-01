@@ -1,34 +1,93 @@
-<section class="p-6 bg-white rounded-xl shadow-md max-w-3xl mx-auto">
-    <h2 class="text-xl font-bold mb-4 text-gray-800">Subir Documentos</h2>
-  
-    <form (ngSubmit)="onSubmit()" class="space-y-4" enctype="multipart/form-data">
-      <div *ngFor="let doc of documentosRequeridos" class="flex flex-col">
-        <label class="font-medium text-sm text-gray-700 mb-1">
-          {{ doc.label }}
-        </label>
-        <input
-          type="file"
-          (change)="onFileSelected($event, doc.key)"
-          class="border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500"
-          accept=".pdf,.jpg,.png"
-        />
-      </div>
-  
-      <div class="flex justify-end mt-4">
-        <button
-          type="submit"
-          class="bg-sky-600 hover:bg-sky-700 text-white text-sm font-semibold px-5 py-2 rounded-lg transition"
-        >
-          Subir Documentos
-        </button>
-      </div>
-    </form>
-  
-    <div *ngIf="uploadedFiles.length > 0" class="mt-6">
-      <h3 class="font-semibold text-gray-800 mb-2">Documentos Subidos</h3>
-      <ul class="list-disc pl-6 text-sm text-gray-700">
-        <li *ngFor="let file of uploadedFiles">{{ file.name }}</li>
-      </ul>
-    </div>
-  </section>
-  
+<section class="p-6 max-w-2xl mx-auto bg-white rounded-xl shadow">
+  <h2 class="text-lg font-bold mb-4">Gestión de Documentos</h2>
+
+  @if (loading) {
+    <div class="text-gray-500">Cargando documentos...</div>
+  }
+
+  @if (!loading) {
+    <table class="min-w-full divide-y divide-gray-200 bg-white rounded-xl shadow-md overflow-hidden">
+      <thead class="bg-gray-50">
+        <tr>
+          <th class="px-4 py-2 text-left text-xs font-bold text-gray-600 uppercase">Documento</th>
+          <th class="px-4 py-2 text-left text-xs font-bold text-gray-600 uppercase">Archivo</th>
+          <th class="px-4 py-2 text-left text-xs font-bold text-gray-600 uppercase">Acciones</th>
+        </tr>
+      </thead>
+    
+      <tbody class="divide-y divide-gray-200">
+        @for (doc of documentos; track doc.tipo) {
+          <tr class="hover:bg-gray-50 transition-colors duration-150">
+            <!-- Tipo de documento -->
+            <td class="px-4 py-3 text-sm font-medium text-gray-700">
+              {{ doc.label }}
+            </td>
+    
+            <!-- Archivo actual o input -->
+            <td class="px-4 py-3 text-sm text-gray-700">
+              @if (tieneArchivo(doc.tipo)) {
+                <span class="text-green-700 font-semibold flex items-center gap-2">
+                  <i class="fas fa-file-pdf text-red-500"></i>
+                  {{ getNombreArchivo(doc.tipo) }}
+                </span>
+              } @else {
+                <div class="flex items-center gap-3">
+                  <!-- Input oculto -->
+                  <input
+                    type="file"
+                    id="fileInput-{{ doc.tipo }}"
+                    (change)="onFileSelected($event, doc.tipo)"
+                    class="hidden"
+                  />
+    
+                  <!-- Botón personalizado -->
+                  <button
+                    type="button"
+                    (click)="abrirSelectorArchivo(doc.tipo)"
+                    class="bg-blue-600 text-white px-3 py-1 rounded-lg hover:bg-blue-700 transition flex items-center gap-2"
+                  >
+                    <i class="fas fa-upload"></i>
+                    Seleccionar archivo
+                  </button>
+    
+                  <!-- Mostrar nombre del archivo seleccionado -->
+                  @if (selectedFiles[doc.tipo]) {
+                    <span class="text-gray-700 text-sm truncate max-w-[180px]">
+                      {{ selectedFiles[doc.tipo]?.name }}
+                    </span>
+                  }
+                </div>
+              }
+            </td>
+    
+            <!-- Acciones -->
+            <td class="px-4 py-3 text-sm flex gap-3">
+              <!-- Subir/Guardar -->
+              <button
+                class="text-blue-600 hover:text-blue-800 transition cursor-pointer flex items-center gap-1"
+                (click)="guardar(doc.tipo)"
+                [disabled]="tieneArchivo(doc.tipo) || loading"
+                title="Subir documento"
+              >
+                <i class="fas fa-floppy-disk text-blue-500 text-lg"></i>
+                Guardar
+              </button>
+    
+              <!-- Descargar -->
+              <button
+                class="text-green-600 hover:text-green-800 transition cursor-pointer flex items-center gap-1"
+                (click)="abrirPDF(getUrlDocumento(doc.key)!)"
+                [disabled]="!tieneArchivo(doc.tipo)"
+                title="Descargar documento"
+              >
+                <i class="fas fa-download text-green-500 text-lg"></i>
+                Descargar
+              </button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+    
+  }
+</section>

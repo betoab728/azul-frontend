@@ -52,10 +52,13 @@ export class Orders implements OnInit {
   async abrirPDF(pdfUrl: string) {
     try {
       // se extraer solo la parte después del dominio S3
+      console.log('url de la bd: ',pdfUrl)
+
       const fileKey = pdfUrl.replace(
         'https://azul-sostenible-documentos-2025.s3.us-east-1.amazonaws.com/',
         ''
       );
+      console.log('url limpia',fileKey)
   
       const url = await this.ordenService.obtenerUrlDescarga(fileKey);
       console.log('URL firmada del PDF:', url);
@@ -66,9 +69,9 @@ export class Orders implements OnInit {
     }
   }
 
-  irADocumentos() {
+  async irADocumentos(id: string) {
     //navgate a /dashboard/documentos
-    this.router.navigate(['/dashboard/documentos']);
+    await  this.router.navigate([`/dashboard/documentos/${id}`]);
   }
 
 }
