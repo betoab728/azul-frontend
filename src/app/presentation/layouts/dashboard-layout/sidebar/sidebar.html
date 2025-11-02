@@ -2,161 +2,48 @@
   <div class="flex justify-center mb-6">
     <img src="/logoazul.png" alt="Logo de la empresa" class="h-16 object-contain" />
   </div>
+
   <ul class="space-y-2">
+    @for (item of menus; track item.label) {
+      <!-- Si tiene hijos -->
+      @if (item.children) {
+        <details class="group">
+          <summary class="flex items-center gap-2 p-2 cursor-pointer rounded hover:bg-[#1e3c73] text-white">
+            <i [class]="item.icon"></i>
+            <span>{{ item.label }}</span>
+            <svg
+              class="w-4 h-4 transform transition-transform duration-200 group-open:rotate-180"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
 
-    <!-- Dashboard -->
-    <li>
-      <a routerLink="/dashboard" class="flex items-center gap-2 p-2 rounded hover:bg-[#1e3c73] text-white cursor-pointer">
-        <i class="fas fa-tachometer-alt"></i>
-        <span>Dashboard</span>
-      </a>
-    </li>
-
-    <!-- Gestión de Usuarios -->
-    <li>
-      <details class="group">
-        <summary class="flex items-center  gap-2 p-2 cursor-pointer rounded hover:bg-[#1e3c73] text-white">
-          <i class="fas fa-users"></i> 
-          <span>Gestión de Usuarios</span>
-          <svg class="w-4 h-4 transform transition-transform duration-200 group-open:rotate-180"
-            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M19 9l-7 7-7-7" />
-          </svg>
-        </summary>
-        <ul class="ml-4 mt-2 space-y-1">
-          <li><a routerLink="/dashboard/usuarios" class="block p-2 text-sm rounded hover:bg-[#1e3c73] text-white  cursor-pointer ">Usuarios</a></li>
-          <li><a routerLink="/dashboard/roles" class="block p-2 text-sm rounded hover:bg-[#1e3c73] text-white  cursor-pointer">Roles</a></li>
-          <li><a routerLink="/dashboard/generadores" class="block p-2 text-sm rounded hover:bg-[#1e3c73] text-white  cursor-pointer">Empresas</a></li>
-        </ul>
-      </details>
-    </li>
-     <!-- Solicitudes y Cotizaciones -->
-    <li>
-      <details class="group">
-        <summary class="flex items-center gap-2 p-2 cursor-pointer rounded hover:bg-[#1e3c73] text-white ">
-          <i class="fas fa-clipboard-list"></i>
-          <span>Solicitudes y Cotizaciones</span>
-          <svg class="w-4 h-4 transform transition-transform duration-200 group-open:rotate-180"
-            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M19 9l-7 7-7-7" />
-          </svg>
-        </summary>
-        <ul class="ml-4 mt-2 space-y-1">
-          <li><a routerLink="/dashboard/solicitud/agregar" class="block p-2 text-sm rounded hover:bg-[#1e3c73] text-white  cursor-pointer">Nueva Solicitud de Cotización</a></li>
-          <!-- <li><a routerLink="/request-status" class="block p-2 text-sm rounded hover:bg-[#1e3c73] text-white  cursor-pointer">Estado de Solicitud</a></li> -->
-          <li><a routerLink="/dashboard/solicitudes" class="block p-2 text-sm rounded hover:bg-[#1e3c73] text-white  cursor-pointer">Listado de Solicitudes</a></li>
-          <li><a routerLink="/dashboard/solicitudes/generador" class="block p-2 text-sm rounded hover:bg-[#1e3c73] text-white  cursor-pointer">Mis Solicitudes de Cotización</a></li>
-          <li><a routerLink="/dashboard/cotizaciones" class="block p-2 text-sm rounded hover:bg-[#1e3c73] text-white  cursor-pointer">Cotizaciones</a></li>
-          <li><a routerLink="/dashboard/cotizaciones/generador" class="block p-2 text-sm rounded hover:bg-[#1e3c73] text-white  cursor-pointer">Mis Cotizaciones</a></li>
-        </ul>
-      </details>
-    </li>
-
-    <!-- Gestión de Residuos -->
-    <li>
-      <details class="group">
-        <summary class="flex items-center  gap-2 p-2 rounded hover:bg-[#1e3c73] text-white  cursor-pointer">
-          <i class="fas fa-briefcase"></i>
-          <span>Gestión de Residuos</span>
-          <svg class="w-4 h-4 transform transition-transform duration-200 group-open:rotate-180"
-            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M19 9l-7 7-7-7" />
-          </svg>
-        </summary>
-        <ul class="ml-4 mt-2 space-y-1">
-          <li><a routerLink="/dashboard/clasificacion" class="block p-2 text-sm rounded hover:bg-[#1e3c73] text-white  cursor-pointer">Clasificación</a></li>
-
-          <li><a routerLink="/dashboard/tipo-residuo" class="block p-2 text-sm rounded hover:bg-[#1e3c73] text-white  cursor-pointer">Tipo</a></li>
-          <li><a routerLink="/dashboard/unidades-medida" class="block p-2 text-sm rounded hover:bg-[#1e3c73] text-white  cursor-pointer">Unidades de Medida</a></li>
-        
-          <li><a routerLink="/dashboard/registro-residuos" class="block p-2 text-sm rounded hover:bg-[#1e3c73] text-white  cursor-pointer">Registro</a></li>
-        </ul>
-      </details>
-    </li>
-
-    <!-- Gestión de Transporte -->
-    <li>
-      <details class="group">
-        <summary class="flex items-center  gap-2 p-2 cursor-pointer rounded hover:bg-[#1e3c73] text-white">
-          <i class="fas fa-truck"></i>
-          <span>Gestión de Transporte</span>
-          <svg class="w-4 h-4 transform transition-transform duration-200 group-open:rotate-180"
-            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M19 9l-7 7-7-7" />
-          </svg>
-        </summary>
-        <ul class="ml-4 mt-2 space-y-1">
-          <li><a routerLink="/routes" class="block p-2 text-sm rounded hover:bg-[#1e3c73] text-white  cursor-pointer">Rutas</a></li>
-          <li><a routerLink="/dashboard/embarcaciones" class="block p-2 text-sm rounded hover:bg-[#1e3c73] text-white  cursor-pointer">Embarcaciones</a></li>
-          <li><a routerLink="/vessel-types" class="block p-2 text-sm rounded hover:bg-[#1e3c73] text-white  cursor-pointer">Tipo de Embarcación</a></li>
-          <li><a routerLink="/dashboard/vehiculos" class="block p-2 text-sm rounded hover:bg-[#1e3c73] text-white  cursor-pointer">Vehiculos</a></li>
-          <li><a routerLink="/dashboard/tipos-vehiculo" class="block p-2 text-sm rounded hover:bg-[#1e3c73] text-white  cursor-pointer">Tipos de Vehiculos</a></li>
-          <li><a routerLink="/ports" class="block p-2 text-sm rounded hover:bg-[#1e3c73] text-white  cursor-pointer">Puertos</a></li>
-        </ul>
-      </details>
-    </li>
-
-  
-    <!-- Tratamiento -->
-    <li>
-      <details class="group">
-        <summary class="flex items-center gap-2 p-2 cursor-pointer rounded hover:bg-[#1e3c73] text-white">
-          <i class="fas fa-recycle"></i>
-          <span>Tratamiento</span>
-          <svg class="w-4 h-4 transform transition-transform duration-200 group-open:rotate-180"
-            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M19 9l-7 7-7-7" />
-          </svg>
-        </summary>
-        <ul class="ml-4 mt-2 space-y-1">
-          <li><a routerLink="/treatments" class="block p-2 text-sm rounded hover:bg-[#1e3c73] text-white  cursor-pointer">Tratamientos</a></li>
-          <li><a routerLink="/treatment-types" class="block p-2 text-sm rounded hover:bg-[#1e3c73] text-white  cursor-pointer">Tipos de Tratamiento</a></li>
-        </ul>
-      </details>
-    </li>
-
-    <!-- Trazabilidad -->
-    <li>
-      <details class="group">
-        <summary class="flex items-center gap-2 p-2 cursor-pointer rounded hover:bg-[#1e3c73] text-white">
-          <i class="fas fa-route"></i>
-          <span>Órdenes de Servicio</span>
-          <svg class="w-4 h-4 transform transition-transform duration-200 group-open:rotate-180"
-            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M19 9l-7 7-7-7" />
-          </svg>
-        </summary>
-        <ul class="ml-4 mt-2 space-y-1">
-          <li><a routerLink="/dashboard/ordenes" class="block p-2 text-sm rounded hover:bg-[#1e3c73] text-white  cursor-pointer">Listado de órdenes</a></li>
-          <li><a routerLink="/traceability" class="block p-2 text-sm rounded hover:bg-[#1e3c73] text-white  cursor-pointer">Trazabilidad</a></li>
-        </ul>
-      </details>
-    </li>
-
-    <!-- Trazabilidad -->
-    <li>
-      <details class="group">
-        <summary class="flex items-center gap-2 p-2 cursor-pointer rounded hover:bg-[#1e3c73] text-white">
-          <i class="fas fa-route"></i>
-          <span>Disposicion Final</span>
-          <svg class="w-4 h-4 transform transition-transform duration-200 group-open:rotate-180"
-            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M19 9l-7 7-7-7" />
-          </svg>
-        </summary>
-        <ul class="ml-4 mt-2 space-y-1">
-          <li><a routerLink="/transfer-orders" class="block p-2 text-sm rounded hover:bg-[#1e3c73] text-white  cursor-pointer">Órdenes de Traslado</a></li>
-          <li><a routerLink="/traceability" class="block p-2 text-sm rounded hover:bg-[#1e3c73] text-white  cursor-pointer">Trazabilidad</a></li>
-        </ul>
-      </details>
-    </li>
-
+          <ul class="ml-4 mt-2 space-y-1">
+            @for (child of item.children; track child.label) {
+              <li>
+                <a
+                  [routerLink]="child.link"
+                  class="block p-2 text-sm rounded hover:bg-[#1e3c73] text-white cursor-pointer"
+                >
+                  {{ child.label }}
+                </a>
+              </li>
+            }
+          </ul>
+        </details>
+      } @else {
+        <a
+          [routerLink]="item.link"
+          class="flex items-center gap-2 p-2 rounded hover:bg-[#1e3c73] text-white cursor-pointer"
+        >
+          <i [class]="item.icon"></i>
+          <span>{{ item.label }}</span>
+        </a>
+      }
+    }
   </ul>
 </nav>

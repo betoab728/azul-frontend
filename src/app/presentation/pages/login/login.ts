@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from 'src/app/infrastructure/services/auth.service';
+import { LoginResponseDto } from 'src/app/application/dto/user.dto';
+
 
 @Component({
   selector: 'app-login',
@@ -34,7 +36,7 @@ export class Login {
     };
 
     try {
-      const response = await this.loginUseCase.execute(dto);
+      const response: LoginResponseDto  = await this.loginUseCase.execute(dto);
       // Guardar token y usuario en el servicio de autenticación
       this.authService.setSession(response.access_token, response.user);
       console.log('Login exitoso:', response);

@@ -1,4 +1,4 @@
-export interface LoginResponseDto {
+/*export interface LoginResponseDto {
   access_token: string;
   token_type: string;
   user: {
@@ -8,5 +8,6 @@ export interface LoginResponseDto {
     id_generador: string;
     ruc?: string;
     razon_social?: string;
+    rol: string;
   };
-}
+}*/

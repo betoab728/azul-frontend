@@ -1,10 +1,10 @@
 
 
 import { Injectable } from '@angular/core';
-import { AuthRepository } from '../../domain/repositories/auth.repository';
-import { LoginRequestDto } from '../dto/login-request.dto';
+import { AuthRepository } from 'src/app/domain/repositories/auth.repository';
+import { LoginRequestDto } from 'src/app/application/dto/login-request.dto';
 
-import { LoginResponseDto } from '../dto/login-response.dto';
+import { LoginResponseDto } from 'src/app/application/dto/user.dto';
 
 
 @Injectable({ providedIn: 'root' })
