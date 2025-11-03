@@ -17,15 +17,16 @@ import { SwalService } from 'src/app/infrastructure/services/swal.service';
   templateUrl: './checkout-request.html',
   styleUrl: './checkout-request.css'
 })
-export class CheckoutRequest implements OnInit {
+export class CheckoutRequest implements OnInit { 
   empresa: any = null;
   observaciones: string = '';
   embarcaciones: any;
   embarcacionSeleccionada: string | null = null;
   direccionRecojo: string = '';
-
   puertos: any;
   puertoSeleccionado: string | null = null;
+
+  loading = true; // 👈 estado de carga
 
   constructor(
     public carritoStore: CarritoStoreService,
@@ -36,21 +37,29 @@ export class CheckoutRequest implements OnInit {
   ) {}
 
   async ngOnInit() {
-    this.empresa = this.authService.getUser();
-    console.log('Empresa logueada:', this.empresa);
+    this.loading = true;
+    try {
+      this.empresa = this.authService.getUser();
 
-    // embarcaciones
-    this.embarcaciones = this.embarcacionStore.embarcaciones;
-    await this.embarcacionStore.load();
+      // ⚙️ Cargar datos en paralelo para optimizar
+      await Promise.all([
+        this.embarcacionStore.load(),
+        this.puertoService.load()
+      ]);
 
-    // puertos
-    this.puertos = this.puertoService.puertos;
-    await this.puertoService.load();
+      this.embarcaciones = this.embarcacionStore.embarcaciones;
+      this.puertos = this.puertoService.puertos;
+    } catch (error) {
+      console.error('Error al cargar datos del checkout:', error);
+      SwalService.error('No se pudieron cargar los datos del formulario.');
+    } finally {
+      this.loading = false;
+    }
   }
 
   async confirmarSolicitud() {
     if (!this.embarcacionSeleccionada || !this.puertoSeleccionado || this.direccionRecojo.trim() === '') {
-      SwalService.warning('Debe seleccionar un puerto y una embarcación');
+      SwalService.warning('Debe seleccionar un puerto, embarcación y dirección de recojo');
       return;
     }
 
@@ -77,9 +86,8 @@ export class CheckoutRequest implements OnInit {
 
     try {
       const response = await this.solicitudService.crearSolicitud(payload);
-      console.log('Solicitud registrada:', response);
-
       await SwalService.success(`Solicitud registrada con éxito. ID: ${response.id}`);
+
       this.carritoStore.limpiar();
       this.observaciones = '';
       this.embarcacionSeleccionada = null;

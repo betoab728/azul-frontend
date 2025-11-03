@@ -1,6 +1,7 @@
-import { Component,HostListener  } from '@angular/core';
+import { Component,HostListener, computed, inject   } from '@angular/core';
 import { TranslateModule,TranslateService   } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
+import { CarritoStoreService } from 'src/app/infrastructure/services/cart.service';
 
 
 @Component({
@@ -11,6 +12,8 @@ import { CommonModule } from '@angular/common';
 })
 export class Header {
   showLangMenu = false;
+  private carritoStore = inject(CarritoStoreService);
+  totalItems = this.carritoStore.totalItems; // señal reactiva
 
   constructor(private translate: TranslateService) {
     this.translate.setFallbackLang('es');

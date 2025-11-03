@@ -1,6 +1,16 @@
 <header class="bg-white shadow px-4 py-3 flex justify-between items-center">
   <span class="text-lg font-semibold">Panel de Administración</span>
   <div class="flex items-center space-x-3">
+    <button class="relative bg-gray-200 p-2 rounded-full hover:bg-gray-300">
+      <i class="fas fa-truck text-gray-700"></i>
+
+      @if (totalItems() > 0) {
+        <span
+          class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+          {{ totalItems() }}
+        </span>
+      }
+    </button>
     <span class="text-sm text-gray-600">admin</span>
     <button class="bg-gray-200 p-2 rounded-full hover:bg-gray-300">
       <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" stroke-width="2"

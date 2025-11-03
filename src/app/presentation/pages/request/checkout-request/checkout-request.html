@@ -1,131 +1,125 @@
 <div class="max-w-3xl mx-auto bg-white shadow rounded-lg p-6 space-y-6">
-  <!-- Encabezado -->
-  <h1 class="text-2xl font-bold text-gray-800 border-b pb-2">
-    Solicitud de Cotización
-  </h1>
 
-  <!-- Datos de la empresa -->
-  <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
-    <h2 class="text-lg font-semibold text-gray-700 mb-3">
-      Datos de la Empresa
-    </h2>
-    <div class="space-y-1 text-gray-600">
-      <p><strong class="text-gray-800">Razón Social:</strong> {{ empresa?.razon_social }}</p>
-      <p><strong class="text-gray-800">RUC:</strong> {{ empresa?.ruc }}</p>
-      <p><strong class="text-gray-800">Correo:</strong> {{ empresa?.correo }}</p>
+  <!-- Loader -->
+  @if (loading) {
+    <div class="flex flex-col items-center justify-center py-20">
+      <div class="w-10 h-10 border-4 border-sky-600 border-t-transparent rounded-full animate-spin"></div>
+      <p class="mt-3 text-gray-600 text-sm font-medium">Cargando información del carrito...</p>
     </div>
-  </div>
+  }
 
-  <!-- Tabla de residuos -->
-  <div class="overflow-x-auto">
-    <table class="min-w-full border border-gray-200 rounded-lg">
-      <thead class="bg-gray-100 text-gray-700">
-        <tr>
-          <th class="px-4 py-2 text-left font-semibold">Residuo</th>
-          <th class="px-4 py-2 text-left font-semibold">Unidad</th>
-          <th class="px-4 py-2 text-left font-semibold">Cantidad</th>
-          <th class="px-4 py-2 text-left font-semibold">Acciones</th>
-        </tr>
-      </thead>
-      <tbody class="divide-y divide-gray-200">
-        <tr *ngFor="let item of carritoStore.items()" class="hover:bg-gray-50">
-          <td class="px-4 py-2">{{ item.residuo.nombreResiduo }}</td>
-          <td class="px-4 py-2">{{ item.residuo.unidadMedida }}</td>
-          <td class="px-4 py-2">
-            <input
-              type="number"
-              min="1"
-              [(ngModel)]="item.cantidad"
-              (ngModelChange)="carritoStore.actualizarCantidad(item.residuo.id, $event)"
-              class="w-20 border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-sky-500"
-            />
-          </td>
-          <td class="px-4 py-2">
-            <button
-              (click)="carritoStore.eliminar(item.residuo.id)"
-              class="text-red-600 hover:text-red-800 font-medium"
-            >
-              Eliminar
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <!-- Contenido principal -->
+  @if (!loading) {
 
-  <!-- Selector de embarcación -->
-  <div>
-    <label for="embarcacion" class="block mb-2 font-medium text-gray-700">
-      Seleccionar Embarcación
-    </label>
-    <ng-select
-      [items]="embarcaciones()"
-      bindLabel="nombre"
-      bindValue="id"
-      [(ngModel)]="embarcacionSeleccionada"
-      placeholder="Seleccione una embarcación"
-      class="w-full border border-gray-300 rounded focus:ring-2 focus:ring-sky-500"
-    >
-    </ng-select>
-  </div>
+    <h1 class="text-2xl font-bold text-gray-800 border-b pb-2">
+      Solicitud de Cotización
+    </h1>
 
-  <!-- Selector de puerto -->
-  <div>
-    <label for="puerto" class="block mb-2 font-medium text-gray-700">
-      Seleccionar Puerto
-    </label>
-    <ng-select
-      [items]="puertos()"
-      bindLabel="nombre"
-      bindValue="id"
-      [(ngModel)]="puertoSeleccionado"
-      placeholder="Seleccione un puerto"
-      class="w-full border border-gray-300 rounded focus:ring-2 focus:ring-sky-500"
-    >
-    </ng-select>
-  </div>
-  <!--direccion de recojo-->
-  <div>
-    <label for="direccionRecojo" class="block mb-2 font-medium text-gray-700">
-      Dirección de Recojo
-    </label>
-    <input
-      type="text"
-      id="direccionRecojo"
-      [(ngModel)]="direccionRecojo"
-      class="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-sky-500"
-      placeholder=""
-    />
-  </div>
+    <!-- Datos de la empresa -->
+    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+      <h2 class="text-lg font-semibold text-gray-700 mb-3">
+        Datos de la Empresa
+      </h2>
+      <div class="space-y-1 text-gray-600">
+        <p><strong class="text-gray-800">Razón Social:</strong> {{ empresa?.razon_social }}</p>
+        <p><strong class="text-gray-800">RUC:</strong> {{ empresa?.ruc }}</p>
+        <p><strong class="text-gray-800">Correo:</strong> {{ empresa?.correo }}</p>
+      </div>
+    </div>
 
-  <!-- Observaciones -->
-<div>
-  <label for="observaciones" class="block mb-2 font-medium text-gray-700">
-    Observaciones
-  </label>
-  <textarea
-    id="observaciones"
-    [(ngModel)]="observaciones"
-    rows="3"
-    class="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-sky-500"
-  ></textarea>
+    <!-- Tabla de residuos -->
+    <div class="overflow-x-auto">
+      <table class="min-w-full border border-gray-200 rounded-lg">
+        <thead class="bg-gray-100 text-gray-700">
+          <tr>
+            <th class="px-4 py-2 text-left font-semibold">Residuo</th>
+            <th class="px-4 py-2 text-left font-semibold">Unidad</th>
+            <th class="px-4 py-2 text-left font-semibold">Cantidad</th>
+            <th class="px-4 py-2 text-left font-semibold">Acciones</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          <tr *ngFor="let item of carritoStore.items()" class="hover:bg-gray-50">
+            <td class="px-4 py-2">{{ item.residuo.nombreResiduo }}</td>
+            <td class="px-4 py-2">{{ item.residuo.unidadMedida }}</td>
+            <td class="px-4 py-2">
+              <input
+                type="number"
+                min="1"
+                [(ngModel)]="item.cantidad"
+                (ngModelChange)="carritoStore.actualizarCantidad(item.residuo.id, $event)"
+                class="w-20 border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-sky-500"
+              />
+            </td>
+            <td class="px-4 py-2">
+              <button
+                (click)="carritoStore.eliminar(item.residuo.id)"
+                class="text-red-600 hover:text-red-800 font-medium"
+              >
+                Eliminar
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Selectores, dirección y observaciones -->
+    <div>
+      <label for="embarcacion" class="block mb-2 font-medium text-gray-700">Seleccionar Embarcación</label>
+      <ng-select
+        [items]="embarcaciones()"
+        bindLabel="nombre"
+        bindValue="id"
+        [(ngModel)]="embarcacionSeleccionada"
+        placeholder="Seleccione una embarcación"
+        class="w-full border border-gray-300 rounded focus:ring-2 focus:ring-sky-500">
+      </ng-select>
+    </div>
+
+    <div>
+      <label for="puerto" class="block mb-2 font-medium text-gray-700">Seleccionar Puerto</label>
+      <ng-select
+        [items]="puertos()"
+        bindLabel="nombre"
+        bindValue="id"
+        [(ngModel)]="puertoSeleccionado"
+        placeholder="Seleccione un puerto"
+        class="w-full border border-gray-300 rounded focus:ring-2 focus:ring-sky-500">
+      </ng-select>
+    </div>
+
+    <div>
+      <label for="direccionRecojo" class="block mb-2 font-medium text-gray-700">Dirección de Recojo</label>
+      <input
+        type="text"
+        id="direccionRecojo"
+        [(ngModel)]="direccionRecojo"
+        class="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-sky-500"/>
+    </div>
+
+    <div>
+      <label for="observaciones" class="block mb-2 font-medium text-gray-700">Observaciones</label>
+      <textarea
+        id="observaciones"
+        [(ngModel)]="observaciones"
+        rows="3"
+        class="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-sky-500"></textarea>
+    </div>
+
+    <!-- Botones -->
+    <div class="flex justify-between items-center">
+      <button
+        (click)="carritoStore.limpiar()"
+        class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100">
+        Vaciar
+      </button>
+
+      <button
+        (click)="confirmarSolicitud()"
+        class="px-6 py-2 bg-sky-700 text-white rounded-lg shadow hover:bg-sky-800 focus:outline-none focus:ring-2 focus:ring-sky-500 cursor-pointer">
+        Confirmar Solicitud
+      </button>
+    </div>
+  }
 </div>
-
-  <!-- Botones -->
-  <div class="flex justify-between items-center">
-    <button
-      (click)="carritoStore.limpiar()"
-      class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100"
-    >
-      Vaciar
-    </button>
-
-    <button
-      (click)="confirmarSolicitud()"
-      class="px-6 py-2 bg-sky-700 text-white rounded-lg shadow hover:bg-sky-800 focus:outline-none focus:ring-2 focus:ring-sky-500"
-    >
-      Confirmar Solicitud
-    </button>
-  </div>
-</div>
-
