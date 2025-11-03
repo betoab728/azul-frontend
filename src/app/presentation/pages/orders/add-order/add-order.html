@@ -1,77 +1,115 @@
-<div class="p-6 max-w-4xl mx-auto bg-white shadow-lg rounded-2xl border border-gray-200">
+<div
+  class="p-6 max-w-4xl mx-auto bg-white shadow-lg rounded-2xl border border-gray-200"
+>
+  @if (isLoading) {
+    <div class="text-gray-500">Cargando datos de la orden...</div>
+  }
 
-    @if (isLoading) {
-        <div class="text-gray-500">Cargando datos de la orden...</div>
-      }
+  @if (!isLoading) {
+    <!-- Encabezado de empresa y orden -->
+    <div
+      class="flex flex-col md:flex-row justify-between items-start md:items-center border-b pb-4 mb-4"
+    >
+      <div>
+        <h1 class="text-xl font-bold text-gray-800">Orden de Traslado</h1>
+        <p class="text-sm text-gray-500">Fecha: {{ ordenEncabezado?.fecha }}</p>
+        <p class="text-sm text-gray-500">
+          Razón Social: {{ ordenEncabezado?.razon_social }}
+        </p>
+      </div>
 
-      @if (!isLoading) {
-         <!-- Encabezado de empresa y orden -->
-    <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b pb-4 mb-4">
-        <div>
-          <h1 class="text-xl font-bold text-gray-800">Orden de Traslado</h1>
-          <p class="text-sm text-gray-500">Fecha: {{ ordenEncabezado?.fecha }}</p>
-          <p class="text-sm text-gray-500">Razón Social: {{ordenEncabezado?.razon_social }}</p>
-        </div>
-    
-        <div
-          class="mt-4 md:mt-0 bg-sky-600 text-white rounded-lg px-6 py-3 text-center shadow-md"
+      <div
+        class="mt-4 md:mt-0 bg-sky-600 text-white rounded-lg px-6 py-3 text-center shadow-md"
+      >
+        <p class="text-xs font-semibold tracking-wide">SERIE</p>
+        <p class="text-lg font-bold">{{ ordenEncabezado?.serie }}</p>
+        <p class="text-xs font-semibold tracking-wide mt-1">N°</p>
+        <p class="text-lg font-bold">{{ ordenEncabezado?.numero }}</p>
+      </div>
+    </div>
+
+    <!-- Información del cliente o cotización -->
+    <div class="mb-6">
+      <h2
+        class="text-lg font-semibold text-gray-700 border-l-4 border-blue-500 pl-2 mb-2"
+      >
+        Datos de la cotización
+      </h2>
+      <p class="text-gray-600 text-sm">
+        <strong>Código Cotización:</strong> {{ cotizacionId }}
+      </p>
+      <p class="text-gray-500 text-xs italic mt-1">
+        Esta orden se genera a partir de la cotización indicada.
+      </p>
+    </div>
+
+    <!-- Formulario -->
+    <form
+      class="grid grid-cols-1 md:grid-cols-2 gap-6"
+      (ngSubmit)="guardarOrden()"
+    >
+      <!-- Observaciones -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1"
+          >Observaciones</label
         >
-          <p class="text-xs font-semibold tracking-wide">SERIE</p>
-          <p class="text-lg font-bold">{{ ordenEncabezado?.serie }}</p>
-          <p class="text-xs font-semibold tracking-wide mt-1">N°</p>
-          <p class="text-lg font-bold">{{ ordenEncabezado?.numero }}</p>
-        </div>
+        <textarea
+          class="w-full border border-gray-300 rounded-lg p-2 text-sm focus:ring focus:ring-sky-600 outline-none"
+          rows="4"
+          [(ngModel)]="observaciones"
+          name="observaciones"
+          placeholder="Escriba observaciones si aplica..."
+        ></textarea>
       </div>
-    
-      <!-- Información del cliente o cotización -->
-      <div class="mb-6">
-        <h2 class="text-lg font-semibold text-gray-700 border-l-4 border-blue-500 pl-2 mb-2">
-          Datos de la cotización
-        </h2>
-        <p class="text-gray-600 text-sm">
-          <strong>Codigo Cotización:</strong> {{ cotizacionId }}
-        </p>
-        <p class="text-gray-500 text-xs italic mt-1">
-          Esta orden se genera a partir de la cotización indicada.
-        </p>
-      </div>
-    
-      <!-- Campos del formulario -->
-      <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <!-- Archivo -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1"
+          >Subir archivo PDF</label
+        >
         <div>
-          <label class="block text-gray-700 font-medium mb-1">Observaciones</label>
-          <textarea
-            class="w-full border border-gray-300 rounded-lg p-2 text-sm focus:ring focus:ring-sky-600 outline-none"
-            rows="4"
-            
-          ></textarea>
-        </div>
-        <div>
-          <label class="block text-gray-700 font-medium mb-1">Subir archivo PDF</label>
-          <div>
-              <div>
-                  <label
-                    class="flex flex-col items-center justify-center w-full border-2 border-dashed border-gray-300 rounded-lg p-4 cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition"
-                  >
-                    <i class="fas fa-cloud-arrow-up text-blue-500"></i>
-                    <span class="text-blue-600 font-medium mb-1">Seleccionar archivo</span>
-                    <span class="text-xs text-gray-500">PDF (máx. 5 MB)</span>
-                 
-                  </label>
-                </div>
-          </div>
-       
-        </div>
-    
-        <div class="col-span-1 md:col-span-2 flex justify-end mt-4">
-          <button
-            type="submit"
-            class="bg-sky-600 hover:bg-sky-700 text-white px-6 py-2 rounded-lg font-semibold shadow-md transition cursor-pointer"
+          <label
+            class="flex flex-col items-center justify-center w-full border-2 border-dashed border-gray-300 rounded-lg p-4 cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition text-center"
           >
-            Registrar Orden
-          </button>
+            <i class="fas fa-cloud-arrow-up text-blue-500 mb-2"></i>
+
+            <!-- Texto dinámico -->
+            <span class="text-blue-600 font-medium mb-1">
+              @if (!selectedFile) {
+                Seleccionar archivo
+              } @else {
+                {{ selectedFile.name }}
+              }
+            </span>
+
+            <span class="text-xs text-gray-500">PDF (máx. 5 MB)</span>
+
+            <input
+              type="file"
+              accept="application/pdf"
+              class="hidden"
+              (change)="onFileSelected($event)"
+            />
+          </label>
         </div>
-      </form>
-      }  
-  </div>
+      </div>
+
+      <!-- Botón -->
+      <div class="col-span-1 md:col-span-2 flex justify-end mt-4">
+        <button
+          type="submit"
+          [disabled]="isLoading"
+          class="bg-sky-600 hover:bg-sky-700 text-white px-6 py-2 rounded-lg font-semibold shadow-md transition cursor-pointer disabled:opacity-60"
+        >
+          @if (!isLoading) {
+            Registrar Orden
+          } @else {
+            Procesando...
+          }
+        </button>
+      </div>
+    </form>
+  }
+</div>
+
   

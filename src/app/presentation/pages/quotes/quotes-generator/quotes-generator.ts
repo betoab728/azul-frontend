@@ -1,30 +1,29 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component,OnInit, inject } from '@angular/core';
 import { SwalService } from 'src/app/infrastructure/services/swal.service';
-import { CommonModule } from '@angular/common';
-import { CotizacionList } from 'src/app/domain/entities/quote.entity';
 import { CotizacionService } from 'src/app/infrastructure/services/quote.service';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-quotes',
-  imports: [ CommonModule ],
-  templateUrl: './quotes.html',
-  styleUrl: './quotes.css'
+  selector: 'app-quotes-generator',
+  imports: [CommonModule],
+  templateUrl: './quotes-generator.html',
+  styleUrl: './quotes-generator.css'
 })
-export class Quotes  implements OnInit {
+export class QuotesGenerator implements OnInit{
 
   private cotizacionService= inject(CotizacionService);
   private router = inject(Router);
 
   //signala reactivas
-  cotizaciones =this.cotizacionService.cotizaciones;
-  isLoaded = this.cotizacionService.isLoaded;
+  cotizaciones =this.cotizacionService.cotizacionesGenerador;
+  isLoaded = this.cotizacionService.isLoadedGenerador;
   loading = true;
 
   async ngOnInit() {
     this.loading = true;
     try {
-      await this.cotizacionService.listarCotizaciones();
+      await this.cotizacionService.listarPorGenerador();
     } catch (error) {
       console.error('Error al cargar cotizaciones:', error);
       SwalService.error('No se pudieron cargar las cotizaciones');

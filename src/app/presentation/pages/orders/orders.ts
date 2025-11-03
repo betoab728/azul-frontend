@@ -45,10 +45,6 @@ export class Orders implements OnInit {
     }
   }
 
-  async nuevaOrden() {
-    await this.router.navigate(['/dashboard/ordenes/agregar']);
-  }
-
   async abrirPDF(pdfUrl: string) {
     try {
       // se extraer solo la parte después del dominio S3

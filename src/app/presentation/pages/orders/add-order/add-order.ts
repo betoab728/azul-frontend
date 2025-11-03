@@ -6,11 +6,13 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { OrdenTrasladoService } from 'src/app/infrastructure/services/orders.service';
 import { OrdenEncabezado } from 'src/app/domain/entities/order.entity';
+import { CommonModule } from '@angular/common';
+import { AuthService } from 'src/app/infrastructure/services/auth.service';
 
 
 @Component({
   selector: 'app-add-order',
-  imports: [],
+  imports: [CommonModule, FormsModule ],
   templateUrl: './add-order.html',
   styleUrl: './add-order.css'
 })
@@ -19,6 +21,7 @@ export class AddOrder  implements OnInit  {
   cotizacionId: string | null = null;
   observaciones: string = '';
   selectedFile: File | null = null;
+  rol ="";
 
   isLoading = false;
   //datos del encabezado de la orden
@@ -28,9 +31,16 @@ export class AddOrder  implements OnInit  {
   constructor( 
      private route: ActivatedRoute,
      private ordenService: OrdenTrasladoService ,
+     private authService: AuthService,
      private router: Router
     ) { }
   async ngOnInit(){
+
+    const role = this.authService.getUserRole(); 
+    console.log('Rol del usuario:', role);
+
+    this.rol = role || "";
+
     this.cotizacionId = this.route.snapshot.paramMap.get('cotizacionId');
     console.log('ID de cotización recibido:', this.cotizacionId);
     await this.loadOrderHeader();
@@ -55,8 +65,8 @@ export class AddOrder  implements OnInit  {
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
-      const selectedFile = input.files[0];
-      console.log('Archivo seleccionado:', selectedFile);
+      this.selectedFile = input.files[0];
+      console.log('Archivo seleccionado:', this.selectedFile);
     }
   }
 
@@ -65,12 +75,15 @@ export class AddOrder  implements OnInit  {
       SwalService.error('ID de cotización no proporcionado.');
       return;
     }
+  
     if (!this.selectedFile) {
       SwalService.error('Por favor, seleccione un archivo PDF.');
       return;
     }
-    const confirmed = await SwalService.confirm('¿Desea enviar esta orden ?');
+  
+    const confirmed = await SwalService.confirm('¿Desea enviar esta orden?');
     if (!confirmed) return;
+  
     this.isLoading = true;
     try {
       const response = await this.ordenService.crearOrden({
@@ -78,10 +91,15 @@ export class AddOrder  implements OnInit  {
         observaciones: this.observaciones,
         pdf_file: this.selectedFile
       });
+  
       console.log('Orden creada con éxito:', response);
       SwalService.success('Orden de traslado creada exitosamente.');
-      //redirigir a /dashboard/ordenes
-      await this.router.navigate(['/dashboard/ordenes']);
+      
+      if(this.rol === 'Administrador'){
+        await this.router.navigate(['/dashboard/ordenes']);
+      }else{
+        await this.router.navigate(['/dashboard/ordenes/generador']);
+      }
 
     } catch (error) {
       console.error('Error al crear la orden de traslado:', error);

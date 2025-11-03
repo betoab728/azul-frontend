@@ -14,6 +14,12 @@ export class OrdenTrasladoService {
   private _orderesList = signal<OrdenListado[]>([]);
   private _isLoaded = signal(false);
 
+  private _ordenesGeneradorList = signal<OrdenListado[]>([]);
+  private _isGeneradorLoaded = signal(false);
+
+  ordenesGeneradorList = computed(() => this._ordenesGeneradorList());
+  isGeneradorLoaded = computed(() => this._isGeneradorLoaded());
+
   constructor(private http: HttpClient) {}
 
   // Lectura segura
@@ -66,11 +72,33 @@ export class OrdenTrasladoService {
     }
   }
 
+  async listarOrdenesPorGenerador(forceReload = false) {
+    if (this._isGeneradorLoaded() && !forceReload) return;
+    try {
+      const data = await firstValueFrom(
+        this.http.get<OrdenListado[]>(`${this.url}/generador`)
+      );
+      this._ordenesGeneradorList.set(data ?? []);
+      this._isGeneradorLoaded.set(true);
+    } catch (error) {
+      console.error('Error cargando órdenes del generador:', error);
+      this._ordenesGeneradorList.set([]);
+      this._isGeneradorLoaded.set(false);
+    }
+  }
+
   async reload() {
     this._isLoaded.set(false);
     this._orderesList.set([]);
     await this.listarOrdenes(true);
   }
+
+  async reloadGenerador() {
+    this._isGeneradorLoaded.set(false);
+    this._ordenesGeneradorList.set([]);
+    await this.listarOrdenesPorGenerador(true);
+  }
+
 
   async getDocumentos(id : string) {
     const url = `${this.url}/${id}/documentos`;
@@ -87,11 +115,14 @@ export class OrdenTrasladoService {
     );
   }
 
-
-
   clear() {
     this._orderesList.set([]);
     this._isLoaded.set(false);
+  }
+
+  clearGenerador() {
+    this._ordenesGeneradorList.set([]);
+    this._isGeneradorLoaded.set(false);
   }
 
   /* @param fileKey Ejemplo: "cotizaciones/20251010160508_modelo cotizacion.pdf"

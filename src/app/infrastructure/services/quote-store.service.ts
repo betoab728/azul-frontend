@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { endpoints } from 'src/app/infrastructure/config/endpoints';
 import { CotizacionList } from 'src/app/domain/entities/quote.entity';
-
+/*
 @Injectable({ providedIn: 'root' })
 export class CotizacionSignalService {
   private url = endpoints.quotes; // Ejemplo: http://localhost:8000/cotizaciones
@@ -37,3 +37,4 @@ export class CotizacionSignalService {
     this.isLoaded.set(false);
   }
 }
+*/

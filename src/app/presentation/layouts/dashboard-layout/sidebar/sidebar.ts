@@ -53,6 +53,15 @@ export class Sidebar  implements OnInit  {
         ]
       },
       {
+        label: 'Solicitudes y Cotizaciones',
+        icon: 'fas fa-clipboard-list',
+        children: [
+          { label: 'Nueva Solicitud', link: '/dashboard/solicitud/agregar' },
+          { label: 'Solicitudes', link: '/dashboard/solicitudes' },
+          { label: 'Cotizaciones', link: '/dashboard/cotizaciones' }
+        ]
+      },
+      {
         label: 'Gestión de Residuos',
         icon: 'fas fa-briefcase',
         children: [
@@ -103,7 +112,7 @@ export class Sidebar  implements OnInit  {
         label: 'Órdenes de Servicio',
         icon: 'fas fa-route',
         children: [
-          { label: 'Mis Órdenes', link: '/dashboard/ordenes' },
+          { label: 'Mis Órdenes', link: '/dashboard/ordenes/generador' },
           { label: 'Trazabilidad', link: '/traceability' }
         ]
       }
