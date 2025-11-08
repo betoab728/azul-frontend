@@ -29,6 +29,7 @@
 
 
 <!-- Tabla de residuos -->
+<!-- Tabla de residuos -->
 <div class="overflow-x-auto">
   <table class="min-w-full border border-gray-200 rounded-lg">
     <thead class="bg-gray-100 text-gray-700">
@@ -40,30 +41,38 @@
       </tr>
     </thead>
     <tbody class="divide-y divide-gray-200">
-      <tr *ngFor="let item of carritoStore.items()" class="hover:bg-gray-50">
-        <td class="px-4 py-2">{{ item.residuo.nombreResiduo }}</td>
-        <td class="px-4 py-2">{{ item.residuo.unidadMedida }}</td>
-        <td class="px-4 py-2">
-          <input
-            type="text"
-            [(ngModel)]="item.cantidad"
-            class="w-24 border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-sky-500 text-center"
-            autocomplete="off"
-          />
-        </td>
-        <td class="px-4 py-2">
-          <button
-            (click)="carritoStore.eliminar(item.residuo.id)"
-            class="text-red-600 hover:text-red-800 font-medium"
-          >
-            Eliminar
-          </button>
-        </td>
-      </tr>
+
+      @for (item of carritoStore.items(); track item.residuo.id) {
+        <tr class="hover:bg-gray-50">
+          <td class="px-4 py-2">{{ item.residuo.nombreResiduo }}</td>
+          <td class="px-4 py-2">{{ item.residuo.unidadMedida }}</td>
+
+          <td class="px-4 py-2">
+            <input
+              type="text"
+              [(ngModel)]="item.cantidad"
+              class="w-24 border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-sky-500 text-center"
+              autocomplete="off"
+              maxlength="2"
+              (keypress)="permitirSoloNumeros($event)"
+              (paste)="evitarPegado($event)"
+            />
+          </td>
+
+          <td class="px-4 py-2">
+            <button
+              (click)="carritoStore.eliminar(item.residuo.id)"
+              class="text-red-600 hover:text-red-800 font-medium"
+            >
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      }
+
     </tbody>
   </table>
 </div>
-
     <!-- Selectores, dirección y observaciones -->
   
     @if (usarEmbarcacion) {

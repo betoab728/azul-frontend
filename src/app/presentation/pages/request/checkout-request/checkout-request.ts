@@ -104,4 +104,22 @@ export class CheckoutRequest implements OnInit {
       SwalService.error('Hubo un error al registrar la solicitud');
     }
   }
+
+  permitirSoloNumeros(event: KeyboardEvent) {
+    const charCode = event.key.charCodeAt(0);
+  
+    // Permite solo dígitos del 1 al 9
+    if (charCode < 49 || charCode > 57) {
+      event.preventDefault();
+    }
+  }
+  
+  evitarPegado(event: ClipboardEvent) {
+    const data = event.clipboardData?.getData('text') || '';
+    // Si el texto pegado no son solo números del 1 al 9, se bloquea
+    if (!/^[1-9]+$/.test(data)) {
+      event.preventDefault();
+    }
+  }
+
 }
