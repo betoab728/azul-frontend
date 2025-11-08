@@ -121,5 +121,35 @@ export class CheckoutRequest implements OnInit {
       event.preventDefault();
     }
   }
+  permitirSoloDigitos(event: KeyboardEvent) {
+    const key = event.key;
+  
+    // Permitir teclas de control comunes
+    const controlKeys = [
+      'Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab', 'Home', 'End'
+    ];
+    if (controlKeys.includes(key)) return;
+  
+    // Si la tecla tiene longitud > 1 (por ejemplo 'Enter') la bloqueamos
+    if (key.length !== 1) {
+      event.preventDefault();
+      return;
+    }
+  
+    // Permitir sólo dígitos 0-9
+    if (!/^[0-9]$/.test(key)) {
+      event.preventDefault();
+    }
+  }
+  
+  /**
+   * Bloquea pegados que no sean únicamente dígitos.
+   */
+  evitarPegadoSoloDigitos(event: ClipboardEvent) {
+    const data = event.clipboardData?.getData('text') ?? '';
+    if (!/^[0-9]+$/.test(data)) {
+      event.preventDefault();
+    }
+  }
 
 }
