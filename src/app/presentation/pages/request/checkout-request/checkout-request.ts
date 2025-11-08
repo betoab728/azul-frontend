@@ -101,4 +101,11 @@ export class CheckoutRequest implements OnInit {
       SwalService.error('Hubo un error al registrar la solicitud');
     }
   }
+  soloNumeros(event: KeyboardEvent) {
+    const charCode = event.which ? event.which : event.keyCode;
+    // Permitir solo números (0–9)
+    if (charCode < 48 || charCode > 57) {
+      event.preventDefault();
+    }
+  }
 }
