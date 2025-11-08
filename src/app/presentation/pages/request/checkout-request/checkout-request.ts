@@ -73,6 +73,11 @@ export class CheckoutRequest implements OnInit {
       SwalService.warning('Debe agregar al menos un residuo al carrito');
       return;
     }
+    //si no usa embarcacion ponemos null a la variable embarcacionSeleccionada y lo mismo con puerto
+    if (!this.usarEmbarcacion) {
+      this.embarcacionSeleccionada = null;
+      this.puertoSeleccionado = null;
+    }
 
     const confirmed = await SwalService.confirm('¿Desea registrar esta solicitud de cotización?');
     if (!confirmed) return;
