@@ -117,7 +117,7 @@ export class CheckoutRequest implements OnInit {
   evitarPegado(event: ClipboardEvent) {
     const data = event.clipboardData?.getData('text') || '';
     // Si el texto pegado no son solo números del 1 al 9, se bloquea
-    if (!/^[1-9]+$/.test(data)) {
+    if (!/^[0-9]+$/.test(data)) {
       event.preventDefault();
     }
   }
