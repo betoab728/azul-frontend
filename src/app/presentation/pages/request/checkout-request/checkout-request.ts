@@ -17,19 +17,18 @@ import { SwalService } from 'src/app/infrastructure/services/swal.service';
   templateUrl: './checkout-request.html',
   styleUrl: './checkout-request.css'
 })
-export class CheckoutRequest implements OnInit { 
+export class CheckoutRequest implements OnInit {
   empresa: any = null;
   observaciones: string = '';
-  embarcaciones: any;
+  embarcaciones: any[] = [];
   embarcacionSeleccionada: string | null = null;
   direccionRecojo: string = '';
-  puertos: any;
+  puertos: any[] = [];
   puertoSeleccionado: string | null = null;
 
   usarPuerto: boolean = false;
   usarEmbarcacion: boolean = false;
-
-  loading = true; // 👈 estado de carga
+  loading = true;
 
   constructor(
     public carritoStore: CarritoStoreService,
@@ -44,14 +43,13 @@ export class CheckoutRequest implements OnInit {
     try {
       this.empresa = this.authService.getUser();
 
-      // ⚙️ Cargar datos en paralelo para optimizar
       await Promise.all([
         this.embarcacionStore.load(),
         this.puertoService.load()
       ]);
 
-      this.embarcaciones = this.embarcacionStore.embarcaciones;
-      this.puertos = this.puertoService.puertos;
+      this.embarcaciones = this.embarcacionStore.embarcaciones();
+      this.puertos = this.puertoService.puertos();
     } catch (error) {
       console.error('Error al cargar datos del checkout:', error);
       SwalService.error('No se pudieron cargar los datos del formulario.');
@@ -61,7 +59,7 @@ export class CheckoutRequest implements OnInit {
   }
 
   async confirmarSolicitud() {
-    if ( this.direccionRecojo.trim() === '') {
+    if (this.direccionRecojo.trim() === '') {
       SwalService.warning('Debe indicar una dirección de recojo');
       return;
     }
@@ -100,28 +98,5 @@ export class CheckoutRequest implements OnInit {
       console.error('Error al registrar solicitud:', error);
       SwalService.error('Hubo un error al registrar la solicitud');
     }
-  }
-  soloNumeros(event: KeyboardEvent) {
-    const charCode = event.which ? event.which : event.keyCode;
-    // Permitir solo números (0–9)
-    if (charCode < 48 || charCode > 57) {
-      event.preventDefault();
-    }
-  }
-  actualizarCantidad(item: any, valor: string) {
-    if (typeof valor !== 'string') valor = String(valor);
-  
-    // Eliminamos todo lo que no sea dígito
-    const soloNumeros = valor.replace(/[^0-9]/g, '');
-  
-    // Evitar modificaciones innecesarias que re-rendericen sin cambios
-    if (item.cantidad === soloNumeros) return;
-  
-    // Actualiza el modelo local (para que el input muestre el valor limpio)
-    item.cantidad = soloNumeros;
-  
-    // Actualiza el store; si tu store espera number, conviértelo:
-    const cantidadParaStore = soloNumeros === '' ? 0 : parseInt(soloNumeros, 10);
-    this.carritoStore.actualizarCantidad(item.residuo.id, cantidadParaStore);
   }
 }
