@@ -26,64 +26,76 @@
         <p><strong class="text-gray-800">Correo:</strong> {{ empresa?.correo }}</p>
       </div>
     </div>
-    <!-- Tabla de residuos -->
-    <div class="overflow-x-auto">
-      <table class="min-w-full border border-gray-200 rounded-lg">
-        <thead class="bg-gray-100 text-gray-700">
-          <tr>
-            <th class="px-4 py-2 text-left font-semibold">Residuo</th>
-            <th class="px-4 py-2 text-left font-semibold">Unidad</th>
-            <th class="px-4 py-2 text-left font-semibold">Cantidad</th>
-            <th class="px-4 py-2 text-left font-semibold">Acciones</th>
-          </tr>
-        </thead>
-        <tbody class="divide-y divide-gray-200">
-          <tr *ngFor="let item of carritoStore.items()" class="hover:bg-gray-50">
-            <td class="px-4 py-2">{{ item.residuo.nombreResiduo }}</td>
-            <td class="px-4 py-2">{{ item.residuo.unidadMedida }}</td>
-            <td class="px-4 py-2">
-              <input
-                type="number"
-                min="1"
-                [(ngModel)]="item.cantidad"
-                (ngModelChange)="carritoStore.actualizarCantidad(item.residuo.id, $event)"
-                class="w-20 border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-sky-500"
-              />
-            </td>
-            <td class="px-4 py-2">
-              <button
-                (click)="carritoStore.eliminar(item.residuo.id)"
-                class="text-red-600 hover:text-red-800 font-medium"
-              >
-                Eliminar
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+
+
+<!-- Tabla de residuos -->
+<div class="overflow-x-auto">
+  <table class="min-w-full border border-gray-200 rounded-lg">
+    <thead class="bg-gray-100 text-gray-700">
+      <tr>
+        <th class="px-4 py-2 text-left font-semibold">Residuo</th>
+        <th class="px-4 py-2 text-left font-semibold">Unidad</th>
+        <th class="px-4 py-2 text-left font-semibold">Cantidad</th>
+        <th class="px-4 py-2 text-left font-semibold">Acciones</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-200">
+      <tr *ngFor="let item of carritoStore.items()" class="hover:bg-gray-50">
+        <td class="px-4 py-2">{{ item.residuo.nombreResiduo }}</td>
+        <td class="px-4 py-2">{{ item.residuo.unidadMedida }}</td>
+        <td class="px-4 py-2">
+          <input
+            type="text"
+            [(ngModel)]="item.cantidad"
+            class="w-24 border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-sky-500 text-center"
+            autocomplete="off"
+          />
+        </td>
+        <td class="px-4 py-2">
+          <button
+            (click)="carritoStore.eliminar(item.residuo.id)"
+            class="text-red-600 hover:text-red-800 font-medium"
+          >
+            Eliminar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
     <!-- Selectores, dirección y observaciones -->
     <div>
-      <label for="embarcacion" class="block mb-2 font-medium text-gray-700">Seleccionar Embarcación</label>
+      <label class="flex items-center space-x-2 mb-2 font-medium text-gray-700">
+        <input type="checkbox" [(ngModel)]="usarEmbarcacion" />
+        <span>¿Desea seleccionar una embarcación?</span>
+      </label>
+    
       <ng-select
-        [items]="embarcaciones()"
+        [items]="embarcaciones"
         bindLabel="nombre"
         bindValue="id"
         [(ngModel)]="embarcacionSeleccionada"
         placeholder="Seleccione una embarcación"
+        [disabled]="!usarEmbarcacion"
         class="w-full border border-gray-300 rounded focus:ring-2 focus:ring-sky-500">
       </ng-select>
     </div>
 
+    <!-- Selección de Puerto -->
     <div>
-      <label for="puerto" class="block mb-2 font-medium text-gray-700">Seleccionar Puerto</label>
+      <label class="flex items-center space-x-2 mb-2 font-medium text-gray-700">
+        <input type="checkbox" [(ngModel)]="usarPuerto" />
+        <span>¿Desea seleccionar un puerto?</span>
+      </label>
+
       <ng-select
-        [items]="puertos()"
+        [items]="puertos"
         bindLabel="nombre"
         bindValue="id"
         [(ngModel)]="puertoSeleccionado"
         placeholder="Seleccione un puerto"
+        [disabled]="!usarPuerto"
         class="w-full border border-gray-300 rounded focus:ring-2 focus:ring-sky-500">
       </ng-select>
     </div>

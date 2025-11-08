@@ -17,16 +17,18 @@ import { SwalService } from 'src/app/infrastructure/services/swal.service';
   templateUrl: './checkout-request.html',
   styleUrl: './checkout-request.css'
 })
-export class CheckoutRequest implements OnInit { 
+export class CheckoutRequest implements OnInit {
   empresa: any = null;
   observaciones: string = '';
-  embarcaciones: any;
+  embarcaciones: any[] = [];
   embarcacionSeleccionada: string | null = null;
   direccionRecojo: string = '';
-  puertos: any;
+  puertos: any[] = [];
   puertoSeleccionado: string | null = null;
 
-  loading = true; // 👈 estado de carga
+  usarPuerto: boolean = false;
+  usarEmbarcacion: boolean = false;
+  loading = true;
 
   constructor(
     public carritoStore: CarritoStoreService,
@@ -41,14 +43,13 @@ export class CheckoutRequest implements OnInit {
     try {
       this.empresa = this.authService.getUser();
 
-      // ⚙️ Cargar datos en paralelo para optimizar
       await Promise.all([
         this.embarcacionStore.load(),
         this.puertoService.load()
       ]);
 
-      this.embarcaciones = this.embarcacionStore.embarcaciones;
-      this.puertos = this.puertoService.puertos;
+      this.embarcaciones = this.embarcacionStore.embarcaciones();
+      this.puertos = this.puertoService.puertos();
     } catch (error) {
       console.error('Error al cargar datos del checkout:', error);
       SwalService.error('No se pudieron cargar los datos del formulario.');
@@ -59,7 +60,7 @@ export class CheckoutRequest implements OnInit {
 
   async confirmarSolicitud() {
     if (this.direccionRecojo.trim() === '') {
-      SwalService.warning('Debe seleccionar un puerto, embarcación y dirección de recojo');
+      SwalService.warning('Debe indicar una dirección de recojo');
       return;
     }
 
@@ -73,10 +74,10 @@ export class CheckoutRequest implements OnInit {
 
     const payload: SolicitudCreate = {
       fecha: new Date().toISOString().split('T')[0],
-      id_puerto: this.puertoSeleccionado,
+      id_puerto: this.puertoSeleccionado || null,
       id_estado_solicitud: '46512df5-a54a-45cc-a7c2-0197c549084b',
       observaciones: this.observaciones,
-      id_embarcacion: this.embarcacionSeleccionada,
+      id_embarcacion: this.embarcacionSeleccionada || null,
       direccion_recojo: this.direccionRecojo,
       detalles: this.carritoStore.items().map(item => ({
         id_residuo: item.residuo.id,
