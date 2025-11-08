@@ -107,7 +107,7 @@ export class CheckoutRequest implements OnInit {
       this.puertoSeleccionado = null;
       this.direccionRecojo = '';
       //navegar a lista de solicitudes
-      this.router.navigate(['/dashboard/solicitudes/generador']);
+      this.router.navigate(['/dashboard']);
 
 
     } catch (error) {
