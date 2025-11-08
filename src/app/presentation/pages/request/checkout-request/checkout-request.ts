@@ -108,4 +108,20 @@ export class CheckoutRequest implements OnInit {
       event.preventDefault();
     }
   }
+  actualizarCantidad(item: any, valor: string) {
+    if (typeof valor !== 'string') valor = String(valor);
+  
+    // Eliminamos todo lo que no sea dígito
+    const soloNumeros = valor.replace(/[^0-9]/g, '');
+  
+    // Evitar modificaciones innecesarias que re-rendericen sin cambios
+    if (item.cantidad === soloNumeros) return;
+  
+    // Actualiza el modelo local (para que el input muestre el valor limpio)
+    item.cantidad = soloNumeros;
+  
+    // Actualiza el store; si tu store espera number, conviértelo:
+    const cantidadParaStore = soloNumeros === '' ? 0 : parseInt(soloNumeros, 10);
+    this.carritoStore.actualizarCantidad(item.residuo.id, cantidadParaStore);
+  }
 }
