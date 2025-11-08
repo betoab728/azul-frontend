@@ -29,7 +29,6 @@
 
 
 <!-- Tabla de residuos -->
-<!-- Tabla de residuos -->
 <div class="overflow-x-auto">
   <table class="min-w-full border border-gray-200 rounded-lg">
     <thead class="bg-gray-100 text-gray-700">
@@ -53,7 +52,7 @@
               [(ngModel)]="item.cantidad"
               class="w-24 border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-sky-500 text-center"
               autocomplete="off"
-              maxlength="2"
+              maxlength="7"
               (keypress)="permitirSoloNumeros($event)"
               (paste)="evitarPegado($event)"
             />
