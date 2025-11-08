@@ -9,6 +9,7 @@ import { PuertoService } from 'src/app/infrastructure/services/port.service';
 import { SolicitudService } from 'src/app/infrastructure/services/send-request.service';
 import { SolicitudCreate } from 'src/app/domain/entities/request.entity';
 import { SwalService } from 'src/app/infrastructure/services/swal.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout-request',
@@ -35,7 +36,8 @@ export class CheckoutRequest implements OnInit {
     private authService: AuthService,
     private embarcacionStore: EmbarcacionByGeneradorStoreService,
     public puertoService: PuertoService,
-    private solicitudService: SolicitudService
+    private solicitudService: SolicitudService,
+    private router: Router
   ) {}
 
   async ngOnInit() {
@@ -104,6 +106,10 @@ export class CheckoutRequest implements OnInit {
       this.embarcacionSeleccionada = null;
       this.puertoSeleccionado = null;
       this.direccionRecojo = '';
+      //navegar a lista de solicitudes
+      this.router.navigate(['/dashboard/solicitudes/generador']);
+
+
     } catch (error) {
       console.error('Error al registrar solicitud:', error);
       SwalService.error('Hubo un error al registrar la solicitud');
