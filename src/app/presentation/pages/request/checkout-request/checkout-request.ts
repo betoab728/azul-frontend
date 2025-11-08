@@ -26,6 +26,9 @@ export class CheckoutRequest implements OnInit {
   puertos: any;
   puertoSeleccionado: string | null = null;
 
+  usarPuerto: boolean = false;
+  usarEmbarcacion: boolean = false;
+
   loading = true; // 👈 estado de carga
 
   constructor(
@@ -58,8 +61,8 @@ export class CheckoutRequest implements OnInit {
   }
 
   async confirmarSolicitud() {
-    if (!this.embarcacionSeleccionada || !this.puertoSeleccionado || this.direccionRecojo.trim() === '') {
-      SwalService.warning('Debe seleccionar un puerto, embarcación y dirección de recojo');
+    if ( this.direccionRecojo.trim() === '') {
+      SwalService.warning('Debe indicar una dirección de recojo');
       return;
     }
 
@@ -73,10 +76,10 @@ export class CheckoutRequest implements OnInit {
 
     const payload: SolicitudCreate = {
       fecha: new Date().toISOString().split('T')[0],
-      id_puerto: this.puertoSeleccionado,
+      id_puerto: this.puertoSeleccionado || null,
       id_estado_solicitud: '46512df5-a54a-45cc-a7c2-0197c549084b',
       observaciones: this.observaciones,
-      id_embarcacion: this.embarcacionSeleccionada,
+      id_embarcacion: this.embarcacionSeleccionada || null,
       direccion_recojo: this.direccionRecojo,
       detalles: this.carritoStore.items().map(item => ({
         id_residuo: item.residuo.id,

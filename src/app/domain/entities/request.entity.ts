@@ -34,10 +34,10 @@ export interface SolicitudCotizacion {
   
   export interface SolicitudCreate {
     fecha: string;
-    id_puerto: string;
+    id_puerto?: string | null;
     id_estado_solicitud: string;
     observaciones: string;
-    id_embarcacion: string;
+    id_embarcacion?: string | null;
     direccion_recojo?: string;
     detalles: SolicitudDetalle[];
   }
