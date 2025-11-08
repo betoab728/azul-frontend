@@ -65,19 +65,23 @@
 </div>
 
     <!-- Selectores, dirección y observaciones -->
-    <div>
-         
-      <ng-select
-        [items]="embarcaciones"
-        bindLabel="nombre"
-        bindValue="id"
-        [(ngModel)]="embarcacionSeleccionada"
-        placeholder="Seleccione una embarcación"
-        class="w-full border border-gray-300 rounded focus:ring-2 focus:ring-sky-500">
-      </ng-select>
-    </div>
+    //solo si hay embarcacion se muestra el selector de embarcacion
+    @if (usarEmbarcacion) {
+      <!-- Selección de Embarcación -->
+      <div>
+        <ng-select
+          [items]="embarcaciones"
+          bindLabel="nombre"
+          bindValue="id"
+          [(ngModel)]="embarcacionSeleccionada"
+          placeholder="Seleccione una embarcación"
+          class="w-full border border-gray-300 rounded focus:ring-2 focus:ring-sky-500">
+        </ng-select>
+      </div>
+    }
 
     <!-- Selección de Puerto -->
+  @if (usarPuerto){
     <div>
       <ng-select
         [items]="puertos"
@@ -88,6 +92,7 @@
         class="w-full border border-gray-300 rounded focus:ring-2 focus:ring-sky-500">
       </ng-select>
     </div>
+  }
 
     <div>
       <label for="direccionRecojo" class="block mb-2 font-medium text-gray-700">Dirección de Recojo</label>

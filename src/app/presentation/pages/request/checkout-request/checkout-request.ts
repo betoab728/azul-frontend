@@ -50,6 +50,11 @@ export class CheckoutRequest implements OnInit {
 
       this.embarcaciones = this.embarcacionStore.embarcaciones();
       this.puertos = this.puertoService.puertos();
+
+      // Si hay embarcaciones, se activa el uso de embarcación y puerto
+    this.usarEmbarcacion = this.embarcaciones.length > 0;
+    this.usarPuerto = this.usarEmbarcacion; // Solo tiene sentido si hay barco
+
     } catch (error) {
       console.error('Error al cargar datos del checkout:', error);
       SwalService.error('No se pudieron cargar los datos del formulario.');
