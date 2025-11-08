@@ -66,36 +66,25 @@
 
     <!-- Selectores, dirección y observaciones -->
     <div>
-      <label class="flex items-center space-x-2 mb-2 font-medium text-gray-700">
-        <input type="checkbox" [(ngModel)]="usarEmbarcacion" />
-        <span>¿Desea seleccionar una embarcación?</span>
-      </label>
-    
+         
       <ng-select
         [items]="embarcaciones"
         bindLabel="nombre"
         bindValue="id"
         [(ngModel)]="embarcacionSeleccionada"
         placeholder="Seleccione una embarcación"
-        [disabled]="!usarEmbarcacion"
         class="w-full border border-gray-300 rounded focus:ring-2 focus:ring-sky-500">
       </ng-select>
     </div>
 
     <!-- Selección de Puerto -->
     <div>
-      <label class="flex items-center space-x-2 mb-2 font-medium text-gray-700">
-        <input type="checkbox" [(ngModel)]="usarPuerto" />
-        <span>¿Desea seleccionar un puerto?</span>
-      </label>
-
       <ng-select
         [items]="puertos"
         bindLabel="nombre"
         bindValue="id"
         [(ngModel)]="puertoSeleccionado"
         placeholder="Seleccione un puerto"
-        [disabled]="!usarPuerto"
         class="w-full border border-gray-300 rounded focus:ring-2 focus:ring-sky-500">
       </ng-select>
     </div>
