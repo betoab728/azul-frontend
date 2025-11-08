@@ -58,7 +58,7 @@ export class CheckoutRequest implements OnInit {
   }
 
   async confirmarSolicitud() {
-    if (!this.embarcacionSeleccionada || !this.puertoSeleccionado || this.direccionRecojo.trim() === '') {
+    if (this.direccionRecojo.trim() === '') {
       SwalService.warning('Debe seleccionar un puerto, embarcación y dirección de recojo');
       return;
     }
