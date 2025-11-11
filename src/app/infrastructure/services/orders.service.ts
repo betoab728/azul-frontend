@@ -76,7 +76,7 @@ export class OrdenTrasladoService {
     if (this._isGeneradorLoaded() && !forceReload) return;
     try {
       const data = await firstValueFrom(
-        this.http.get<OrdenListado[]>(`${this.url}/generador`)
+        this.http.get<OrdenListado[]>(`${this.url}generador`)
       );
       this._ordenesGeneradorList.set(data ?? []);
       this._isGeneradorLoaded.set(true);
