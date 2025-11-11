@@ -25,6 +25,7 @@ export interface SolicitudCotizacion {
     estadoSolicitud: string; 
     embarcacion: string;
     generador: string;
+    created_at: string;
   }
 
   export interface SolicitudDetalle {

@@ -31,7 +31,28 @@ export class Request implements OnInit {
     this.loading = true;
     try {
       await this.solicitudStoreService.load();
-      this.solicitudes = this.solicitudStoreService.solicitudes();
+      const solicitudesUtc = this.solicitudStoreService.solicitudes();
+
+      //Convertir fecha/hora UTC a local
+      this.solicitudes = solicitudesUtc.map(s => {
+        const utcDate = new Date(s.created_at);
+        const localDate = new Date(utcDate.getTime() - utcDate.getTimezoneOffset() * 60000);
+
+        const fechaLocal = localDate.toISOString().split('T')[0];
+        const horaLocal = localDate.toLocaleTimeString('es-PE', {
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false
+        });
+
+        return {
+          ...s,
+          fecha: fechaLocal,
+          hora: horaLocal
+        };
+      });
+
     } catch (error) {
       console.error('Error al cargar solicitudes:', error);
       SwalService.error('No se pudieron cargar las solicitudes');
