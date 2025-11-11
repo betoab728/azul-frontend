@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,OnInit ,Input,HostListener } from '@angular/core';
 //para navigation routerlink
 import { RouterLink } from '@angular/router';
 import { TranslateModule,TranslateService } from '@ngx-translate/core';
@@ -20,20 +20,27 @@ interface SidebarItem {
   styleUrl: './sidebar.css'
 })
 export class Sidebar  implements OnInit  {
+  @Input() sidebarOpen = false;
+  isMobile = false;
   menus: SidebarItem[] = [];
   constructor(private translate: TranslateService, private authService: AuthService) {
     this.translate.setFallbackLang('es');
     this.translate.use('es');
   }
   ngOnInit(): void {
+    this.detectScreen();
     const role = this.authService.getUserRole(); 
-    console.log('Rol del usuario:', role);
+  
 
     if (role === 'Administrador') {
       this.menus = this.getAdminMenus();
     } else if (role === 'cliente') {
       this.menus = this.getClientMenus();
     }
+  }
+  @HostListener('window:resize')
+  detectScreen() {
+    this.isMobile = window.innerWidth < 768; // md breakpoint
   }
 
   private getAdminMenus(): SidebarItem[] {

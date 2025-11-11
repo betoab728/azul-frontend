@@ -1,4 +1,4 @@
-import { Component,HostListener, computed, inject   } from '@angular/core';
+import { Component,HostListener, computed, inject,EventEmitter, Output    } from '@angular/core';
 import { TranslateModule,TranslateService   } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { CarritoStoreService } from 'src/app/infrastructure/services/cart.service';
@@ -11,6 +11,7 @@ import { CarritoStoreService } from 'src/app/infrastructure/services/cart.servic
   styleUrl: './header.css'
 })
 export class Header {
+  @Output() toggleSidebar = new EventEmitter<void>();
   showLangMenu = false;
   private carritoStore = inject(CarritoStoreService);
   totalItems = this.carritoStore.totalItems; // señal reactiva

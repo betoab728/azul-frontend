@@ -1,12 +1,23 @@
 <!-- Shell principal -->
 <div class="flex h-screen overflow-hidden">
-  <!-- Sidebar -->
-  <app-sidebar></app-sidebar>
+  <!-- Sidebar (Drawer móvil + fijo en desktop) -->
+  <app-sidebar
+    [class.hidden]="!sidebarOpen && isMobile"
+    class="fixed z-40 md:relative md:flex md:w-72 bg-[#142D5A] transition-all duration-300"
+  ></app-sidebar>
 
-  <!-- Área derecha: Header + Main + Footer -->
-  <div class="flex flex-col flex-1">
+  <!-- Capa de fondo oscura cuando el sidebar móvil está abierto -->
+  @if (sidebarOpen && isMobile) {
+    <div
+      class="fixed inset-0 bg-black bg-opacity-50 z-30"
+      (click)="toggleSidebar()"
+    ></div>
+  }
+
+  <!-- Área derecha -->
+  <div class="flex flex-col flex-1 md:ml-72">
     <!-- Header -->
-    <app-header></app-header>
+    <app-header (toggleSidebar)="toggleSidebar()"></app-header>
 
     <!-- Contenido principal -->
     <main class="flex-1 overflow-y-auto bg-gray-100 p-4">

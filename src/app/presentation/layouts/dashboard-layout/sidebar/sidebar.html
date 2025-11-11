@@ -1,14 +1,20 @@
-<nav class="w-70 bg-[#142D5A] border-r border-gray-200 p-4 shadow-md h-screen overflow-y-auto">
+<!-- sidebar.html -->
+<nav
+  class="fixed top-0 left-0 h-full w-64 bg-[#142D5A] p-4 shadow-lg transform transition-transform duration-300 ease-in-out md:translate-x-0 md:relative md:shadow-none z-40"
+  [class.-translate-x-full]="isMobile && !sidebarOpen"
+>
+  <!-- Logo -->
   <div class="flex justify-center mb-6">
     <img src="/logoazul.png" alt="Logo de la empresa" class="h-16 object-contain" />
   </div>
 
   <ul class="space-y-2">
     @for (item of menus; track item.label) {
-      <!-- Si tiene hijos -->
       @if (item.children) {
         <details class="group">
-          <summary class="flex items-center gap-2 p-2 cursor-pointer rounded hover:bg-[#1e3c73] text-white">
+          <summary
+            class="flex items-center gap-2 p-2 cursor-pointer rounded hover:bg-[#1e3c73] text-white"
+          >
             <i [class]="item.icon"></i>
             <span>{{ item.label }}</span>
             <svg
