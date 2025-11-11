@@ -33,4 +33,5 @@ export interface SolicitudCotizacionListDto {
     estado_solicitud: string; // backend usa snake_case
     embarcacion: string;
     generador: string;
+    created_at: string;
   }

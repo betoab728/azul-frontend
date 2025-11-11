@@ -59,6 +59,7 @@ import {
         estadoSolicitud: dto.estado_solicitud,
         embarcacion: dto.embarcacion,
         generador: dto.generador,
+        created_at: dto.created_at,
         };
     }
   }
