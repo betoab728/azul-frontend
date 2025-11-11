@@ -30,7 +30,7 @@ export class OrdenTrasladoService {
    * Carga el encabezado de una nueva orden (fecha, serie, número y razón social)
    */
   async obtenerEncabezado() {
-    console.log('Consultando encabezado desde', `${this.url}/encabezado`);
+    console.log('Consultando encabezado desde', `${this.url}encabezado`);
     const data = await firstValueFrom(
         this.http.get<OrdenEncabezado>(`${this.url}/encabezado`)
         );
