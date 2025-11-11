@@ -32,52 +32,29 @@ export class Request implements OnInit {
     try {
       await this.solicitudStoreService.load();
       const solicitudesUtc = this.solicitudStoreService.solicitudes();
-  
-      console.log('🛰️ Solicitudes recibidas desde backend (UTC):', solicitudesUtc);
-  
+
+      //Convertir fecha/hora UTC a local
       this.solicitudes = solicitudesUtc.map(s => {
         const utcDate = new Date(s.created_at);
-  
-        console.log('----------------------------------------');
-        console.log('Solicitud ID:', s.id);
-        console.log('created_at (string):', s.created_at);
-        console.log('utcDate (objeto Date):', utcDate);
-        console.log('utcDate.toISOString():', utcDate.toISOString());
-        console.log('Timezone offset (minutos):', utcDate.getTimezoneOffset());
-  
-        // 🔁 Calcular hora local
         const localDate = new Date(utcDate.getTime() - utcDate.getTimezoneOffset() * 60000);
-  
-        console.log('localDate (objeto Date):', localDate);
-        console.log('localDate.toString():', localDate.toString());
-  
-        // 🔹 Extraer fecha y hora local
-        const fechaLocal = localDate.toLocaleDateString('es-PE', {
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit'
-        });
-  
+
+        const fechaLocal = localDate.toISOString().split('T')[0];
         const horaLocal = localDate.toLocaleTimeString('es-PE', {
           hour: '2-digit',
           minute: '2-digit',
           second: '2-digit',
           hour12: false
         });
-  
-        console.log('📅 Fecha local:', fechaLocal, '| 🕒 Hora local:', horaLocal);
-  
+
         return {
           ...s,
           fecha: fechaLocal,
           hora: horaLocal
         };
       });
-  
-      console.log('✅ Solicitudes con fecha/hora local convertidas:', this.solicitudes);
-  
+
     } catch (error) {
-      console.error('❌ Error al cargar solicitudes:', error);
+      console.error('Error al cargar solicitudes:', error);
       SwalService.error('No se pudieron cargar las solicitudes');
     } finally {
       this.loading = false;
