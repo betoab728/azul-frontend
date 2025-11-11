@@ -32,7 +32,7 @@ export class OrdenTrasladoService {
   async obtenerEncabezado() {
     console.log('Consultando encabezado desde', `${this.url}encabezado`);
     const data = await firstValueFrom(
-        this.http.get<OrdenEncabezado>(`${this.url}/encabezado`)
+        this.http.get<OrdenEncabezado>(`${this.url}encabezado`)
         );
     this.encabezado.set(data ?? null);
     return data;
