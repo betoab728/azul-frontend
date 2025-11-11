@@ -101,7 +101,7 @@ export class OrdenTrasladoService {
 
 
   async getDocumentos(id : string) {
-    const url = `${this.url}/${id}/documentos`;
+    const url = `${this.url}${id}/documentos`;
     const data = await firstValueFrom(
       this.http.get<OrdenDocumentos>(url)
     );
@@ -109,7 +109,7 @@ export class OrdenTrasladoService {
   }
 
   async subirDocumento(id: string, tipo: string, formData: FormData) {
-    const url = `${this.url}/${id}/documentos/${tipo}`;
+    const url = `${this.url}${id}/documentos/${tipo}`;
     await firstValueFrom(
       this.http.post<{ mensaje: string }>(url, formData)
     );
