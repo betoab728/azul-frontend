@@ -25,7 +25,7 @@ export const endpoints = {
     files: `${environment.apiUrl}/archivos`,
     vehicles: `${environment.apiUrl}/vehiculos/`,
     vehiclesDetailed: `${environment.apiUrl}/vehiculos/detallado`,
-    vehiclestypes: `${environment.apiUrl}/tipos-vehiculo`,
+    vehiclestypes: `${environment.apiUrl}/tipos-vehiculo/`,
     orders: `${environment.apiUrl}/ordenes/`,
 
   };
