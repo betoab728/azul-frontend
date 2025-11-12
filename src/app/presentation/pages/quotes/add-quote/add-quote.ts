@@ -39,9 +39,10 @@ export class AddQuote implements OnInit  {
   ) {}
 
   async ngOnInit(){
-    this.empresa = this.authService.getUser();
+    const navigation = this.router.getCurrentNavigation();
+  this.empresa = navigation?.extras.state?.['razonSocial'] ?? '—';
   
-    this.idSolicitud = this.route.snapshot.paramMap.get('idSolicitud');
+  this.idSolicitud = this.route.snapshot.paramMap.get('idSolicitud');
     if (this.idSolicitud) {
       await this.detalleService.loadBySolicitud(this.idSolicitud);
       this.items = this.detalleService.detalles();

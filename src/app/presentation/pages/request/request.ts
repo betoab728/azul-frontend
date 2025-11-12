@@ -122,8 +122,13 @@ export class Request implements OnInit {
   }
 
   //funcion cotizar
-  async cotizar(idSolicitud: string) {
-    this.router.navigate(['/dashboard/cotizaciones/agregar', idSolicitud]);
+  async cotizar(solicitud: SolicitudCotizacionList) {
+    this.router.navigate([
+      '/dashboard/cotizaciones/agregar',
+      solicitud.id
+    ], {
+      state: { razonSocial: solicitud.generador }  
+    });
   }
 
 }
