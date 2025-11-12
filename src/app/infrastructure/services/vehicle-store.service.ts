@@ -47,8 +47,9 @@ export class VehiculoService {
     if (data.certificado_itv) formData.append('certificado_itv', data.certificado_itv);
     if (data.soat) formData.append('soat', data.soat);
     if (data.tarjeta_circulacion) formData.append('tarjeta_circulacion', data.tarjeta_circulacion);
-
+    console.log('Enviando datos de vehiculo a', this.url)
     const response  = await firstValueFrom(
+     
       this.http.post<VehiculoResponse>(this.url, formData)
     );
 
