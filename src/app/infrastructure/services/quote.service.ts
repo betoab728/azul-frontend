@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { endpoints } from 'src/app/infrastructure/config/endpoints';
 import { CotizacionCreate, CotizacionResponse, CotizacionList } from 'src/app/domain/entities/quote.entity';
+import { GeneradorResiduoCotizacion } from 'src/app/domain/entities/generator.entity';
 
 @Injectable({
     providedIn: 'root'
@@ -115,6 +116,13 @@ export class CotizacionService {
   clearGenerador() {
     this._cotizacionesGenerador.set([]);
     this._isLoadedGenerador.set(false);
+  }
+
+  async getDatosGenerador(idSolicitud: string) {
+    const data = await firstValueFrom(
+      this.http.get<GeneradorResiduoCotizacion>(`${this.url}generador/${idSolicitud}`)
+    );
+    return data;
   }
 
 }

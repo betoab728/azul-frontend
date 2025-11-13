@@ -10,6 +10,7 @@ import { SwalService } from 'src/app/infrastructure/services/swal.service.js';
 import { VehiculoService } from 'src/app/infrastructure/services/vehicle-store.service';
 import { VehiculoList } from 'src/app/domain/entities/vehicle'; 
 import { Router } from '@angular/router';
+import { GeneradorResiduoCotizacion } from 'src/app/domain/entities/generator.entity.js';
 
 @Component({
   selector: 'app-add-quote',
@@ -19,7 +20,7 @@ import { Router } from '@angular/router';
 })
 export class AddQuote implements OnInit  {
 
-  empresa: any = null;
+  empresa:  GeneradorResiduoCotizacion | null = null;
   observaciones: string = '';
   formaPago: string = '';
   selectedFile: File | null = null;
@@ -37,24 +38,38 @@ export class AddQuote implements OnInit  {
     private cotizacionService: CotizacionService,
     private vehiculoService: VehiculoService
   ) {}
-
-  async ngOnInit(){
-    const navigation = this.router.getCurrentNavigation();
-  this.empresa = navigation?.extras.state?.['razonSocial'] ?? '—';
+  async ngOnInit() {
+    this.isLoading = true;
+    this.idSolicitud = this.route.snapshot.paramMap.get('idSolicitud');
   
-  this.idSolicitud = this.route.snapshot.paramMap.get('idSolicitud');
-    if (this.idSolicitud) {
-      await this.detalleService.loadBySolicitud(this.idSolicitud);
-      this.items = this.detalleService.detalles();
-       
+    try {
+      if (this.idSolicitud) {
+        // Cargar datos del generador
+        try {
+          this.empresa = await this.cotizacionService.getDatosGenerador(this.idSolicitud);
+        } catch (error) {
+          SwalService.error('Error al cargar los datos del generador.');
+        }
+  
+        // Cargar detalles asociados a la solicitud
+        await this.detalleService.loadBySolicitud(this.idSolicitud);
+        this.items = this.detalleService.detalles();
+      }
+  
+      // Cargar vehículos (si no están cargados aún)
+      if (this.vehiculoService.vehiculos().length === 0) {
+        await this.vehiculoService.load();
+      }
+      this.vehiculos = this.vehiculoService.vehiculos();
+  
+    } catch (error) {
+      console.error('Error en ngOnInit:', error);
+      SwalService.error('Ocurrió un error al cargar los datos iniciales.');
+    } finally {
+      this.isLoading = false; // Siempre se ejecuta, ocurra o no un error
     }
-    
-    //  Cargar vehículos disponibles
-    if (this.vehiculoService.vehiculos().length === 0) {
-      await this.vehiculoService.load();
-    }
-    this.vehiculos = this.vehiculoService.vehiculos();
   }
+  
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {

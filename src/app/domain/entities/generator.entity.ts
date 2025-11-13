@@ -30,3 +30,16 @@ export interface GeneradorResiduoDetalle {
     created_at?: string;
     estado?: string; 
 }
+
+export interface GeneradorResiduoCotizacion {
+    id: string;
+    ruc: string; 
+    razon_social: string;
+    direccion?: string;
+    distrito: string;
+    nombre_responsable?: string; 
+    telefono?: string;
+    correo?: string;
+    created_at?: string;
+    estado?: string; 
+}
