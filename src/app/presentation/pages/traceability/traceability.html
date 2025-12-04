@@ -1,0 +1,40 @@
+<section class="p-6 max-w-4xl mx-auto bg-white rounded shadow">
+
+    <h2 class="text-xl font-bold mb-4">Trazabilidad de Orden de Servicio</h2>
+  
+    <div class="flex gap-2 mb-4">
+      <input
+        type="text"
+        [(ngModel)]="ordenId"
+        placeholder="N° de Orden"
+        class="flex-1 px-4 py-2 border rounded-md"
+      />
+  
+      <button
+        (click)="buscar()"
+        class="bg-sky-600 text-white px-4 py-2 rounded hover:bg-sky-700"
+      >
+        Buscar
+      </button>
+    </div>
+  
+    <google-map height="500px" width="100%" [center]="center" [zoom]="zoom">
+  
+      <!-- Polyline -->
+      @if (path.length > 0) {
+        <map-polyline
+          [path]="path"
+          strokeColor="blue"
+          strokeWeight="4">
+        </map-polyline>
+      }
+  
+      <!-- Última ubicación -->
+      @if (markerPosition) {
+        <map-marker [position]="markerPosition"></map-marker>
+      }
+  
+    </google-map>
+  
+  </section>
+  

@@ -70,4 +70,8 @@ export class Orders implements OnInit {
     await  this.router.navigate([`/dashboard/documentos/${id}`]);
   }
 
+  async irATrazabilidad(idOrden: string) {
+    await this.router.navigate([`/dashboard/trazabilidad/${idOrden}`]);
+  }
+
 }
