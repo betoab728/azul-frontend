@@ -1,0 +1,40 @@
+@if (loading()) {
+    <div class="flex items-center justify-center py-6 text-gray-500">
+      Cargando historial...
+    </div>
+  } @else {
+    <div class="relative pl-6 border-l-2 border-gray-200">
+      @for (item of timeline(); track item.fecha_hora; let last = $last) {
+        <div class="relative pb-8">
+          <!-- Punto -->
+          <span
+            class="absolute -left-[9px] top-1 w-4 h-4 rounded-full border-2"
+            [ngClass]="last
+              ? 'bg-blue-600 border-blue-600'
+              : 'bg-white border-gray-300'"
+          ></span>
+  
+          <!-- Contenido -->
+          <div class="ml-4">
+            <p class="text-sm font-semibold text-gray-900">
+              {{ item.estado }}
+            </p>
+  
+            <p class="text-sm text-gray-600">
+              {{ item.descripcion }}
+            </p>
+  
+            @if (item.observaciones) {
+              <p class="mt-1 text-sm italic text-gray-500">
+                {{ item.observaciones }}
+              </p>
+            }
+  
+            <p class="mt-1 text-xs text-gray-400">
+              {{ item.fecha_hora | date: 'dd/MM/yyyy HH:mm' }}
+            </p>
+          </div>
+        </div>
+      }
+    </div>
+  }

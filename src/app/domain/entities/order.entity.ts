@@ -65,3 +65,11 @@ export interface OrdenDocumentos {
     certificado_url: string | null;
     fecha_registro: string;
 }
+
+
+export interface OrdenTimelineItem {
+  fecha_hora: string;      // ISO string
+  estado: string;
+  descripcion: string;
+  observaciones: string;
+}

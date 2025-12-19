@@ -5,13 +5,16 @@ import { CommonModule } from '@angular/common';
 import { OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PuntoTrazabilidad } from 'src/app/domain/entities/traceability.entity';
-
 import { TraceabilityService } from 'src/app/infrastructure/services/traceability.service';
+import { OrderTimeline } from 'src/app/presentation/pages/orders/order-timeline/order-timeline'
+import { OrdenTimelineItem } from 'src/app/domain/entities/order.entity';
+import { OrderProgress } from 'src/app/presentation/pages/orders/order-progress/order-progress';
+
 
 @Component({
   selector: 'app-traceability',
   standalone: true,
-  imports: [CommonModule, FormsModule, GoogleMapsModule],
+  imports: [CommonModule, FormsModule, GoogleMapsModule, OrderTimeline,OrderProgress],
   templateUrl: './traceability.html',
   styleUrl: './traceability.css',
 })
@@ -21,6 +24,7 @@ export class Traceability implements OnInit {
 
   ordenId = '';
   puntos: PuntoTrazabilidad[] = [];
+  orderTimeline: OrdenTimelineItem[] = [];
 
   async ngOnInit() {
   

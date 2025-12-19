@@ -2,22 +2,6 @@
 
     <h2 class="text-xl font-bold mb-4">Trazabilidad de Orden de Servicio</h2>
   
-    <div class="flex gap-2 mb-4">
-      <input
-        type="text"
-        [(ngModel)]="ordenId"
-        placeholder="N° de Orden"
-        class="flex-1 px-4 py-2 border rounded-md"
-      />
-  
-      <button
-        (click)="buscar()"
-        class="bg-sky-600 text-white px-4 py-2 rounded hover:bg-sky-700"
-      >
-        Buscar
-      </button>
-    </div>
-  
     <google-map height="500px" width="100%" [center]="center" [zoom]="zoom">
   
       <!-- Polyline -->
@@ -35,6 +19,21 @@
       }
   
     </google-map>
+    <div class="bg-gray-50 rounded-lg p-4 mt-6">
+      <h3 class="font-semibold mb-3">Progreso de la orden</h3>
+    
+      <app-order-progress
+        [timeline]="orderTimeline">
+      </app-order-progress>
+    
+      <h3 class="font-semibold mt-6 mb-3">Historial de estados</h3>
+    
+      <app-order-timeline
+        [idOrden]="ordenId"
+        (loaded)="orderTimeline = $event">
+      </app-order-timeline>
+    </div>
+
   
   </section>
   

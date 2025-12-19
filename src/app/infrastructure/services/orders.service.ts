@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { endpoints } from 'src/app/infrastructure/config/endpoints';
 import { firstValueFrom } from 'rxjs';
 import { OrdenCrearResponse, OrdenCreate, OrdenDocumentos, OrdenEncabezado, OrdenListado } from 'src/app/domain/entities/order.entity';
+import { OrdenTimelineItem } from 'src/app/domain/entities/order.entity';
 
 
 @Injectable({ providedIn: 'root' })
@@ -132,5 +133,13 @@ export class OrdenTrasladoService {
    const response = await firstValueFrom(this.http.get<{ url: string }>(url));
    return response.url;
  }
+
+ async obtenerTimeline(idOrden: string): Promise<OrdenTimelineItem[]> {
+  return await firstValueFrom(
+    this.http.get<OrdenTimelineItem[]>(
+      `${this.url}${idOrden}/timeline`
+    )
+  );
+}
 
 }
