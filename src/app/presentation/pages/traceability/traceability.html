@@ -1,6 +1,6 @@
 <section class="p-6 max-w-4xl mx-auto bg-white rounded shadow">
 
-    <h2 class="text-xl font-bold mb-4">Trazabilidad de Orden de Servicio</h2>
+    <h2 class="text-xl font-bold mb-4">Ruta de la Orden de Servicio</h2>
   
     <google-map height="500px" width="100%" [center]="center" [zoom]="zoom">
   
@@ -20,14 +20,7 @@
   
     </google-map>
     <div class="bg-gray-50 rounded-lg p-4 mt-6">
-      <h3 class="font-semibold mb-3">Progreso de la orden</h3>
-    
-      <app-order-progress
-        [timeline]="orderTimeline">
-      </app-order-progress>
-    
-      <h3 class="font-semibold mt-6 mb-3">Historial de estados</h3>
-    
+       <h3 class="font-semibold mt-6 mb-3">Historial de estados</h3>
       <app-order-timeline
         [idOrden]="ordenId"
         (loaded)="orderTimeline = $event">

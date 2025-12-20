@@ -92,8 +92,7 @@ export class Sidebar  implements OnInit  {
         label: 'Órdenes de Servicio',
         icon: 'fas fa-route',
         children: [
-          { label: 'Listado de Órdenes', link: '/dashboard/ordenes' },
-          { label: 'Trazabilidad', link: '/dashboard/trazabilidad' }
+          { label: 'Listado de Órdenes', link: '/dashboard/ordenes' }
         ]
       }
     ];
