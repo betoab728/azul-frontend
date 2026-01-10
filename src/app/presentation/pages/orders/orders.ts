@@ -3,11 +3,13 @@ import { Component, OnInit, inject } from '@angular/core';
 import { OrdenTrasladoService } from 'src/app/infrastructure/services/orders.service';
 import { SwalService } from 'src/app/infrastructure/services/swal.service';
 import { Router } from '@angular/router';
+import {  signal } from '@angular/core';
+import { DetailOrderRow } from "./detail-order-row/detail-order-row";
 
 
 @Component({
   selector: 'app-orders',
-  imports: [CommonModule],
+  imports: [CommonModule, DetailOrderRow],
   templateUrl: './orders.html',
   styleUrl: './orders.css'
 })
@@ -15,10 +17,15 @@ export class Orders implements OnInit {
 
   private ordenService = inject(OrdenTrasladoService);
   private router = inject(Router);
+  expandedOrdenId = signal<string | null>(null);
+  idOrden: string   | null = null;;
+
+
 
   // Signals reactivas
   ordenes = this.ordenService.orderesList;
   isLoaded = this.ordenService.isLoaded;
+  
 
   loading = true;
 
@@ -72,6 +79,12 @@ export class Orders implements OnInit {
 
   async irATrazabilidad(idOrden: string) {
     await this.router.navigate([`/dashboard/trazabilidad/${idOrden}`]);
+  }
+
+  toggleDetalle(id: string) {
+    this.expandedOrdenId.set(
+      this.expandedOrdenId() === id ? null : id
+    );
   }
 
 }

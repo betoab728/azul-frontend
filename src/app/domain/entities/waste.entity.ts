@@ -20,3 +20,9 @@ export interface RegistroResiduo {
     createdAt?: string;
     estado: string;
   }
+
+  export interface ResiduoOrden {
+    nombre_residuo: string;
+    cantidad: number;
+    unidad: string;
+  }

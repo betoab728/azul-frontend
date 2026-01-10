@@ -4,6 +4,7 @@ import { endpoints } from 'src/app/infrastructure/config/endpoints';
 import { firstValueFrom } from 'rxjs';
 import { OrdenCrearResponse, OrdenCreate, OrdenDocumentos, OrdenEncabezado, OrdenListado } from 'src/app/domain/entities/order.entity';
 import { OrdenTimelineItem } from 'src/app/domain/entities/order.entity';
+import { ResiduoOrden } from 'src/app/domain/entities/waste.entity';
 
 
 @Injectable({ providedIn: 'root' })
@@ -142,4 +143,17 @@ export class OrdenTrasladoService {
   );
 }
 
+async obtenerResiduosPorOrden(idOrden: string): Promise<ResiduoOrden[]> {
+  try {
+    const data = await firstValueFrom(
+      this.http.get<ResiduoOrden[]>(
+        `${this.url}${idOrden}/residuos`
+      )
+    );
+    return data ?? [];
+  } catch (error) {
+    console.error('Error obteniendo residuos:', error);
+    return [];
+  }
+}
 }

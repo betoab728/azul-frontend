@@ -48,9 +48,25 @@
                 >
                   Trazabilidad
                 </button>
+                <button
+                  (click)="toggleDetalle(orden.id)"
+                  class="text-indigo-600 hover:text-indigo-800 font-semibold"
+                >
+                  {{ expandedOrdenId() === orden.id ? '−' : '+' }}
+                </button>
                 
               </td>
+           
             </tr>
+            @if (expandedOrdenId() === orden.id) {
+              <tr>
+                <td colspan="7" class="px-6 py-4">
+                  <app-detail-order-row
+                    [idOrden]="orden.id"
+                  />
+                </td>
+              </tr>
+            }
           }
         </tbody>
       </table>
