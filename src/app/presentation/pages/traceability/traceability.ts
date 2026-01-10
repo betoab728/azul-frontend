@@ -8,13 +8,12 @@ import { PuntoTrazabilidad } from 'src/app/domain/entities/traceability.entity';
 import { TraceabilityService } from 'src/app/infrastructure/services/traceability.service';
 import { OrderTimeline } from 'src/app/presentation/pages/orders/order-timeline/order-timeline'
 import { OrdenTimelineItem } from 'src/app/domain/entities/order.entity';
-import { OrderProgress } from 'src/app/presentation/pages/orders/order-progress/order-progress';
 
 
 @Component({
   selector: 'app-traceability',
   standalone: true,
-  imports: [CommonModule, FormsModule, GoogleMapsModule, OrderTimeline,OrderProgress],
+  imports: [CommonModule, FormsModule, GoogleMapsModule, OrderTimeline],
   templateUrl: './traceability.html',
   styleUrl: './traceability.css',
 })
