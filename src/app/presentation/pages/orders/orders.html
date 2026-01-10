@@ -83,10 +83,22 @@
             </tr>
             @if (expandedOrdenId() === orden.id) {
               <tr>
-                <td colspan="8" class="px-6 py-4">
-                  <app-detail-order-row
-                    [idOrden]="orden.id"
-                  />
+                <td colspan="8" class="px-6 py-0">
+                  <div
+                    class="
+                      overflow-hidden
+                      transition-all
+                      duration-300
+                      ease-in-out
+                      max-h-[500px]
+                      opacity-100
+                      py-4
+                    "
+                  >
+                    <app-detail-order-row
+                      [idOrden]="orden.id"
+                    />
+                  </div>
                 </td>
               </tr>
             }
