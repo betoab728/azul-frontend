@@ -22,6 +22,32 @@
         <tbody class="divide-y divide-gray-200">
           @for (orden of ordenes(); track orden.id) {
             <tr class="hover:bg-gray-50 transition-colors duration-150">
+               <!-- Columna de despliegue -->
+              <td class="px-2 py-4 text-center">
+                <button
+                  (click)="toggleDetalle(orden.id)"
+                  class="text-indigo-600 hover:text-indigo-800 transition"
+                  aria-label="Expandir fila"
+                >
+                  @if (expandedOrdenId() === orden.id) {
+                    <!-- Icono desplegado -->
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                      viewBox="0 0 24 24" stroke-width="2"
+                      stroke="currentColor" class="w-5 h-5">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M19 9l-7 7-7-7" />
+                    </svg>
+                  } @else {
+                    <!-- Icono replegado -->
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                      viewBox="0 0 24 24" stroke-width="2"
+                      stroke="currentColor" class="w-5 h-5">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M9 5l7 7-7 7" />
+                    </svg>
+                  }
+              </button>
+              </td>
               <td class="px-6 py-4 text-sm text-gray-700">{{ orden.fecha }}</td>
               <td class="px-6 py-4 text-sm text-gray-700">{{ orden.hora }}</td>
               <td class="px-6 py-4 text-sm text-gray-700">{{ orden.serie }}</td>
@@ -48,19 +74,14 @@
                 >
                   Rastrear
                 </button>
-                <button
-                  (click)="toggleDetalle(orden.id)"
-                  class="text-indigo-600 hover:text-indigo-800 font-semibold"
-                >
-                  {{ expandedOrdenId() === orden.id ? '−' : '+' }}
-                </button>
+            
                 
               </td>
            
             </tr>
             @if (expandedOrdenId() === orden.id) {
               <tr>
-                <td colspan="7" class="px-6 py-4">
+                <td colspan="8" class="px-6 py-4">
                   <app-detail-order-row
                     [idOrden]="orden.id"
                   />
