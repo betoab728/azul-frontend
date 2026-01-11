@@ -24,10 +24,10 @@
           @for (orden of ordenes(); track orden.id) {
             <tr class="hover:bg-gray-50 transition-colors duration-150">
                <!-- Columna de despliegue -->
-              <td class="px-2 py-4 text-center cursor-pointer">
+              <td class="px-2 py-4 text-center">
                 <button
                   (click)="toggleDetalle(orden.id)"
-                  class="text-indigo-600 hover:text-indigo-800 transition"
+                  class="text-indigo-600 hover:text-indigo-800 transition cursor-pointer"
                   aria-label="Expandir fila"
                 >
                   @if (expandedOrdenId() === orden.id) {
