@@ -31,6 +31,7 @@ export interface SolicitudCotizacion {
   export interface SolicitudDetalle {
     id_residuo: string;
     cantidad: number;
+    volumen: number;
   }
   
   export interface SolicitudCreate {
@@ -58,6 +59,7 @@ export interface SolicitudCotizacion {
     residuo: string;
     cantidad: number;
     unidad: string;
+    volumen: number ;
 
   }
   export interface ItemCotizacion extends DetalleSolicitudCarrito {

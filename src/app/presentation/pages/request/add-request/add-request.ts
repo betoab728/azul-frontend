@@ -36,8 +36,8 @@ export class AddRequest implements OnInit {
     }
   }
 
-  agregarAlCarrito(residuo: RegistroResiduoDetalle) {
-    this.carritoStore.agregar(residuo, 1);
+  agregarAlCarrito(residuo: RegistroResiduoDetalle, volumen: number) {
+    this.carritoStore.agregar(residuo, 1, volumen);
     console.log("Residuo agregado:", residuo);
     //swal de confirmación
     SwalService.success('Residuo agregado al carro');

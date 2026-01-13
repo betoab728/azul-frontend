@@ -19,6 +19,7 @@ import { Router } from '@angular/router';
   styleUrl: './checkout-request.css'
 })
 export class CheckoutRequest implements OnInit {
+
   empresa: any = null;
   observaciones: string = '';
   embarcaciones: any[] = [];
@@ -75,6 +76,19 @@ export class CheckoutRequest implements OnInit {
       SwalService.warning('Debe agregar al menos un residuo al carrito');
       return;
     }
+    const existeVolumenInvalido = this.carritoStore
+    .items()
+    .some(item => !item.volumen || item.volumen <= 0);
+
+  if (existeVolumenInvalido) {
+    SwalService.warning(
+      'Todos los residuos deben tener un volumen mayor a 0'
+    );
+    return;
+  }
+
+    
+
     //si no usa embarcacion ponemos null a la variable embarcacionSeleccionada y lo mismo con puerto
     if (!this.usarEmbarcacion) {
       this.embarcacionSeleccionada = null;
@@ -93,7 +107,8 @@ export class CheckoutRequest implements OnInit {
       direccion_recojo: this.direccionRecojo,
       detalles: this.carritoStore.items().map(item => ({
         id_residuo: item.residuo.id,
-        cantidad: item.cantidad
+        cantidad: item.cantidad,
+        volumen: item.volumen
       }))
     };
 
@@ -161,6 +176,11 @@ export class CheckoutRequest implements OnInit {
     if (!/^[0-9]+$/.test(data)) {
       event.preventDefault();
     }
+  }
+  get existeVolumenInvalido(): boolean {
+    return this.carritoStore
+      .items()
+      .some(item => !item.volumen || item.volumen <= 0);
   }
 
 }

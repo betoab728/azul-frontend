@@ -36,6 +36,7 @@
         <th class="px-4 py-2 text-left font-semibold">Residuo</th>
         <th class="px-4 py-2 text-left font-semibold">Unidad</th>
         <th class="px-4 py-2 text-left font-semibold">Cantidad</th>
+        <th class="px-4 py-2 text-left font-semibold">Volumen(m³)</th>
         <th class="px-4 py-2 text-left font-semibold">Acciones</th>
       </tr>
     </thead>
@@ -50,6 +51,17 @@
             <input
             type="text"
             [(ngModel)]="item.cantidad"
+            class="w-24 border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-sky-500 text-center"
+            autocomplete="off"
+            inputmode="numeric"
+            (keypress)="permitirSoloDigitos($event)"
+            (paste)="evitarPegadoSoloDigitos($event)"
+          />
+          </td>
+          <td class="px-4 py-2">
+            <input
+            type="text"
+            [(ngModel)]="item.volumen"
             class="w-24 border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-sky-500 text-center"
             autocomplete="off"
             inputmode="numeric"
@@ -133,6 +145,7 @@
         class="px-6 py-2 bg-sky-700 text-white rounded-lg shadow hover:bg-sky-800 focus:outline-none focus:ring-2 focus:ring-sky-500 cursor-pointer">
         Confirmar Solicitud
       </button>
+    
     </div>
   }
 </div>

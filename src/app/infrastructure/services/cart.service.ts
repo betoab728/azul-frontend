@@ -4,6 +4,7 @@ import { RegistroResiduoDetalle } from 'src/app/domain/entities/waste.entity';
 export interface ItemCarrito {
   residuo: RegistroResiduoDetalle;
   cantidad: number;
+  volumen: number;
 }
 
 @Injectable({
@@ -17,7 +18,7 @@ export class CarritoStoreService {
     this._items().reduce((acc, item) => acc + item.cantidad, 0)
   );
 
-  agregar(residuo: RegistroResiduoDetalle, cantidad = 1) {
+  agregar(residuo: RegistroResiduoDetalle, cantidad = 1, volumen: number) {
     console.log('Agregando al carrito:', { residuo, cantidad });
     const existentes = this._items();
     const index = existentes.findIndex(i => i.residuo.id === residuo.id);
@@ -33,7 +34,7 @@ export class CarritoStoreService {
     } else {
       // no existe → agregar nuevo
       console.log('Nuevo item, agregando al carrito');
-      this._items.set([...existentes, { residuo, cantidad }]);
+      this._items.set([...existentes, { residuo, cantidad , volumen }]);
     }
   }
 
