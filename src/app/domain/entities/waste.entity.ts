@@ -25,4 +25,5 @@ export interface RegistroResiduo {
     nombre_residuo: string;
     cantidad: number;
     unidad: string;
+    volumen:number;
   }

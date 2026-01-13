@@ -75,12 +75,13 @@ export class SwalService {
   }
 
   // ✅ Mostrar detalle de solicitud
-  static detalleSolicitud(detalles: { residuo: string; cantidad: number; unidad: string }[]) {
+  static detalleSolicitud(detalles: { residuo: string; cantidad: number; volumen: number; unidad: string }[]) {
     const rows = detalles.map(d => `
       <tr>
         <td>${d.residuo}</td>
         <td>${d.cantidad}</td>
         <td>${d.unidad}</td>
+        <td>${d.volumen}</td>
       </tr>
     `).join('');
 
@@ -93,6 +94,7 @@ export class SwalService {
               <th>Residuo</th>
               <th>Cantidad</th>
               <th>Unidad</th>
+              <th>Volumen(m³)</th>
             </tr>
           </thead>
           <tbody>
