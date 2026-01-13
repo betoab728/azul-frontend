@@ -14,6 +14,12 @@ export class SolicitudService {
   constructor(private http: HttpClient) {}
 
   async crearSolicitud(solicitud: SolicitudCreate): Promise<SolicitudCotizacion> {
+
+    console.log(
+      'Payload enviado a crearSolicitud:',
+      JSON.stringify(solicitud, null, 2)
+    );
+
     return await firstValueFrom(
         this.http.post<SolicitudCotizacion>(this.baseUrl, solicitud)
     );
