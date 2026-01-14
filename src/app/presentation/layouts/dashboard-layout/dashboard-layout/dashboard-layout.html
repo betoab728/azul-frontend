@@ -2,7 +2,8 @@
 <div class="flex h-screen overflow-hidden">
   <!-- Sidebar (Drawer móvil + fijo en desktop) -->
   <app-sidebar
-    [class.hidden]="!sidebarOpen && isMobile"
+    [sidebarOpen]="sidebarOpen"
+    [isMobile]="isMobile"
     class="fixed z-40 md:relative md:flex md:w-72 bg-[#142D5A] transition-all duration-300"
   ></app-sidebar>
 

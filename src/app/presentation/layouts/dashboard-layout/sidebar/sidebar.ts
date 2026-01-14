@@ -1,7 +1,6 @@
-import { Component,OnInit ,Input,HostListener } from '@angular/core';
-//para navigation routerlink
+import { Component, OnInit, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { TranslateModule,TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AuthService } from 'src/app/infrastructure/services/auth.service';
 
 interface SidebarItem {
@@ -11,36 +10,30 @@ interface SidebarItem {
   link?: string;
 }
 
-
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [ RouterLink,TranslateModule],
+  imports: [RouterLink, TranslateModule],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.css'
 })
-export class Sidebar  implements OnInit  {
+export class Sidebar implements OnInit {
   @Input() sidebarOpen = false;
-  isMobile = false;
+  @Input() isMobile = false; // Recibe el estado desde el layout
   menus: SidebarItem[] = [];
+
   constructor(private translate: TranslateService, private authService: AuthService) {
     this.translate.setFallbackLang('es');
     this.translate.use('es');
   }
-  ngOnInit(): void {
-    this.detectScreen();
-    const role = this.authService.getUserRole(); 
-  
 
+  ngOnInit(): void {
+    const role = this.authService.getUserRole();
     if (role === 'Administrador') {
       this.menus = this.getAdminMenus();
     } else if (role === 'cliente') {
       this.menus = this.getClientMenus();
     }
-  }
-  @HostListener('window:resize')
-  detectScreen() {
-    this.isMobile = window.innerWidth < 768; // md breakpoint
   }
 
   private getAdminMenus(): SidebarItem[] {
@@ -125,4 +118,3 @@ export class Sidebar  implements OnInit  {
     ];
   }
 }
-
