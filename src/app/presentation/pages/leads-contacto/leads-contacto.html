@@ -1,0 +1,48 @@
+<section class="p-4">
+  <h1 class="text-xl font-bold mb-4">Leads Contacto</h1>
+
+  <div *ngIf="loading" class="text-gray-500">Cargando...</div>
+
+  <div *ngIf="!loading && leads.length === 0" class="text-gray-500">No se encontraron leads de contacto.</div>
+
+  <div *ngIf="!loading && leads.length > 0" class="overflow-x-auto">
+    <table class="min-w-full divide-y divide-gray-200 bg-white rounded-xl shadow-md overflow-hidden">
+      <thead class="bg-gray-50">
+        <tr>
+          <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre Completo</th>
+          <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Empresa</th>
+          <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sector</th>
+          <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Desafío Ambiental</th>
+          <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Correo</th>
+          <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Teléfono</th>
+          <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Origen</th>
+          <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estado</th>
+          <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fecha de Registro</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200">
+        <tr *ngFor="let lead of leads" class="hover:bg-gray-50 transition-colors duration-150">
+          <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ lead.nombreCompleto }}</td>
+          <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ lead.empresa }}</td>
+          <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ lead.sector }}</td>
+          <td class="px-4 py-3 text-sm text-gray-900 max-w-xs truncate">{{ lead.desafioAmbiental }}</td>
+          <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ lead.correo }}</td>
+          <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ lead.telefono }}</td>
+          <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
+            <span class="px-2 py-1 text-xs font-medium rounded-full"
+              [ngClass]="{ 'bg-blue-100 text-blue-700': lead.origen === 'WEB', 'bg-gray-100 text-gray-700': lead.origen !== 'WEB' }">
+              {{ lead.origen }}
+            </span>
+          </td>
+          <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
+            <span class="px-2 py-1 text-xs font-medium rounded-full"
+              [ngClass]="{ 'bg-green-100 text-green-700': lead.estado === 'NUEVO', 'bg-yellow-100 text-yellow-700': lead.estado !== 'NUEVO' }">
+              {{ lead.estado }}
+            </span>
+          </td>
+          <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ lead.createdAt | date:'dd/MM/yyyy HH:mm' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

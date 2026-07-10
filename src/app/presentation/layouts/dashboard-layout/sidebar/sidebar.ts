@@ -87,6 +87,11 @@ export class Sidebar implements OnInit {
         children: [
           { label: 'Listado de Órdenes', link: '/dashboard/ordenes' }
         ]
+      },
+      {
+        label: 'Leads Contacto',
+        icon: 'fas fa-address-book',
+        link: '/dashboard/leads-contacto'
       }
     ];
   }
