@@ -92,6 +92,11 @@ export class Sidebar implements OnInit {
         label: 'Leads Contacto',
         icon: 'fas fa-address-book',
         link: '/dashboard/leads-contacto'
+      },
+      {
+        label: 'Blog',
+        icon: 'fas fa-blog',
+        link: '/dashboard/blog'
       }
     ];
   }

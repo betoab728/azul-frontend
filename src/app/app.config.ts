@@ -38,6 +38,8 @@ import { provideTranslateService } from '@ngx-translate/core';
 import { EmbarcacionRepository } from './domain/repositories/boat.repository';
 import { LeadContactoRepository } from './domain/repositories/lead-contacto.repository';
 import { LeadContactoApiRepository } from './infrastructure/repositories/lead-contacto-api.repository';
+import { BlogRepository } from './domain/repositories/blog.repository';
+import { BlogApiRepository } from './infrastructure/repositories/blog-api.repository';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -62,6 +64,7 @@ export const appConfig: ApplicationConfig = {
     { provide: TipoEmbarcacionRepository, useClass: TipoEmbarcacionApiRepository },
     { provide: SolicitudCotizacionRepository, useClass: SolicitudCotizacionApiRepository },
     { provide: LeadContactoRepository, useClass: LeadContactoApiRepository },
+    { provide: BlogRepository, useClass: BlogApiRepository },
 
     // Configuración de ngx-translate
     provideTranslateService({
