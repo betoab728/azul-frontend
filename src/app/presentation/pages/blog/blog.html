@@ -24,6 +24,7 @@
           <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estado</th>
           <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fecha Publicación</th>
           <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fecha de Registro</th>
+          <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
         </tr>
       </thead>
       <tbody class="divide-y divide-gray-200">
@@ -33,7 +34,11 @@
           <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ blog.autor }}</td>
           <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
             <span class="px-2 py-1 text-xs font-medium rounded-full"
-              [ngClass]="{ 'bg-green-100 text-green-700': blog.estado === 'PUBLICADO', 'bg-yellow-100 text-yellow-700': blog.estado === 'BORRADOR' }">
+              [ngClass]="{
+                'bg-green-100 text-green-700': blog.estado === 'PUBLICADO',
+                'bg-yellow-100 text-yellow-700': blog.estado === 'BORRADOR',
+                'bg-gray-100 text-gray-700': blog.estado === 'ARCHIVADO'
+              }">
               {{ blog.estado }}
             </span>
           </td>
@@ -41,6 +46,26 @@
             {{ blog.fechaPublicacion ? (blog.fechaPublicacion | date:'dd/MM/yyyy HH:mm') : '-' }}
           </td>
           <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ blog.createdAt | date:'dd/MM/yyyy HH:mm' }}</td>
+          <td class="px-4 py-3 text-sm whitespace-nowrap">
+            <button
+              *ngIf="blog.estado === 'BORRADOR'"
+              (click)="onUpdateEstado(blog, 'PUBLICADO')"
+              class="text-green-600 hover:text-green-800 hover:underline transition">
+              Publicar
+            </button>
+            <button
+              *ngIf="blog.estado === 'PUBLICADO'"
+              (click)="onUpdateEstado(blog, 'ARCHIVADO')"
+              class="text-gray-600 hover:text-gray-800 hover:underline transition">
+              Archivar
+            </button>
+            <button
+              *ngIf="blog.estado === 'ARCHIVADO'"
+              (click)="onUpdateEstado(blog, 'BORRADOR')"
+              class="text-yellow-600 hover:text-yellow-800 hover:underline transition">
+              Activar borrador
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
