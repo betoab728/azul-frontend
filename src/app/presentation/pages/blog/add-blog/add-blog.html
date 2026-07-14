@@ -1,0 +1,69 @@
+<section class="p-6 max-w-2xl mx-auto bg-white rounded shadow">
+  <h2 class="text-xl font-bold mb-4">Nuevo Artículo</h2>
+
+  <form (ngSubmit)="onSubmit()" class="space-y-4">
+    <div>
+      <label class="block text-sm font-medium mb-1">Título <span class="text-red-500">*</span></label>
+      <input
+        type="text"
+        [(ngModel)]="titulo"
+        name="titulo"
+        required
+        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-sky-400 outline-none"
+        placeholder="Título del artículo"
+      />
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium mb-1">Resumen</label>
+      <textarea
+        [(ngModel)]="resumen"
+        name="resumen"
+        rows="2"
+        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-sky-400 outline-none resize-none"
+        placeholder="Breve resumen del artículo"
+      ></textarea>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium mb-1">Contenido <span class="text-red-500">*</span></label>
+      <textarea
+        [(ngModel)]="contenido"
+        name="contenido"
+        required
+        rows="8"
+        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-sky-400 outline-none resize-y"
+        placeholder="Contenido del artículo"
+      ></textarea>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium mb-1">Imagen de Portada</label>
+      <input
+        type="text"
+        [(ngModel)]="imagenPortada"
+        name="imagenPortada"
+        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-sky-400 outline-none"
+        placeholder="URL de la imagen de portada"
+      />
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium mb-1">Autor</label>
+      <input
+        type="text"
+        [(ngModel)]="autor"
+        name="autor"
+        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-sky-400 outline-none"
+        placeholder="Nombre del autor"
+      />
+    </div>
+
+    <button
+      type="submit"
+      class="bg-sky-600 hover:bg-sky-700 text-white font-semibold px-4 py-2 rounded-md w-full"
+    >
+      Guardar Artículo
+    </button>
+  </form>
+</section>

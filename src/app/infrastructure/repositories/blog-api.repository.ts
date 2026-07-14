@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { BlogRepository } from '../../domain/repositories/blog.repository';
 import { BlogResponseDto } from '../../application/dto/blog-response.dto';
+import { CreateBlogDto } from '../../application/dto/create-blog.dto';
 import { endpoints } from 'src/app/infrastructure/config/endpoints';
 
 @Injectable()
@@ -13,5 +14,9 @@ export class BlogApiRepository implements BlogRepository {
 
   async getAll(): Promise<BlogResponseDto[]> {
     return await firstValueFrom(this.http.get<BlogResponseDto[]>(this.url));
+  }
+
+  async create(dto: CreateBlogDto): Promise<BlogResponseDto> {
+    return await firstValueFrom(this.http.post<BlogResponseDto>(this.url, dto));
   }
 }

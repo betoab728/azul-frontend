@@ -54,7 +54,8 @@ export const routes: Routes = [
              {path:'ordenes', loadComponent: () => import('./presentation/pages/orders/orders').then(m => m.Orders) },
               {path:'trazabilidad/:id', loadComponent: () => import('./presentation/pages/traceability/traceability').then(m => m.Traceability) },
                {path:'leads-contacto', loadComponent: () => import('./presentation/pages/leads-contacto/leads-contacto').then(m => m.LeadsContacto) },
-               {path:'blog', loadComponent: () => import('./presentation/pages/blog/blog').then(m => m.BlogPage) }
+               {path:'blog', loadComponent: () => import('./presentation/pages/blog/blog').then(m => m.BlogPage) },
+               {path:'blog/agregar', loadComponent: () => import('./presentation/pages/blog/add-blog/add-blog').then(m => m.AddBlog) }
       
 
                

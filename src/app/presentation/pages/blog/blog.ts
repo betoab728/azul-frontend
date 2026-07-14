@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { BlogStoreService } from '../../../infrastructure/services/blog-store.service';
 import { Blog } from '../../../domain/entities/blog.entity';
 import { CommonModule } from '@angular/common';
@@ -15,13 +16,14 @@ export class BlogPage implements OnInit {
   loading = true;
 
   constructor(
-    private blogStoreService: BlogStoreService
+    private blogStoreService: BlogStoreService,
+    private router: Router
   ) {}
 
   async ngOnInit() {
     this.loading = true;
     try {
-      await this.blogStoreService.load();
+      await this.blogStoreService.refresh();
       this.blogs = this.blogStoreService.blogs();
     } catch (error) {
       console.error('Error al obtener artículos del blog:', error);
@@ -29,5 +31,9 @@ export class BlogPage implements OnInit {
     } finally {
       this.loading = false;
     }
+  }
+
+  async onCreateBlog() {
+    await this.router.navigate(['/dashboard/blog/agregar']);
   }
 }
